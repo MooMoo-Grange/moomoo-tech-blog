@@ -38,14 +38,7 @@ export default function FaqPage() {
               const catFaqs = faqs.filter(f => f.category === cat.key)
               if (catFaqs.length === 0) return null
               return (
-                <div key={cat.key}>
-                  <h2 className="text-xl font-serif font-bold mb-4">{cat.label}</h2>
-                  <div className="space-y-2">
-                    {catFaqs.map(faq => (
-                      <FaqAccordion key={faq.faqId} question={faq.questionKo} answer={faq.answerKo} />
-                    ))}
-                  </div>
-                </div>
+                <FaqAccordion key={cat.key} faqs={catFaqs} title={cat.label} />
               )
             })}
           </div>
