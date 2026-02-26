@@ -15,7 +15,7 @@ export default function FoundationPage() {
           <h1 className="text-3xl font-serif font-bold mb-8">설립 이야기</h1>
           <div className="space-y-6">
             <p className="text-lg text-abbey-600 leading-relaxed">
-              1965년, 미국 출신의 성공회 사제 대천덕(Reuben Archer Torrey III) 신부는 강원도 태백산 기슭에
+              1965년, 미국 출신의 성공회 사제 대천덕(Reuben Archer Torrey III) 신부는 강원도 덕항산 기슭에
               기도와 노동, 공동체 생활을 중심으로 하는 수도 공동체를 설립하였습니다.
             </p>
             {founder && (

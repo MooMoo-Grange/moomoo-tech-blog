@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: "예수원 Jesus Abbey",
     template: "%s | 예수원",
   },
-  description: "강원도 태백산 기슭의 수도 공동체 예수원 — 기도, 노동, 공동체의 삶",
+  description: "강원도 덕항산 기슭의 수도 공동체 예수원 — 기도, 노동, 공동체의 삶",
   keywords: ["예수원", "Jesus Abbey", "태백", "수도공동체", "기도", "토레 신부"],
 }
 

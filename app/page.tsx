@@ -14,7 +14,7 @@ export default function HomePage() {
           <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4">예수원</h1>
           <p className="text-xl lg:text-2xl font-serif text-forest-200 mb-2">Jesus Abbey</p>
           <p className="text-lg text-forest-300 max-w-2xl mx-auto mt-6">
-            태백산 기슭에서 기도와 노동, 공동체의 삶을 통해<br />
+            덕항산 기슭에서 기도와 노동, 공동체의 삶을 통해<br />
             하나님 나라를 살아가는 수도 공동체
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
