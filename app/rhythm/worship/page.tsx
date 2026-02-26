@@ -21,11 +21,11 @@ export default function WorshipPage() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
                   <h2 className="text-xl font-serif font-bold">{ws.nameKo}</h2>
                   <span className="text-forest-700 font-medium text-sm mt-1 sm:mt-0">
-                    {ws.timeKo}
+                    {ws.startTime} – {ws.endTime}
                   </span>
                 </div>
                 {ws.nameEn && <p className="text-abbey-500 text-sm mb-2">{ws.nameEn}</p>}
-                <p className="text-abbey-700 leading-relaxed">{ws.descriptionKo}</p>
+                <p className="text-abbey-700 leading-relaxed">{ws.description}</p>
                 {ws.mandatoryForVisitors && (
                   <div className="mt-3">
                     <span className="inline-block text-xs bg-forest-100 text-forest-700 px-3 py-1 rounded-full font-medium">방문자 필참</span>

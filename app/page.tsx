@@ -90,8 +90,8 @@ export default function HomePage() {
                   {services.map(svc => (
                     <tr key={svc.serviceId} className="hover:bg-forest-50/50">
                       <td className="px-6 py-3 font-medium text-abbey-800">{svc.nameKo}</td>
-                      <td className="px-6 py-3 text-abbey-600">{svc.timeKo}</td>
-                      <td className="px-6 py-3 text-abbey-500 hidden sm:table-cell">{svc.descriptionKo}</td>
+                      <td className="px-6 py-3 text-abbey-600">{svc.startTime} – {svc.endTime}</td>
+                      <td className="px-6 py-3 text-abbey-500 hidden sm:table-cell">{svc.description}</td>
                     </tr>
                   ))}
                 </tbody>
