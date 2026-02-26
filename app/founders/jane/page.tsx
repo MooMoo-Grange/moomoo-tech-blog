@@ -5,7 +5,7 @@ import { getPersonById } from "@/lib/data"
 export const metadata = { title: "제인 토레 사모" }
 
 export default function JanePage() {
-  const person = getPersonById("jane")
+  const person = getPersonById("HJI")
   if (!person) return <div className="py-16 text-center text-abbey-500">정보를 찾을 수 없습니다.</div>
 
   return (
@@ -18,25 +18,20 @@ export default function JanePage() {
           <p className="text-abbey-500 text-sm mb-8">
             {person.birthDate && <>{person.birthDate}</>}
             {person.deathDate && <> &ndash; {person.deathDate}</>}
-            {person.roles && <> | {person.roles.join(", ")}</>}
+            {person.role && <> | {person.role}</>}
           </p>
           <div className="space-y-8">
             <div className="bg-white rounded-lg p-8 shadow-sm border border-abbey-200">
               <p className="text-abbey-700 leading-relaxed">{person.biographySummary}</p>
             </div>
-            {person.biographyDetail && (
-              <div className="prose max-w-none">
-                <p className="text-abbey-700 leading-relaxed">{person.biographyDetail}</p>
-              </div>
-            )}
             {person.chronology && person.chronology.length > 0 && (
               <div>
                 <h2 className="text-xl font-serif font-bold mb-4">연대기</h2>
                 <div className="space-y-3">
                   {person.chronology.map((event, i) => (
                     <div key={i} className="flex gap-4 items-start">
-                      <span className="text-forest-700 font-bold text-sm whitespace-nowrap min-w-[60px]">{event.year}</span>
-                      <span className="text-abbey-700 text-sm">{event.event}</span>
+                      <span className="text-forest-700 font-bold text-sm whitespace-nowrap min-w-[60px]">{event.period}</span>
+                      <span className="text-abbey-700 text-sm">{event.description}</span>
                     </div>
                   ))}
                 </div>
