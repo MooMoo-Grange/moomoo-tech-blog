@@ -24,7 +24,7 @@ export default function ContactPage() {
             <div className="bg-white rounded-lg p-8 shadow-sm border border-abbey-200">
               <h2 className="text-xl font-serif font-bold mb-4">📍 주소</h2>
               <p className="text-abbey-700 font-medium mb-2">예수원 (Jesus Abbey)</p>
-              <p className="text-sm text-abbey-600">강원도 태백시 삼수동</p>
+              <p className="text-sm text-abbey-600">강원특별자치도 태백시 외나무골길 97</p>
             </div>
           </div>
 

@@ -15,90 +15,85 @@ export default function HowToVisitPage() {
           </p>
 
           <div className="space-y-10">
+            {/* 1) 일시방문 안내 */}
             <div>
-              <h2 className="text-xl font-serif font-bold mb-4">1. 사전 연락</h2>
-              <div className="bg-forest-50 rounded-lg p-6 border border-forest-200">
-                <p className="text-forest-800 leading-relaxed mb-3">
-                  방문을 원하시는 분은 반드시 사전에 사무부에 연락하셔야 합니다.
-                  예약 없이 방문하시면 숙소와 식사가 준비되지 않을 수 있습니다.
-                </p>
-                <p className="text-sm font-medium text-forest-700">
-                  📞 전화: 033-552-0633
-                </p>
+              <h2 className="text-xl font-serif font-bold mb-4">1) 일시방문 안내</h2>
+              <div className="bg-white rounded-lg p-6 border border-abbey-200 space-y-3">
+                <ul className="text-sm text-abbey-700 space-y-2">
+                  <li className="flex gap-3"><span className="text-forest-600 shrink-0">◈</span><span>주말에는 손님이 원내에 계실 수 없습니다.</span></li>
+                  <li className="flex gap-3"><span className="text-forest-600 shrink-0">◈</span><span>핸드폰 전원은 꺼주시고, 건물 외부만 10~20분 정도 둘러보시고 가시면 됩니다.</span></li>
+                  <li className="flex gap-3"><span className="text-forest-600 shrink-0">◈</span><span>화장실은 옆 제일 큰 건물(나사렛) 1층에 있습니다.</span></li>
+                </ul>
               </div>
             </div>
 
+            {/* 2) 방문자 생활안내 */}
             <div>
-              <h2 className="text-xl font-serif font-bold mb-4">2. 방문 기간</h2>
-              <p className="text-abbey-700 leading-relaxed">
-                일반 방문은 2박 3일 이상을 권장합니다. 짧은 방문으로는 공동체의 생활 리듬을
-                충분히 경험하기 어렵습니다. 장기 체류를 원하시는 분은 사무부와 상의해 주세요.
-              </p>
-            </div>
+              <h2 className="text-xl font-serif font-bold mb-4">2) 방문자 생활안내</h2>
+              <div className="space-y-6">
 
-            <div>
-              <h2 className="text-xl font-serif font-bold mb-4">3. 준비물</h2>
-              <ul className="space-y-2 text-abbey-700">
-                <li className="flex gap-3">
-                  <span className="text-forest-600">✓</span>
-                  <span>성경, 필기도구</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-forest-600">✓</span>
-                  <span>편한 옷 (노동 참여를 위한 작업복)</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-forest-600">✓</span>
-                  <span>개인 세면도구</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-forest-600">✓</span>
-                  <span>계절에 맞는 따뜻한 옷 (산간 지역)</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-forest-600">✓</span>
-                  <span>실내화</span>
-                </li>
-              </ul>
-              <p className="text-sm text-abbey-500 mt-3">※ 침구는 제공됩니다.</p>
-            </div>
+                {/* 도착 및 출발 */}
+                <div className="bg-forest-50 rounded-lg p-6 border border-forest-200">
+                  <h3 className="font-bold text-forest-800 mb-3">◈ 도착 및 출발</h3>
+                  <p className="text-sm text-forest-700 leading-relaxed mb-3">매주 월요일과 수요일 두 차례 방문객을 받고 있습니다.</p>
+                  <ul className="text-sm text-forest-700 space-y-2">
+                    <li>• 월요일에 오시는 분은 수요일까지 2박 3일</li>
+                    <li>• 수요일에 오시는 분은 금요일까지 2박 3일</li>
+                    <li>• 도착일 (들어오는 시간): 오후 2시 ~ 4시 사이에 도착</li>
+                    <li>• 출발일 (나가는 시간): 오전 8시 ~ 11시 사이에 하산</li>
+                  </ul>
+                  <p className="text-sm text-forest-600 mt-2 ml-4">* 태백행 8시 50분 버스 / 11시 05분 버스 이용</p>
+                  <p className="text-sm text-forest-600 ml-4">* 태백시외버스터미널까지 30분 소요됩니다.</p>
+                </div>
 
-            <div>
-              <h2 className="text-xl font-serif font-bold mb-4">4. 방문자 일과</h2>
-              <div className="bg-white rounded-lg border border-abbey-200 overflow-hidden">
-                <table className="w-full text-sm">
-                  <tbody className="divide-y divide-abbey-200">
-                    {[
-                      ["05:30", "기상"],
-                      ["06:00", "조도 (아침 예배)"],
-                      ["07:10", "아침 식사"],
-                      ["08:00~12:00", "노동"],
-                      ["12:00", "대도 (낮 예배)"],
-                      ["12:40", "점심 식사"],
-                      ["13:00~14:00", "소침묵 / 휴식"],
-                      ["14:00~17:30", "노동 / 개인 시간"],
-                      ["18:00", "저녁 식사"],
-                      ["19:30", "만도 (저녁 예배)"],
-                      ["21:00", "소침묵 시작"],
-                      ["22:00", "대침묵 시작"],
-                    ].map(([time, activity]) => (
-                      <tr key={time}>
-                        <td className="px-6 py-2 font-medium text-forest-700 whitespace-nowrap w-36">{time}</td>
-                        <td className="px-6 py-2 text-abbey-700">{activity}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                {/* 준비물 */}
+                <div className="bg-white rounded-lg p-6 border border-abbey-200">
+                  <h3 className="font-bold mb-3">◈ 준비물</h3>
+                  <p className="text-sm text-abbey-700 leading-relaxed">
+                    성경, 세면도구, 여름(긴팔옷), 겨울(방한복) 별도 준비, 운동화(구두/샌들 불편), 소형 랜턴, 개인 물병이나 물컵
+                  </p>
+                </div>
+
+                {/* 금지 및 제한사항 */}
+                <div className="bg-white rounded-lg p-6 border border-abbey-200">
+                  <h3 className="font-bold mb-3">◈ 금지 및 제한사항</h3>
+                  <ul className="text-sm text-abbey-700 space-y-2">
+                    <li className="flex gap-3">
+                      <span className="text-abbey-500 shrink-0">-</span>
+                      <span><strong>복장제한:</strong> 맨발, 반바지(팔부 이상 가능), 스키니진, 레깅스, 짧은치마, 민소매 등 노출 및 밀착이 심한 옷, 운동복(취침 시 가능), 양말 항시 착용</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-abbey-500 shrink-0">-</span>
+                      <span>음주 및 흡연</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-abbey-500 shrink-0">-</span>
+                      <span>차량키, 휴대폰, 아이패드, 노트북, 카메라 등 비롯한 전자기기 사용불가 (손님부에서 보관, 하산 직전 다시 찾아감)</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-abbey-500 shrink-0">-</span>
+                      <span>외부와의 연락은 본원에 올라오시기 전에 해주세요. 본원은 전화신호가 약하여 전화 사용이 어렵습니다.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 숙식비 */}
+                <div className="bg-white rounded-lg p-6 border border-abbey-200">
+                  <h3 className="font-bold mb-3">◈ 숙식비</h3>
+                  <p className="text-sm text-abbey-700 leading-relaxed">
+                    숙식비 받지 않음 (자원하는 경우 헌금 가능)
+                  </p>
+                </div>
+
+                {/* 짐 안내 */}
+                <div className="bg-abbey-100/50 rounded-lg p-6 border border-abbey-200">
+                  <h3 className="font-bold mb-3">◈ 짐 안내</h3>
+                  <p className="text-sm text-abbey-700 leading-relaxed">
+                    원내 도로가 비포장이니 캐리어보다는 백팩 사용을 권하며 마을에서 경사지를 15분여 걸어오셔야 하기에 소량의 짐을 가져오시길 권장합니다. (캐리어는 가져오지 마세요.)
+                  </p>
+                </div>
+
               </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-serif font-bold mb-4">5. 비용</h2>
-              <p className="text-abbey-700 leading-relaxed">
-                예수원은 별도의 숙박비나 식비를 정해두지 않습니다.
-                하나님의 공급하심을 신뢰하며 운영되고 있으므로,
-                방문자 여러분의 자유 헌금으로 운영됩니다.
-              </p>
             </div>
           </div>
 
