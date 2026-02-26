@@ -25,7 +25,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-abbey-700 mt-8 pt-6 text-center text-xs text-abbey-500">
-          <p>Copyright 2022 예수원 All Rights Reserved.</p>
+          <p className="italic mb-1">&ldquo;For he was looking forward to the city with foundations, whose architect and builder is God.&rdquo; (Hebrews 11:10)</p>
+          <p>Copyright 2026 Jesus Abbey All Rights Reserved.</p>
         </div>
       </div>
     </footer>
