@@ -1,0 +1,42 @@
+[
+  {
+    "personId": "RAT",
+    "nameKo": "대천덕 (아처 토레이)",
+    "nameEn": "Reuben Archer Torrey III",
+    "role": "founder",
+    "birthDate": "1918-11-19",
+    "deathDate": "2002-02-16",
+    "biographySummary": "예수원의 설립자. 중국에서 태어나 미국에서 교육받고, 1957년 한국 선교를 시작하여 1965년 강원도 태백산 삼수령에 예수원을 설립하였다. 성공회 사제로서 수도원적 공동체 생활과 성령 운동을 결합한 독특한 영적 유산을 남겼다.",
+    "chronology": [
+      {"period": "1918-1935", "label": "중국 유년기", "description": "중국 선교사 가정에서 출생, 유년기를 중국에서 보냄"},
+      {"period": "1935-1946", "label": "미국 학업기", "description": "프린스턴 대학교, 필라델피아 신학교 수학"},
+      {"period": "1946-1957", "label": "미국 사역기", "description": "미국 성공회 사제 서품, 목회 활동"},
+      {"period": "1957-1965", "label": "한국 선교 초기", "description": "한국 도착, 성미가엘 신학원, 항동교회 사역"},
+      {"period": "1965-2002", "label": "예수원 설립과 운영", "description": "강원도 태백산 삼수령에 예수원 설립, 37년간 공동체 지도"},
+      {"period": "2002", "label": "영면", "description": "2002년 2월 16일 소천"}
+    ],
+    "photoRefs": []
+  },
+  {
+    "personId": "HJI",
+    "nameKo": "현재인",
+    "nameEn": "Jane Torrey (현재인)",
+    "role": "co_founder",
+    "birthDate": null,
+    "deathDate": null,
+    "biographySummary": "대천덕 신부의 배우자이자 예수원 공동 설립자. 예수원의 공동체 생활을 함께 일구었으며, 저서 『예수원 이야기』를 통해 예수원의 역사와 영적 여정을 기록하였다.",
+    "chronology": [],
+    "photoRefs": []
+  },
+  {
+    "personId": "GUEST",
+    "nameKo": "외부 강사",
+    "nameEn": "Guest Speaker",
+    "role": "guest",
+    "birthDate": null,
+    "deathDate": null,
+    "biographySummary": "예수원에 초청되어 강의한 외부 강사들",
+    "chronology": [],
+    "photoRefs": []
+  }
+]

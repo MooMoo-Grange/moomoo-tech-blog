@@ -1,0 +1,9 @@
+[
+  {"code":"WOR","nameKo":"예배사역","nameEn":"Worship Ministry","subCategories":["조도","대도","만도","주일예배","특별예배"]},
+  {"code":"TRN","nameKo":"훈련사역","nameEn":"Training Ministry","subCategories":["지원과정","수련과정","성령세미나","기술교육"]},
+  {"code":"RES","nameKo":"연구사역","nameEn":"Research Ministry","subCategories":["성경연구","신학연구","토착화연구","대체에너지"]},
+  {"code":"SND","nameKo":"파송사역","nameEn":"Sending Ministry","subCategories":["센터파견","해외선교","분원설립"]},
+  {"code":"SUP","nameKo":"지원사역","nameEn":"Support Ministry","subCategories":["자급자족","십일조","기부금","윤번제"]},
+  {"code":"PUB","nameKo":"보급사역","nameEn":"Publication Ministry","subCategories":["출판","영상보급","서점연락망"]},
+  {"code":"PRA","nameKo":"발력사역","nameEn":"Intercession Ministry","subCategories":["개인중보","국가중보","기도운동"]}
+]

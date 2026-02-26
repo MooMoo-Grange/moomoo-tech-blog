@@ -1,0 +1,12 @@
+[
+  {"topicId":"성령론","topicNameKo":"성령론","topicNameEn":"Pneumatology","description":"성령의 인격과 사역에 대한 신학","status":"active","subTopics":["성령세례","성령의 은사","은사예배"]},
+  {"topicId":"공동체론","topicNameKo":"공동체론","topicNameEn":"Community Theology","description":"코이노니아, 공동생활, 공동체의 영적 원리","status":"active","subTopics":["코이노니아","공동생활","공동체와 말"]},
+  {"topicId":"기도론","topicNameKo":"기도론","topicNameEn":"Theology of Prayer","description":"중보기도, 침묵기도, 관상기도의 원리","status":"active","subTopics":["중보기도","침묵기도","관상기도"]},
+  {"topicId":"선교론","topicNameKo":"선교론","topicNameEn":"Missiology","description":"선교 정신, 파송, 텐트메이커 선교","status":"active","subTopics":["선교정신","파송","텐트메이커"]},
+  {"topicId":"경제정의","topicNameKo":"경제정의","topicNameEn":"Economic Justice","description":"토지제도, 성경적 경제, 자급자족","status":"active","subTopics":["토지제도","성경적 경제","자급자족"]},
+  {"topicId":"치유","topicNameKo":"치유","topicNameEn":"Healing","description":"속사람 치유, 상담, 회개와 고백","status":"active","subTopics":["속사람 치유","상담","회개와 고백"]},
+  {"topicId":"가정","topicNameKo":"가정","topicNameEn":"Family","description":"남과 여, 결혼, 가족에 대한 성경적 이해","status":"active","subTopics":["남과 여","결혼","가족"]},
+  {"topicId":"성경론","topicNameKo":"성경론","topicNameEn":"Theology of Scripture","description":"성경연구, 3차원 신학, 5차원 신학","status":"active","subTopics":["성경연구","3차원 신학","5차원 신학"]},
+  {"topicId":"문화신학","topicNameKo":"문화신학","topicNameEn":"Cultural Theology","description":"토착화, 동양문화와 기독교","status":"active","subTopics":["토착화","동양문화와 기독교"]},
+  {"topicId":"교회론","topicNameKo":"교회론","topicNameEn":"Ecclesiology","description":"교회의 가치정신, 사회문제","status":"active","subTopics":["교회의 가치정신","사회문제"]}
+]
