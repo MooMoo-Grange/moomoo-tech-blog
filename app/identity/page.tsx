@@ -31,9 +31,13 @@ export default function IdentityPage() {
               <h2 className="text-xl font-serif font-bold mb-3 group-hover:text-forest-700">영적 DNA</h2>
               <p className="text-abbey-600 text-sm leading-relaxed">예수원이 지켜온 영적 유산과 핵심 가치, 신학적 토대를 살펴봅니다.</p>
             </Link>
-            <Link href="/identity/fourth-river" className="group block bg-white rounded-lg p-8 shadow-sm border border-abbey-200 hover:border-forest-300 transition-colors md:col-span-2">
-              <h2 className="text-xl font-serif font-bold mb-3 group-hover:text-forest-700">제4의 강 프로젝트 (The Fourth River Project)</h2>
+            <Link href="/identity/fourth-river" className="group block bg-white rounded-lg p-8 shadow-sm border border-abbey-200 hover:border-forest-300 transition-colors">
+              <h2 className="text-xl font-serif font-bold mb-3 group-hover:text-forest-700">네번째강 프로젝트 (The Fourth River Project)</h2>
               <p className="text-abbey-600 text-sm leading-relaxed">예수원의 북한 선교 사역. 한국 교회의 화합과 치유를 위해 일꾼을 준비하고, 삼수령 센터(Three Seas Center)에서 훈련과 기도의 공동체를 세워가는 프로젝트입니다.</p>
+            </Link>
+            <Link href="/identity/moomoo-grange" className="group block bg-white rounded-lg p-8 shadow-sm border border-abbey-200 hover:border-forest-300 transition-colors">
+              <h2 className="text-xl font-serif font-bold mb-3 group-hover:text-forest-700">무무목장 프로젝트 (MooMoo Grange)</h2>
+              <p className="text-abbey-600 text-sm leading-relaxed">삼수령 해발 1,000m 고지대에서 Jersey 소를 키우며 재생 농업, 공동체 치유, 북한 고지대 농촌 복원을 준비하는 예수원의 목장 프로젝트입니다.</p>
             </Link>
           </div>
         </div>

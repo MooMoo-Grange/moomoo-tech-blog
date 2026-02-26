@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Breadcrumbs from "@/components/Breadcrumbs"
 
-export const metadata = { title: "제4의 강 프로젝트 — The Fourth River Project" }
+export const metadata = { title: "네번째강 프로젝트 — The Fourth River Project" }
 
 export default function FourthRiverPage() {
   return (
@@ -9,11 +9,11 @@ export default function FourthRiverPage() {
       <Breadcrumbs items={[
         { label: "홈", path: "/" },
         { label: "정체성", path: "/identity" },
-        { label: "제4의 강 프로젝트" },
+        { label: "네번째강 프로젝트" },
       ]} />
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-serif font-bold mb-3">제4의 강 프로젝트</h1>
+          <h1 className="text-3xl font-serif font-bold mb-3">네번째강 프로젝트</h1>
           <p className="text-lg text-abbey-500 mb-2">The Fourth River Project</p>
           <p className="text-sm text-abbey-400 mb-10">예수원의 북한 선교 사역</p>
 

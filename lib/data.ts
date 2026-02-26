@@ -124,7 +124,8 @@ export const navItems: NavigationItem[] = [
     { key: "experiments", labelKo: "세 가지 실험", labelEn: "Three Experiments", path: "/identity/experiments" },
     { key: "ministries", labelKo: "사역 영역", labelEn: "Ministries", path: "/identity/ministries" },
     { key: "dna", labelKo: "영적 DNA", labelEn: "Spiritual DNA", path: "/identity/dna" },
-    { key: "fourth-river", labelKo: "제4의 강 프로젝트", labelEn: "Fourth River Project", path: "/identity/fourth-river" },
+    { key: "fourth-river", labelKo: "네번째강 프로젝트", labelEn: "Fourth River Project", path: "/identity/fourth-river" },
+    { key: "moomoo-grange", labelKo: "무무목장 프로젝트", labelEn: "MooMoo Grange", path: "/identity/moomoo-grange" },
   ]},
   { key: "rhythm", labelKo: "공동체 생활", labelEn: "Community Life", path: "/rhythm", children: [
     { key: "worship", labelKo: "예배", labelEn: "Worship", path: "/rhythm/worship" },
