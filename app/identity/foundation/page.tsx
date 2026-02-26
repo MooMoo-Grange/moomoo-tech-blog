@@ -5,7 +5,7 @@ import { getPersonById } from "@/lib/data"
 export const metadata = { title: "설립 이야기" }
 
 export default function FoundationPage() {
-  const founder = getPersonById("torrey")
+  const founder = getPersonById("RAT")
 
   return (
     <>
@@ -47,8 +47,8 @@ export default function FoundationPage() {
               <div className="space-y-3">
                 {founder.chronology.map((event, i) => (
                   <div key={i} className="flex gap-4 items-start">
-                    <span className="text-forest-700 font-bold text-sm whitespace-nowrap min-w-[60px]">{event.year}</span>
-                    <span className="text-abbey-700 text-sm">{event.event}</span>
+                    <span className="text-forest-700 font-bold text-sm whitespace-nowrap min-w-[60px]">{event.period}</span>
+                    <span className="text-abbey-700 text-sm">{event.description}</span>
                   </div>
                 ))}
               </div>
