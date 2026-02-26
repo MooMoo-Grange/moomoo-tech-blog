@@ -10,6 +10,13 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   .faq-answer.open { max-height: 500px; }
 }
 
+/* Hide default Google Translate UI */
+.goog-te-banner-frame { display: none !important; }
+.goog-te-gadget { display: none !important; }
+body { top: 0 !important; }
+.skiptranslate { display: none !important; }
+#goog-gt-tt { display: none !important; }
+
 @media print {
   nav, footer, .no-print { display: none !important; }
 }
