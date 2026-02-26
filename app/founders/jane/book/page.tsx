@@ -637,8 +637,8 @@ export default function BookPage() {
   return (
     <>
       <Breadcrumbs items={[
-        { label: "설립자", href: "/founders" },
-        { label: "현재인 사모", href: "/founders/jane" },
+        { label: "설립자", path: "/founders" },
+        { label: "현재인 사모", path: "/founders/jane" },
         { label: "A Table in the Wilderness" },
       ]} />
 
