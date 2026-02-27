@@ -184,6 +184,46 @@ export default function FourthRiverPage() {
             {/* Divider */}
             <div className="border-t border-abbey-200" />
 
+            {/* Videos */}
+            <div>
+              <h2 className="text-xl font-serif font-bold mb-6">Videos</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="aspect-video rounded-lg overflow-hidden border border-abbey-200">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/XuJwiGGu9bU?si=dP_K42tiPgk_4tZ8"
+                    title="The Fourth River Project"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="aspect-video rounded-lg overflow-hidden border border-abbey-200">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/29oITQ2z7SQ?si=6FYHUSgTs_-hiC6h"
+                    title="The Fourth River Project"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="aspect-video rounded-lg overflow-hidden border border-abbey-200 md:col-span-2 md:max-w-[calc(50%-0.75rem)]">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/TRG10xLMUe8?si=67reLXbh-DkcJsWS"
+                    title="The Fourth River Project"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-abbey-200" />
+
             {/* Contact */}
             <div>
               <h2 className="text-xl font-serif font-bold mb-4">Contact Information</h2>
