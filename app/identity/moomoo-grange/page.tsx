@@ -422,6 +422,34 @@ export default function MooMooGrangePage() {
               </div>
             </div>
 
+            {/* Videos */}
+            <div>
+              <h2 className="text-xl font-serif font-bold mb-6">삼수령 풍경 영상</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { id: "M4IKy3mzCN4", title: "구름 위의 마을, 해발 1000미터에서의 삶의 풍경" },
+                  { id: "iwKztF5XIYY", title: "해발 1,305m 산 정상 겨울 캠핑" },
+                  { id: "ngrWE76rwKM", title: "체감온도 -26도 얼음산 캠핑" },
+                ].map((v) => (
+                  <div key={v.id} className="bg-white rounded-lg overflow-hidden shadow-sm border border-abbey-200">
+                    <div className="aspect-video">
+                      <iframe
+                        className="w-full h-full"
+                        src={`https://www.youtube.com/embed/${v.id}`}
+                        title={v.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      />
+                    </div>
+                    <div className="px-4 py-3">
+                      <p className="text-sm font-medium text-abbey-800">{v.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Location Info */}
             <div className="bg-abbey-100/50 rounded-lg p-6 border border-abbey-200 text-center">
               <p className="text-sm font-medium text-abbey-700">Samsuryeong MooMoo Ranch</p>
