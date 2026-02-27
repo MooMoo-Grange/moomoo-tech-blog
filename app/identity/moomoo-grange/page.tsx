@@ -336,6 +336,25 @@ export default function MooMooGrangePage() {
               </p>
             </div>
 
+            {/* MooMoo Store */}
+            <div className="bg-forest-50 rounded-lg p-6 border border-forest-200 flex flex-col sm:flex-row items-center gap-4">
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="font-serif font-bold text-forest-800 mb-1">무무곳간</h3>
+                <p className="text-sm text-forest-600">무무목장의 신선한 유제품을 네이버 스마트스토어에서 만나보세요.</p>
+              </div>
+              <a
+                href="https://smartstore.naver.com/moomooranch"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-forest-700 text-white text-sm font-medium rounded-lg hover:bg-forest-800 transition-colors shrink-0 min-h-[44px]"
+              >
+                <span>무무곳간 방문하기</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              </a>
+            </div>
+
             {/* Location Info */}
             <div className="bg-abbey-100/50 rounded-lg p-6 border border-abbey-200 text-center">
               <p className="text-sm font-medium text-abbey-700">Samsuryeong MooMoo Ranch</p>
