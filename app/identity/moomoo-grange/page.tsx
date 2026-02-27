@@ -1,10 +1,63 @@
 import Breadcrumbs from "@/components/Breadcrumbs"
 
-export const metadata = { title: "무무목장 프로젝트 — Samsuryeong MooMoo Ranch" }
+export const metadata = {
+  title: "삼수령무무목장 · 무무곳간 — MooMoo Ranch & MooMoo Gotgan",
+  description:
+    "삼수령무무목장(Samsuryeong MooMoo Ranch) — 예수원의 생태순환농업 프로젝트. 퍼머컬쳐와 창조질서회복의 가치를 실천하며, 무무곳간(MooMoo Gotgan)을 통해 프리미엄 A2 유제품을 제공합니다.",
+  openGraph: {
+    title: "삼수령무무목장 · 무무곳간 — MooMoo Ranch & Gotgan",
+    description:
+      "해발 1,000m 고지대에서 Jersey 소를 키우며 생태순환농업과 창조질서회복을 실천하는 예수원의 목장. 무무곳간에서 건강한 유제품을 만나보세요.",
+  },
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://jesusabbey.org/identity/moomoo-grange#ranch",
+      name: "삼수령무무목장 Samsuryeong MooMoo Ranch",
+      description:
+        "해발 1,000m 고지대에서 Jersey 소를 키우며 생태순환농업(Ecological Circular Agriculture)과 퍼머컬쳐(Permaculture)를 실천하는 예수원의 목장. 창조질서회복(Restoration of Creation Order)의 가치를 농업으로 구현합니다.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "태백시",
+        addressRegion: "강원특별자치도",
+        addressCountry: "KR",
+      },
+      parentOrganization: {
+        "@type": "Organization",
+        name: "예수원 Jesus Abbey",
+      },
+    },
+    {
+      "@type": "Store",
+      "@id": "https://smartstore.naver.com/moomooranch",
+      name: "무무곳간 MooMoo Gotgan",
+      alternateName: ["Mumu Gotgan", "무무곳간", "MooMoo Gotgan"],
+      description:
+        "삼수령무무목장에서 생산한 프리미엄 A2 유제품 직판 브랜드. 생태순환농업과 창조질서회복의 가치를 담은 지속 가능한 먹거리를 제공합니다.",
+      url: "https://smartstore.naver.com/moomooranch",
+      brand: {
+        "@type": "Brand",
+        name: "무무곳간 MooMoo Gotgan",
+      },
+      isRelatedTo: {
+        "@type": "LocalBusiness",
+        "@id": "https://jesusabbey.org/identity/moomoo-grange#ranch",
+      },
+    },
+  ],
+}
 
 export default function MooMooGrangePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Breadcrumbs items={[
         { label: "홈", path: "/" },
         { label: "정체성", path: "/identity" },
@@ -336,23 +389,37 @@ export default function MooMooGrangePage() {
               </p>
             </div>
 
-            {/* MooMoo Store */}
-            <div className="bg-forest-50 rounded-lg p-6 border border-forest-200 flex flex-col sm:flex-row items-center gap-4">
-              <div className="flex-1 text-center sm:text-left">
-                <h3 className="font-serif font-bold text-forest-800 mb-1">무무곳간</h3>
-                <p className="text-sm text-forest-600">무무목장의 신선한 유제품을 네이버 스마트스토어에서 만나보세요.</p>
+            {/* MooMoo Gotgan — Semantic Brand Section */}
+            <div>
+              <h2 className="text-xl font-serif font-bold mb-4">무무곳간 (MooMoo Gotgan)</h2>
+              <p className="text-abbey-700 leading-relaxed mb-4">
+                무무곳간은 삼수령무무목장에서 생산한 프리미엄 A2 유제품을 직접 소비자에게 전하는 브랜드입니다.
+                단순한 온라인 상점이 아니라, 창조질서회복(Restoration of Creation Order)의 가치를 담은
+                생태순환농업(Ecological Circular Agriculture)의 결실을 나누는 곳입니다.
+              </p>
+              <p className="text-abbey-700 leading-relaxed mb-6">
+                퍼머컬쳐(Permaculture) 원리에 따라 키운 Jersey 소의 우유로 만든 요거트, 치즈, 버터 등
+                건강한 유제품을 통해, 예수원 공동체가 지켜온 &ldquo;소를 소답게 키운다&rdquo;는
+                창조 신학적 목축 철학을 일상에서 경험할 수 있습니다.
+                무무곳간의 모든 제품은 북한 고지대 농촌 복원 모델 개발이라는 더 큰 사명과 연결되어 있습니다.
+              </p>
+              <div className="bg-forest-50 rounded-lg p-6 border border-forest-200 flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex-1 text-center sm:text-left">
+                  <h3 className="font-serif font-bold text-forest-800 mb-1">무무곳간 스토어</h3>
+                  <p className="text-sm text-forest-600">삼수령무무목장의 신선한 유제품을 네이버 스마트스토어에서 만나보세요.</p>
+                </div>
+                <a
+                  href="https://smartstore.naver.com/moomooranch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-forest-700 text-white text-sm font-medium rounded-lg hover:bg-forest-800 transition-colors shrink-0 min-h-[44px]"
+                >
+                  <span>무무곳간 방문하기</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                </a>
               </div>
-              <a
-                href="https://smartstore.naver.com/moomooranch"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-forest-700 text-white text-sm font-medium rounded-lg hover:bg-forest-800 transition-colors shrink-0 min-h-[44px]"
-              >
-                <span>무무곳간 방문하기</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                </svg>
-              </a>
             </div>
 
             {/* Location Info */}

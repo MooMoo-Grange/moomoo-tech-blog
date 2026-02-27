@@ -1,7 +1,16 @@
 import Link from "next/link"
 import Breadcrumbs from "@/components/Breadcrumbs"
 
-export const metadata = { title: "네번째강 프로젝트 — The Fourth River Project" }
+export const metadata = {
+  title: "네번째강 프로젝트 — The Fourth River Project | 북한선교 · 삼수령센터",
+  description:
+    "예수원의 북한선교(North Korea Mission) 사역. 삼수령센터(Three Seas Center)에서 한국 교회의 화합과 치유를 위한 일꾼을 준비하는 네번째강 프로젝트(Fourth River Project).",
+  openGraph: {
+    title: "네번째강 프로젝트 — Fourth River Project",
+    description:
+      "예수원의 북한선교 사역. 삼수령센터에서 한국 교회의 화합과 치유를 위해 일꾼을 준비합니다.",
+  },
+}
 
 export default function FourthRiverPage() {
   return (
