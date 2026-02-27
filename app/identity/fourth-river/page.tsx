@@ -189,22 +189,6 @@ export default function FourthRiverPage() {
               <h2 className="text-xl font-serif font-bold mb-4">Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white rounded-lg p-6 border border-abbey-200">
-                  <h3 className="font-bold mb-3">The Fourth River Project</h3>
-                  <ul className="text-sm text-abbey-700 space-y-2">
-                    <li>
-                      <a href="https://www.thefourthriver.org" target="_blank" rel="noopener noreferrer" className="text-forest-700 hover:text-forest-900 transition-colors underline">
-                        www.thefourthriver.org
-                      </a>
-                    </li>
-                    <li>Ben Torrey, Director</li>
-                    <li>
-                      <a href="mailto:bentorrey@thefourthriver.org" className="text-forest-700 hover:text-forest-900 transition-colors underline">
-                        bentorrey@thefourthriver.org
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-white rounded-lg p-6 border border-abbey-200">
                   <h3 className="font-bold mb-3">The Three Seas Center</h3>
                   <ul className="text-sm text-abbey-700 space-y-2">
                     <li>439 Baekdudaegan-ro</li>
