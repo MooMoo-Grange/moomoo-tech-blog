@@ -34,8 +34,7 @@ export default function FoundationPage() {
             )}
             <h2 className="text-xl font-serif font-bold mt-8">설립 배경</h2>
             <p className="text-abbey-700 leading-relaxed">
-              대천덕 신부는 미국에서 태어나 중국과 한국에서 선교사로 사역하였습니다. 6&middot;25 전쟁 후 한국에 정착하여
-              초대교회와 같은 삶을 꿈꾸며 태백산 삼수령에 공동체의 터전을 마련하였습니다.
+              대천덕 신부는 중국에서 선교사의 자녀로 태어나 한국에서 사역하였습니다. 1964년 지금의 성공회대학교 원장직을 사임하고 초대교회와 같은 공동체를 꿈꾸며 덕항산 기슭에 예수원 공동체의 터전을 마련하였습니다.
             </p>
             <h2 className="text-xl font-serif font-bold mt-8">이름의 의미</h2>
             <p className="text-abbey-700 leading-relaxed">
