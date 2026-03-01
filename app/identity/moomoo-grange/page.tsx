@@ -69,6 +69,32 @@ export default function MooMooGrangePage() {
           <p className="text-lg text-abbey-500 mb-2">Samsuryeong MooMoo Ranch</p>
           <p className="text-sm text-abbey-400 mb-10">고지대 농촌 복원을 위한 전략적 프로토타입</p>
 
+          {/* Hero Photo Gallery */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%89%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%85%E1%85%A7%E1%86%BC%E1%84%86%E1%85%AE%E1%84%86%E1%85%AE%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%201975-AohqSCL4ef6FWCOSXEJl0uZYdTTiX4.jpg"
+                alt="삼수령무무목장 1975년 전경 - 매봉산 자락 해발 1,000m 고지대에 자리잡은 초기 목장 건물"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                <p className="text-white text-sm font-medium">삼수령무무목장, 1975</p>
+              </div>
+            </div>
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%20%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%20%E1%84%80%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AF-wRMF9jSGrO8KoZEYSEKVYl4KCdfgXs.jpg"
+                alt="예수원 본관 건물 - 돌로 지어진 전통적인 석조 건물"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                <p className="text-white text-sm font-medium">예수원 본관 건물</p>
+              </div>
+            </div>
+          </div>
+
           {/* 1. 프로젝트 정의 */}
           <div className="bg-forest-50 rounded-lg p-8 border border-forest-200 mb-10">
             <h2 className="text-xl font-serif font-bold text-forest-800 mb-4">1. 프로젝트 정의</h2>
@@ -127,6 +153,65 @@ export default function MooMooGrangePage() {
                 삼수령 무무목장은 예수원의 수도회적 유산뿐 아니라,
                 한국 낙농 발전의 숨은 아버지 중 한 분의 살아 있는 발자취를 함께 간직하고 있습니다.
               </p>
+
+              {/* Historical Photo Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-8">
+                <div className="relative aspect-[3/4] rounded-lg overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Archer%20and%20Paul%20Kingsbury%20-n9WA6HDEyDMBtUdIUQ5BuFESl1ZC7y.jpg"
+                    alt="대천덕 신부와 폴 킹스버리가 건축 현장에서 대화하는 모습"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                    <p className="text-white text-xs">대천덕 신부와 폴 킹스버리</p>
+                  </div>
+                </div>
+                <div className="relative aspect-[3/4] rounded-lg overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Paul%20Kingsbury-yZtqRcGl7NSTgnaKL7EiFbT6r9APq4.jpg"
+                    alt="폴 킹스버리가 목재를 나르며 건축 작업을 하는 모습"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                    <p className="text-white text-xs">폴 킹스버리, 건축 현장에서</p>
+                  </div>
+                </div>
+                <div className="relative aspect-[3/4] rounded-lg overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Jeremiah%20with%20cattle-gdG27aQ9d4kcvARorCJaIbTSmhOZ8d.jpg"
+                    alt="예수원 초기 목장에서 소를 돌보는 예레미야의 모습"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                    <p className="text-white text-xs">예레미야와 소떼</p>
+                  </div>
+                </div>
+                <div className="relative aspect-[4/3] rounded-lg overflow-hidden col-span-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Paul%20Kingsbury%20at%20Grange%20with%20sheep-J6SaZkLaEii9h8UQVBZ03i3HX1Rpto.jpg"
+                    alt="폴 킹스버리가 삼수령 목장에서 양들을 돌보는 모습"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                    <p className="text-white text-xs">폴 킹스버리와 삼수령 목장의 양떼</p>
+                  </div>
+                </div>
+                <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Jesus%20Abbey_%20%2835%29.JPG-7lwGbV3SAQPVkE0GINiaknikkox2lT.jpeg"
+                    alt="겨울 눈 덮인 예수원 석조 건물 풍경"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                    <p className="text-white text-xs">겨울 예수원</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="border-t border-abbey-200" />
@@ -249,11 +334,26 @@ export default function MooMooGrangePage() {
             {/* 6. Jersey 품종 선택의 전략성 */}
             <div>
               <h2 className="text-xl font-serif font-bold mb-4">6. Jersey 품종 선택의 전략성</h2>
-              <p className="text-abbey-700 leading-relaxed mb-6">
-                저지(Jersey) 품종 선택은 감성적 결정이 아닙니다.
-                운영 효율과 고지대 적합성을 고려한 전략적 판단입니다.
-                고지대, 제한적 사료, 장기 운영 조건에서 저지는 가장 안정적인 선택입니다.
-              </p>
+              <div className="flex flex-col md:flex-row gap-6 mb-6">
+                <div className="md:flex-1">
+                  <p className="text-abbey-700 leading-relaxed">
+                    저지(Jersey) 품종 선택은 감성적 결정이 아닙니다.
+                    운영 효율과 고지대 적합성을 고려한 전략적 판단입니다.
+                    고지대, 제한적 사료, 장기 운영 조건에서 저지는 가장 안정적인 선택입니다.
+                  </p>
+                </div>
+                <div className="relative w-full md:w-48 aspect-[3/4] rounded-lg overflow-hidden shrink-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20%E1%84%89%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF%20%E1%84%8F%E1%85%B5%E1%84%8B%E1%85%AE%E1%86%AF%E1%84%84%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A2%E1%86%BB%E1%84%83%E1%85%A5%E1%86%AB%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A9-vwvXqSw78a4lfrswJY2bM7NY69pwqn.jpg"
+                    alt="예수원에서 소를 키울 때 사용했던 석조 사일로"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                    <p className="text-white text-xs">초기 석조 사일로</p>
+                  </div>
+                </div>
+              </div>
               <div className="bg-white rounded-lg border border-abbey-200 overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead className="bg-abbey-100">
@@ -369,6 +469,17 @@ export default function MooMooGrangePage() {
             {/* 8. 창조 청지기 철학 */}
             <div>
               <h2 className="text-xl font-serif font-bold mb-4">8. 창조 청지기 철학</h2>
+              <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-6">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%B5%E1%84%83%E1%85%A9%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20%E1%84%80%E1%85%B5%E1%84%83%E1%85%A9%E1%84%92%E1%85%A1%E1%84%80%E1%85%A9%20%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%86%E1%85%AE%E1%84%86%E1%85%AE%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3%E1%86%AF-97xMXrY9FD5ahbUmY0bReONDeVJMEt.jpg"
+                  alt="예수원 소기도실에서 기도하고 있는 무무목장 아이들"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                  <p className="text-white text-sm">예수원 소기도실에서 기도하고 있는 무무목장 아이들</p>
+                </div>
+              </div>
               <p className="text-abbey-700 leading-relaxed mb-4">
                 무무목장은 생산성만을 목표로 하지 않습니다.
                 운영 철학은 다음 원칙을 따릅니다:
@@ -416,7 +527,7 @@ export default function MooMooGrangePage() {
                 </ul>
               </div>
               <p className="text-abbey-700 leading-relaxed font-medium">
-                이 프로젝트는 하나의 농장이 아니라,
+                이 프로젝��는 하나의 농장이 아니라,
                 한반도 고지대 농촌 회복을 위한 테스트베드입니다.
               </p>
             </div>
