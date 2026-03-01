@@ -309,7 +309,7 @@ export default function MooMooGrangePage() {
               <p className="text-abbey-700 leading-relaxed mb-6">
                 무무목장은 원유 생산에 머물지 않습니다.
                 가치사슬을 내부에 통합하여 외부 의존도를 낮추고 수익 구조를 다각화합니다.
-                이 구조는 단일 상품 리스크를 분산시키���, 고지대에서도 지속 가능한 수익 모델을 구축합니다.
+                이 구조는 단일 상품 리스크를 분산시키고, 고지대에서도 지속 가능한 수익 모델을 구축합니다.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {[
@@ -527,7 +527,7 @@ export default function MooMooGrangePage() {
                 </ul>
               </div>
               <p className="text-abbey-700 leading-relaxed font-medium">
-                이 프로젝��는 하나의 농장이 아니라,
+                이 프로젝트는 하나의 농장이 아니라,
                 한반도 고지대 농촌 회복을 위한 테스트베드입니다.
               </p>
             </div>

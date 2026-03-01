@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { getAllWorshipServices, getAllFaqs } from "@/lib/data"
+import HeroVideo from "@/components/HeroVideo"
 
 export default function HomePage() {
   const services = getAllWorshipServices()
@@ -7,26 +8,8 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative bg-forest-800 text-white py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-forest-900/90 to-forest-700/80" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4">예수원</h1>
-          <p className="text-xl lg:text-2xl font-serif text-forest-200 mb-2">Jesus Abbey</p>
-          <p className="text-lg text-forest-300 max-w-2xl mx-auto mt-6">
-            덕항산 기슭에서 기도와 노동, 공동체의 삶을 통해<br />
-            하나님 나라를 살아가는 수도 공동체
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/visit/about" className="inline-block bg-white text-forest-800 px-8 py-3 rounded-lg font-medium hover:bg-forest-50 transition-colors">
-              예수원 알아보기
-            </Link>
-            <Link href="/visit/how" className="inline-block border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors">
-              방문 안내
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Hero with YouTube background video */}
+      <HeroVideo />
 
       {/* Three Experiments */}
       <section className="py-16 bg-abbey-50">
