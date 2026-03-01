@@ -13,17 +13,27 @@ export default function JanePage() {
       <Breadcrumbs items={[{ label: "홈", path: "/" }, { label: "설립자", path: "/founders" }, { label: person.nameKo }]} />
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-serif font-bold mb-2">{person.nameKo}</h1>
-          <p className="text-abbey-500 text-lg mb-2">{person.nameEn}</p>
-          <p className="text-abbey-500 text-sm mb-8">
-            {person.birthDate && <>{person.birthDate}</>}
-            {person.deathDate && <> &ndash; {person.deathDate}</>}
-            {person.role && <> | {person.role}</>}
-          </p>
-          <div className="space-y-8">
-            <div className="bg-white rounded-lg p-8 shadow-sm border border-abbey-200">
+          <div className="flex flex-col sm:flex-row gap-8 mb-8">
+            <div className="relative w-full sm:w-56 aspect-[3/4] rounded-lg overflow-hidden shrink-0 shadow-md">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%92%E1%85%A7%E1%86%AB%E1%84%8C%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%89%E1%85%A1%E1%84%86%E1%85%A9%E1%84%82%E1%85%B5%E1%86%B7%20%E1%84%89%E1%85%A1%E1%84%8C%E1%85%B5%E1%86%AB.png-Sx4PugkiWl32cJGBgr2XvE4vdInQJV.jpeg"
+                alt="현재인 사모님 (Jane Torrey)"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex-1">
+              <h1 className="text-3xl font-serif font-bold mb-2">{person.nameKo}</h1>
+              <p className="text-abbey-500 text-lg mb-2">{person.nameEn}</p>
+              <p className="text-abbey-500 text-sm mb-6">
+                {person.birthDate && <>{person.birthDate}</>}
+                {person.deathDate && <> &ndash; {person.deathDate}</>}
+                {person.role && <> | {person.role}</>}
+              </p>
               <p className="text-abbey-700 leading-relaxed">{person.biographySummary}</p>
             </div>
+          </div>
+          <div className="space-y-8">
 
             {/* Book Introduction Card */}
             <div className="bg-amber-50/60 rounded-lg p-8 shadow-sm border border-amber-200/80">
