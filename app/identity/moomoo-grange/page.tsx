@@ -65,72 +65,85 @@ export default function MooMooGrangePage() {
       ]} />
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-serif font-bold mb-3">무무목장 프로젝트</h1>
+          <h1 className="text-3xl font-serif font-bold mb-3">삼수령 무무목장 프로젝트</h1>
           <p className="text-lg text-abbey-500 mb-2">Samsuryeong MooMoo Ranch</p>
-          <p className="text-sm text-abbey-400 italic mb-10">Opus Dei Agriculturae &mdash; 농업 안에서의 하나님의 일</p>
+          <p className="text-sm text-abbey-400 mb-10">고지대 농촌 복원을 위한 전략적 프로토타입</p>
 
-          {/* 개요 */}
+          {/* 1. 프로젝트 정의 */}
           <div className="bg-forest-50 rounded-lg p-8 border border-forest-200 mb-10">
-            <h2 className="text-xl font-serif font-bold text-forest-800 mb-4">개요</h2>
+            <h2 className="text-xl font-serif font-bold text-forest-800 mb-4">1. 프로젝트 정의</h2>
             <p className="text-forest-700 leading-relaxed mb-4">
-              삼수령 무무목장은 단순한 낙농 목장이 아닙니다. 한반도 농촌 회복을 위한 살아 있는 원형(Prototype)이자,
-              재생농업과 공동체 치유, 창조 청지기 정신을 하나의 자립형 플랫폼으로 엮어내는
-              촉매적 선교 인프라(Catalytic Mission Infrastructure)입니다.
-              이 모델은 언젠가 북한의 가장 고립된 고지대 마을에 복제될 수 있도록 설계되었습니다.
+              삼수령 무무목장은 단순한 낙농장이 아닙니다.
+              이곳은 고지대 농촌 자립 모델을 검증하기 위한 실험 플랫폼입니다.
+            </p>
+            <p className="text-forest-700 leading-relaxed mb-4">
+              목표는 명확합니다. 해발 800~1,200m의 한반도 고지대 조건에서
+              재생농업 기반 소규모 낙농 모델이 경제적·생태적으로 자립 가능한지 검증하는 것입니다.
             </p>
             <p className="text-forest-700 leading-relaxed">
-              강원도 태백시 해발 1,000m에 위치한 이 목장은 예수원의 50년 유산을 계승하며,
-              고지대 환경에 최적화된 저지(Jersey) 품종을 중심으로 프리미엄 A2 소규모 낙농을 운영합니다.
-              동시에 생산, 가공, 식음, 관광목장, 교육, 직판이라는 농촌의 완결형 가치사슬을 통합하고 있습니다.
+              태백 해발 1,000m는 북한 고지대와 가장 유사한 남한의 환경입니다.
+              이곳에서 검증된 시스템은 향후 최소 수정만으로
+              북한 지역에 이전할 수 있도록 설계되었습니다.
             </p>
           </div>
 
           <div className="space-y-10">
 
-            {/* 50년 예수원의 유산 */}
+            {/* 2. 역사적 기반 */}
             <div>
-              <h2 className="text-xl font-serif font-bold mb-4">50년 예수원의 유산</h2>
+              <h2 className="text-xl font-serif font-bold mb-4">2. 역사적 기반</h2>
               <p className="text-abbey-700 leading-relaxed mb-4">
-                삼수령 무무목장의 이야기는 사업 계획서가 아니라 기도에서 시작되었습니다.
-                예수원 설립자인 대천덕(Archer Torrey III) 신부는 기도와 노동이 분리될 수 없는
-                자립형 고지대 공동체를 꿈꾸었고, 그 비전 위에 목장이 세워졌습니다.
+                무무목장은 1965년 시작된 예수원 낙농 전통을 계승합니다.
+                예수원은 덕항산 기슭에서 낙농업과 함께 시작되었으나 공간이 협소하여,
+                10년 후인 1975년 예수원에서 약 10km 떨어진
+                해발 1,000m 매봉산 자락에 부지를 확보하며 고지대 낙농 실험이 본격화되었습니다.
+                당시 첫 목장 이름은 &ldquo;Jesus Abbey The Watershed Grange&rdquo;였습니다.
               </p>
               <p className="text-abbey-700 leading-relaxed mb-4">
-                1965년 덕항산 기슭에서 예수원은 낙농업과 함께 시작되었습니다.
-                그러나 공간이 협소하여 약 10년 후인 1975년, 예수원에서 약 10km 떨어진
-                해발 1,000m 매봉산 자락에 새로운 목장 부지를 발견하게 됩니다.
-                이곳에 세워진 예수원 부속 목장의 첫 이름은 &ldquo;Jesus Abbey The Watershed Grange&rdquo;였습니다.
-                대천덕 신부는 베네딕트 수도회의 <em>기도하고 일하라(ora et labora)</em> 정신에 기초한
-                낙농 기반 수도 공동체를 이 고지대에서 본격적으로 시작했습니다.
-                그 목적은 상업적인 것이 아니었습니다. 그것은 언약적인 것이었습니다.
-                경배당에서의 예배가 목초지와 축사, 소떼에 대한 청지기 직분으로
-                자연스럽게 이어지는 삶을 구현하는 것이었습니다.
+                초기 설계는 다음 철학 위에 세워졌습니다:
+              </p>
+              <ul className="space-y-2 text-abbey-700 mb-4">
+                <li className="flex gap-3 items-start">
+                  <span className="text-forest-600 shrink-0 mt-0.5">&#x2022;</span>
+                  <span>기도와 노동의 통합</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="text-forest-600 shrink-0 mt-0.5">&#x2022;</span>
+                  <span>공동체 기반 자립 경제</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="text-forest-600 shrink-0 mt-0.5">&#x2022;</span>
+                  <span>고지대 환경에 적합한 소규모 낙농</span>
+                </li>
+              </ul>
+              <p className="text-abbey-700 leading-relaxed mb-6">
+                이는 상업적 확장이 아닌, 지속 가능한 구조 실험이었습니다.
               </p>
               <p className="text-abbey-700 leading-relaxed">
-                결정적인 형성기인 1975년부터 1982년까지, 폴 킹스버리(Paul A. Kingsbury)는
-                Heifer International을 통해 한국에서 20여 년간 선구적인 축산 개발 사역을 마친 후,
+                결정적인 형성기인 1975년부터 1982년까지,
+                폴 킹스버리(Paul A. Kingsbury)는 Heifer International을 통해
+                한국에서 20여 년간 선구적인 축산 개발 사역을 마친 후,
                 한국에서의 마지막 6년을 대천덕 신부의 목장 설립을 돕는 데 헌신했습니다.
-                삼수령 무무목장은 예수원의 베네딕트 수도회적 유산뿐 아니라,
+                삼수령 무무목장은 예수원의 수도회적 유산뿐 아니라,
                 한국 낙농 발전의 숨은 아버지 중 한 분의 살아 있는 발자취를 함께 간직하고 있습니다.
               </p>
             </div>
 
             <div className="border-t border-abbey-200" />
 
-            {/* 리더십 */}
+            {/* 3. 리더십 구조 */}
             <div>
-              <h2 className="text-xl font-serif font-bold mb-4">3개국 리더십 팀</h2>
-              <p className="text-abbey-700 leading-relaxed mb-6">
-                현재 무무목장은 한반도 역사에 가장 깊이 얽혀 있는 세 나라 &mdash; 남한, 북한, 미국 &mdash; 을
-                대표하는 고유한 3개국 리더십 팀이 이끌고 있습니다.
+              <h2 className="text-xl font-serif font-bold mb-4">3. 리더십 구조</h2>
+              <p className="text-abbey-700 leading-relaxed mb-4">
+                무무목장은 남한·북한·미국 출신 인력으로 구성된 3개국 협력 구조를 가지고 있습니다.
+                이 구조는 단순한 상징이 아니라 전략적 자산입니다.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
                 <div className="bg-white rounded-lg p-6 border border-abbey-200">
                   <h3 className="font-serif font-bold mb-1">헤세키아 (서수철)</h3>
                   <p className="text-xs text-forest-600 mb-3">남한</p>
                   <p className="text-sm text-abbey-700 leading-relaxed">
-                    예수원 공동체 안에서 목장 책임자로 사역하고 있습니다.
-                    초창기 선교사 설립자들의 운영 유산을 이어받아,
+                    현장 운영 및 지역 기반 관리. 예수원 공동체 안에서 목장 책임자로서
                     해발 1,000m 고지대 목초지와 저지 소떼를 사계절 돌보고 있습니다.
                   </p>
                 </div>
@@ -138,62 +151,64 @@ export default function MooMooGrangePage() {
                   <h3 className="font-serif font-bold mb-1">요셉 박 (Joseph Park)</h3>
                   <p className="text-xs text-forest-600 mb-3">북한 (함경북도 무산군 출신)</p>
                   <p className="text-sm text-abbey-700 leading-relaxed">
-                    북한 출생. 건국대학교에서 수의학을 전공하고 탈북민을 위한 사회적 기업을 설립했습니다.
-                    2023년 예수원 목장에 합류하여 북한을 위한 축산 기반 농촌 복원 모델을 구축하고 있습니다.
+                    북한 환경 이해 및 현지 적용 모델 설계. 건국대학교 수의학 전공.
+                    탈북민을 위한 사회적 기업을 설립한 후,
+                    2023년 목장에 합류하여 축산 기반 농촌 복원 모델을 구축하고 있습니다.
                   </p>
                 </div>
                 <div className="bg-white rounded-lg p-6 border border-abbey-200">
                   <h3 className="font-serif font-bold mb-1">바니 스미스 박사 (Dr. Barney Smith)</h3>
                   <p className="text-xs text-forest-600 mb-3">미국</p>
                   <p className="text-sm text-abbey-700 leading-relaxed">
-                    미국인 수의사로, 1997년부터 2019년까지 선교사이자 농업 실무자로서 북한 내부에서 활동했습니다.
-                    장기간의 현지 경험과 수의학 전문성을 겸비한 그의 현장 대응 역량은 다른 어디에서도 재현할 수 없는 것입니다.
+                    국제 개발 경험 및 고위험 환경 대응 역량. 미국인 수의사로,
+                    1997년부터 2019년까지 북한 내부에서 선교사이자 농업 실무자로 활동했습니다.
                   </p>
                 </div>
               </div>
+              <p className="text-sm text-abbey-600">
+                이 조합은 향후 북한 전환기 상황에서 즉시 작동 가능한 준비 인력을 의미합니다.
+              </p>
             </div>
 
             <div className="border-t border-abbey-200" />
 
-            {/* 폴리페이스 + 스위스 모델 */}
+            {/* 4. 설계 원칙 */}
             <div>
-              <h2 className="text-xl font-serif font-bold mb-4">폴리페이스 + 스위스 모델</h2>
+              <h2 className="text-xl font-serif font-bold mb-4">4. 설계 원칙</h2>
               <p className="text-abbey-700 leading-relaxed mb-6">
-                이 프로젝트는 세계에서 가장 검증된 두 소규모 농업 패러다임에서 전략적 설계를 차용합니다.
-                조엘 살라틴(Joel Salatin)의 폴리페이스 농장(재생적·분산형 농업)과
-                스위스 고지대 낙농 모델(장인적·마을 기반·관광 통합형)입니다.
+                두 모델을 통합하여, 고지대 특화 소규모 프리미엄 낙농 시스템을 설계했습니다.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white rounded-lg p-6 border border-abbey-200">
-                  <h3 className="font-serif font-bold mb-3">폴리페이스 원칙</h3>
+                  <h3 className="font-serif font-bold mb-3">4.1 폴리페이스 농장 모델 차용</h3>
                   <ul className="space-y-2 text-sm text-abbey-700">
                     {[
-                      ["재생농업", "관리형 방목을 통한 토양 건강 증진"],
-                      ["다종 순환 방목", "소, 가금류, 돼지를 공생적 순서로 순환"],
-                      ["토양 우선 철학", "토양 생물학을 모든 생산의 기초로"],
-                      ["소비자 직거래", "농장 직판을 통한 중간 유통 제거"],
-                      ["분산형 자립", "산업형 공급망으로부터의 독립"],
-                    ].map(([title, desc]) => (
-                      <li key={title} className="flex gap-3 items-start">
+                      "관리형 방목",
+                      "다종 순환 시스템",
+                      "토양 생물학 중심 설계",
+                      "직거래 기반 유통",
+                      "산업형 공급망 의존 최소화",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-3 items-start">
                         <span className="text-forest-600 shrink-0 mt-0.5">&#x2022;</span>
-                        <span><strong>{title}:</strong> {desc}</span>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="bg-white rounded-lg p-6 border border-abbey-200">
-                  <h3 className="font-serif font-bold mb-3">스위스 고지대 낙농 원칙</h3>
+                  <h3 className="font-serif font-bold mb-3">4.2 스위스 고지대 낙농 모델 차용</h3>
                   <ul className="space-y-2 text-sm text-abbey-700">
                     {[
-                      ["고지대 최적화", "고도와 기후에 적응한 낙농 생산"],
-                      ["소규모·고부가가치", "양보다 질; 프리미엄 A2 원유"],
-                      ["부가가치 가공", "치즈, 요거트, 버터를 현장에서 생산"],
-                      ["농촌 관광 통합", "목장 방문을 경제적 동력으로"],
-                      ["생태적 청지기 정신", "지속 가능한 산지 목초지 관리"],
-                    ].map(([title, desc]) => (
-                      <li key={title} className="flex gap-3 items-start">
+                      "고지대 기후 적응형 생산",
+                      "소규모 고부가가치 전략",
+                      "현장 가공 중심 구조",
+                      "관광·체험 통합 모델",
+                      "산지 생태 보전",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-3 items-start">
                         <span className="text-forest-600 shrink-0 mt-0.5">&#x2022;</span>
-                        <span><strong>{title}:</strong> {desc}</span>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -203,14 +218,82 @@ export default function MooMooGrangePage() {
 
             <div className="border-t border-abbey-200" />
 
-            {/* 태백 = 북한 고지대 프로토타입 */}
+            {/* 5. 6단계 통합 가치사슬 */}
             <div>
-              <h2 className="text-xl font-serif font-bold mb-4">태백 — 북한 고지대의 프로토타입</h2>
+              <h2 className="text-xl font-serif font-bold mb-4">5. 6단계 통합 가치사슬</h2>
               <p className="text-abbey-700 leading-relaxed mb-6">
-                태백은 전략적으로 남한 어디에서도 찾기 어려운, 북한 고지대 조건에 가장 가까운 실질적 유사 환경입니다.
-                삼수령에서 검증된 모든 시스템은 최소한의 적응만으로 북한 고지대 조건에 직접 이전할 수 있습니다.
+                무무목장은 원유 생산에 머물지 않습니다.
+                가치사슬을 내부에 통합하여 외부 의존도를 낮추고 수익 구조를 다각화합니다.
+                이 구조는 단일 상품 리스크를 분산시키고, 고지대에서도 지속 가능한 수익 모델을 구축합니다.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {[
+                  { stage: "1", title: "생산", desc: "Jersey A2 낙농, 목초 관리" },
+                  { stage: "2", title: "가공", desc: "요거트, 치즈, 버터, 젤라또" },
+                  { stage: "3", title: "식음", desc: "카페 및 레스토랑" },
+                  { stage: "4", title: "관광", desc: "체험, 치유 프로그램" },
+                  { stage: "5", title: "교육", desc: "농업 훈련, 견습 과정" },
+                  { stage: "6", title: "직판", desc: "구독, B2B, 라이브 커머스" },
+                ].map(({ stage, title, desc }) => (
+                  <div key={stage} className="bg-white rounded-lg p-5 border border-abbey-200">
+                    <span className="text-xs font-bold text-forest-600">{stage}단계</span>
+                    <h3 className="font-serif font-bold mt-1 mb-2">{title}</h3>
+                    <p className="text-sm text-abbey-600">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-abbey-200" />
+
+            {/* 6. Jersey 품종 선택의 전략성 */}
+            <div>
+              <h2 className="text-xl font-serif font-bold mb-4">6. Jersey 품종 선택의 전략성</h2>
+              <p className="text-abbey-700 leading-relaxed mb-6">
+                저지(Jersey) 품종 선택은 감성적 결정이 아닙니다.
+                운영 효율과 고지대 적합성을 고려한 전략적 판단입니다.
+                고지대, 제한적 사료, 장기 운영 조건에서 저지는 가장 안정적인 선택입니다.
               </p>
               <div className="bg-white rounded-lg border border-abbey-200 overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-abbey-100">
+                    <tr>
+                      <th className="px-4 py-3 text-left font-medium text-abbey-600">항목</th>
+                      <th className="px-4 py-3 text-left font-medium text-abbey-600">Jersey</th>
+                      <th className="px-4 py-3 text-left font-medium text-abbey-600">Holstein</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-abbey-200">
+                    {[
+                      ["체중", "400~450kg", "600~700kg"],
+                      ["유지방", "4.8~5.2%", "3.5~3.7%"],
+                      ["사료 효율", "높음", "보통"],
+                      ["A2 유전형", "거의 100%", "혼합"],
+                      ["내한성", "우수", "보통"],
+                      ["분만 난이도", "낮음", "상대적으로 높음"],
+                      ["산유 수명", "12~15년", "5~7년"],
+                    ].map(([param, jersey, holstein]) => (
+                      <tr key={param}>
+                        <td className="px-4 py-2 font-medium text-abbey-700">{param}</td>
+                        <td className="px-4 py-2 text-forest-700 font-medium">{jersey}</td>
+                        <td className="px-4 py-2 text-abbey-500">{holstein}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="border-t border-abbey-200" />
+
+            {/* 7. 북한 적용 가능성 */}
+            <div>
+              <h2 className="text-xl font-serif font-bold mb-4">7. 북한 적용 가능성</h2>
+              <p className="text-abbey-700 leading-relaxed mb-6">
+                태백은 남한에서 북한 고지대 조건에 가장 가까운 실질적 유사 환경입니다.
+                삼수령에서 검증된 시스템은 최소한의 적응만으로 북한 고지대에 직접 이전할 수 있습니다.
+              </p>
+              <div className="bg-white rounded-lg border border-abbey-200 overflow-x-auto mb-8">
                 <table className="w-full text-sm">
                   <thead className="bg-abbey-100">
                     <tr>
@@ -223,7 +306,7 @@ export default function MooMooGrangePage() {
                     {[
                       ["해발 고도", "해발 1,000m", "800~1,200m 일반적"],
                       ["겨울 기간", "영하 5~6개월", "영하 5~7개월"],
-                      ["1월 평균 기온", "-8\u00B0C ~ -12\u00B0C", "-10\u00B0C ~ -20\u00B0C"],
+                      ["1월 평균 기온", "-8°C ~ -12°C", "-10°C ~ -20°C"],
                       ["경작 가능 토지", "매우 제한적", "매우 제한적"],
                       ["사료 공급", "자체 생산 + 제한적 외부 조달", "거의 전량 자체 조달"],
                       ["물류 체계", "원격지, 제한적 물류", "극도로 제약됨"],
@@ -237,162 +320,108 @@ export default function MooMooGrangePage() {
                   </tbody>
                 </table>
               </div>
-            </div>
-
-            <div className="border-t border-abbey-200" />
-
-            {/* 6단계 통합 가치사슬 */}
-            <div>
-              <h2 className="text-xl font-serif font-bold mb-4">6단계 통합 가치사슬</h2>
-              <p className="text-abbey-700 leading-relaxed mb-6">
-                무무목장은 단일 제품 낙농 업체가 아닙니다. 하나의 고지대 공동체가
-                영양 자급, 경제적 자립, 교육 역량, 문화 재생을 동시에 달성할 수 있음을 보여주는
-                통합 농촌 복원 청사진(Integrated Rural Restoration Blueprint)이자 완결형 순환 경제 생태계입니다.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {[
-                  { stage: "1", title: "생산", desc: "저지 A2 낙농, 목초지 관리" },
-                  { stage: "2", title: "가공", desc: "요거트, 치즈, 버터, 젤라또 현장 생산" },
-                  { stage: "3", title: "식음", desc: "목장 카페, 레스토랑, 시음실" },
-                  { stage: "4", title: "관광목장", desc: "목장 투어, 치유 프로그램, 리트릿" },
-                  { stage: "5", title: "교육", desc: "PBL 교육, 농업 견습 프로그램" },
-                  { stage: "6", title: "직판", desc: "구독형 판매, 라이브 커머스, B2B" },
-                ].map(({ stage, title, desc }) => (
-                  <div key={stage} className="bg-white rounded-lg p-5 border border-abbey-200">
-                    <span className="text-xs font-bold text-forest-600">{stage}단계</span>
-                    <h3 className="font-serif font-bold mt-1 mb-2">{title}</h3>
-                    <p className="text-sm text-abbey-600">{desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="border-t border-abbey-200" />
-
-            {/* 저지 유전학 */}
-            <div>
-              <h2 className="text-xl font-serif font-bold mb-4">저지(Jersey) 유전학과 고지대 적합성</h2>
-              <p className="text-abbey-700 leading-relaxed mb-6">
-                저지 품종의 선택은 전략적입니다. 세계 젖소 품종 가운데 저지는
-                고지대 적응력, 사료 효율성, 부가가치 밀도에서 가장 뛰어난 품종으로,
-                삼수령 운영은 물론 향후 북한 배치를 위한 최적의 유전학 플랫폼입니다.
-              </p>
-              <div className="bg-forest-50 rounded-lg p-6 border border-forest-200">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                  {[
-                    ["체구", "400~450kg (홀스타인 600~700kg 대비)"],
-                    ["사료 효율", "사료 1kg당 유고형분 생산량 최고"],
-                    ["유지방", "4.8~5.2% (홀스타인 3.5~3.7% 대비)"],
-                    ["A2 β-카제인", "~100% A2/A2 유전형"],
-                    ["내한성", "우수"],
-                    ["분만 용이성", "매우 높음, 수의학적 의존도 낮음"],
-                    ["기질", "온순, 소규모 농가 관리에 적합"],
-                    ["산유 수명", "12~15년 이상"],
-                  ].map(([trait, value]) => (
-                    <div key={trait} className="flex gap-3">
-                      <span className="font-bold text-forest-700 shrink-0 min-w-[120px]">{trait}</span>
-                      <span className="text-forest-600">{value}</span>
-                    </div>
-                  ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-white rounded-lg p-6 border border-abbey-200">
+                  <h3 className="font-serif font-bold mb-3">북한 고지대 환경 특성</h3>
+                  <ul className="space-y-2 text-sm text-abbey-700">
+                    {[
+                      "5~7개월 장기 혹한",
+                      "제한된 경작지",
+                      "취약한 물류",
+                      "외부 투입재 접근성 낮음",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-3 items-start">
+                        <span className="text-abbey-400 shrink-0 mt-0.5">&#x2022;</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-forest-50 rounded-lg p-6 border border-forest-200">
+                  <h3 className="font-serif font-bold text-forest-800 mb-3">무무목장 모델의 적합성</h3>
+                  <ul className="space-y-2 text-sm text-forest-700">
+                    {[
+                      "고가 장비 의존 없음",
+                      "인터넷 기반 기술 불필요",
+                      "현지 사료 자급 가능",
+                      "자연 교배 중심 번식 구조",
+                      "도제식 교육 전수 가능",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-3 items-start">
+                        <span className="shrink-0 mt-0.5">&#x2022;</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            </div>
-
-            <div className="border-t border-abbey-200" />
-
-            {/* 창조 청지기 신학 */}
-            <div>
-              <h2 className="text-xl font-serif font-bold mb-4">창조 청지기 신학</h2>
-              <blockquote className="border-l-4 border-forest-300 pl-6 mb-6 italic text-abbey-600">
-                <p className="mb-2">&ldquo;Et vidit Deus quod esset bonum.&rdquo;</p>
-                <p>&ldquo;하나님이 보시기에 좋았더라.&rdquo; &mdash; 창세기 1:25</p>
-              </blockquote>
-              <p className="text-abbey-700 leading-relaxed mb-4">
-                무무목장의 모든 운영 철학은 재생농업을 제자도의 실천으로 해석하는
-                창조 청지기 신학 위에 세워져 있습니다. 창세기 2장 15절의 히브리어 <em>샤마르(shamar)</em>는
-                일반적으로 &ldquo;지키다&rdquo;로 번역되지만, 원래 의미는 보호하고, 지키고, 적극적으로 보존하는 것입니다.
-                인간의 소명은 동산을 섬기는 것이지, 동산에서 착취하는 것이 아닙니다.
-              </p>
               <div className="bg-abbey-100/50 rounded-lg p-6 border border-abbey-200">
-                <p className="text-sm text-abbey-700 leading-relaxed italic">
-                  소를 소답게 키운다 &mdash; 이것은 단순한 슬로건이 아닙니다. 신학적 헌신입니다.
-                  개방된 목초지에서 소를 키우고, 자연적 행동을 허용하며, 계절의 리듬을 존중하고,
-                  동물의 창조된 본성을 존중하는 것은 <em>하나님의 형상(imago Dei)</em>의 표현입니다.
+                <p className="text-sm text-abbey-700 leading-relaxed">
+                  Heifer International의 &ldquo;Passing on the Gift&rdquo; 원칙을 적용하여
+                  암송아지 전달 방식의 자가 증식 구조를 설계했습니다.
+                  5두 → 2년 후 10두 → 4년 후 20두. 소규모 단위에서 점진적 확장이 가능합니다.
                 </p>
               </div>
             </div>
 
             <div className="border-t border-abbey-200" />
 
-            {/* 북한 복제 준비 */}
+            {/* 8. 창조 청지기 철학 */}
             <div>
-              <h2 className="text-xl font-serif font-bold mb-4">북한 복제 준비</h2>
+              <h2 className="text-xl font-serif font-bold mb-4">8. 창조 청지기 철학</h2>
               <p className="text-abbey-700 leading-relaxed mb-4">
-                무무목장의 육종 프로그램은 Heifer International이 시작한
-                &ldquo;선물 전달하기(Passing on the Gift)&rdquo; 원칙을 중심으로 설계되었습니다.
-                암송아지를 받은 각 가정은 첫 번째 암송아지를 다른 가정에 전달할 것을 약속합니다.
-                고지대 마을에 배치된 저지 암소 5두는 2년 안에 10두가 되고, 4년이면 20두가 됩니다.
+                무무목장은 생산성만을 목표로 하지 않습니다.
+                운영 철학은 다음 원칙을 따릅니다:
               </p>
-              <p className="text-abbey-700 leading-relaxed mb-6">
-                정치적 조건이 변할 때, 국제 사회는 시급한 질문에 직면하게 됩니다.
-                북한 고지대 마을에 신속하게 배치할 수 있는 농촌 개발 모델은 무엇인가?
-                그것은 소규모이고, 자기 복제가 가능하며, 고지대에 적응하고, 공동체 중심이며,
-                즉각적으로 생산 가능한 모델이어야 합니다.
-              </p>
-              <div className="bg-forest-50 rounded-lg p-6 border border-forest-200">
-                <p className="text-forest-800 font-bold mb-3">이 모델이 북한 조건에 적합한 이유:</p>
-                <ul className="space-y-2 text-sm text-forest-700">
-                  <li className="flex gap-3 items-start">
-                    <span className="shrink-0 mt-0.5">&#x2022;</span>
-                    <span>정치적으로 민감한 기술이나 이념을 포함하지 않음</span>
-                  </li>
-                  <li className="flex gap-3 items-start">
-                    <span className="shrink-0 mt-0.5">&#x2022;</span>
-                    <span>수입 기술, 인터넷 연결, 외국인 관리가 필요 없음</span>
-                  </li>
-                  <li className="flex gap-3 items-start">
-                    <span className="shrink-0 mt-0.5">&#x2022;</span>
-                    <span>모든 투입재를 현지에서 조달: 목초 기반 사료, 자연 교배, 중력식 급수</span>
-                  </li>
-                  <li className="flex gap-3 items-start">
-                    <span className="shrink-0 mt-0.5">&#x2022;</span>
-                    <span>가공 기술은 산업화 이전 방식을 활용</span>
-                  </li>
-                  <li className="flex gap-3 items-start">
-                    <span className="shrink-0 mt-0.5">&#x2022;</span>
-                    <span>지식 전수는 도제식 교육과 실습 훈련을 통해 이루어짐</span>
-                  </li>
-                </ul>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                {[
+                  "토양을 우선한다",
+                  "동물의 본성을 존중한다",
+                  "계절의 리듬을 따른다",
+                  "과잉 생산을 추구하지 않는다",
+                ].map((principle) => (
+                  <div key={principle} className="bg-white rounded-lg p-4 border border-abbey-200 flex items-center gap-3">
+                    <span className="text-forest-600">&#x2022;</span>
+                    <span className="text-sm text-abbey-700 font-medium">{principle}</span>
+                  </div>
+                ))}
               </div>
+              <p className="text-sm text-abbey-600">
+                이는 종교적 수사가 아니라, 장기 지속 가능성을 위한 운영 기준입니다.
+              </p>
             </div>
 
             <div className="border-t border-abbey-200" />
 
-            {/* 결론 */}
+            {/* 9. 결론 */}
             <div>
-              <h2 className="text-xl font-serif font-bold mb-4">한반도 회복을 위한 생명의 씨앗</h2>
-              <blockquote className="border-l-4 border-forest-300 pl-6 mb-6 italic text-abbey-600">
-                <p className="mb-2">&ldquo;Nisi granum frumenti cadens in terram mortuum fuerit, ipsum solum manet.&rdquo;</p>
-                <p>&ldquo;한 알의 밀이 땅에 떨어져 죽지 아니하면 한 알 그대로 있고.&rdquo; &mdash; 요한복음 12:24</p>
-              </blockquote>
-              <p className="text-abbey-700 leading-relaxed mb-4">
-                삼수령 무무목장은 씨앗입니다. 작습니다. 고지대에, 혹독한 환경에,
-                세상이 거의 잊은 곳에 심겨졌습니다. 그러나 이 안에는 훨씬 더 큰 것의 완전한 유전 정보가 담겨 있습니다.
-                바로 한반도 농촌 회복 모델입니다.
+              <h2 className="text-xl font-serif font-bold mb-4">9. 전략적 의미</h2>
+              <p className="text-abbey-700 leading-relaxed mb-6">
+                삼수령 무무목장은 규모가 작은 농장입니다. 그러나 설계 목적은 분명합니다.
               </p>
-              <p className="text-abbey-700 leading-relaxed mb-4">
-                이 씨앗에는 50년간의 선교적 기도와 노동이 담겨 있습니다.
-                폴리페이스 농장의 재생적 지혜와 스위스 고지대 낙농의 산악 회복력이 담겨 있습니다.
-                창세기의 창조 신학, 베네딕트 수도회의 공동체 윤리,
-                그리고 Heifer International의 &ldquo;선물 전달하기&rdquo;의 증식 논리가 담겨 있습니다.
-              </p>
-              <p className="text-abbey-700 leading-relaxed">
-                그리고 북한의 광산 마을에서 태어나, 국경과 세월을 넘어
-                또 하나의 광산 마을인 태백, 한국 산꼭대기에 미국 선교사들이 세운 목장에 도착한 한 사람의 간증이 담겨 있습니다.
-                그는 지금 어린 시절 고향 마을과 같은 해발에서 저지 소를 돌보며,
-                그 선물을 되돌려줄 수 있는 날을 믿음으로 준비하고 있습니다.
+              <div className="bg-forest-50 rounded-lg p-6 border border-forest-200 mb-6">
+                <ul className="space-y-3 text-forest-700">
+                  <li className="flex gap-3 items-start">
+                    <span className="text-forest-600 shrink-0 mt-0.5 font-bold">&#x2022;</span>
+                    <span>고지대 농촌 자립 모델의 실증 플랫폼</span>
+                  </li>
+                  <li className="flex gap-3 items-start">
+                    <span className="text-forest-600 shrink-0 mt-0.5 font-bold">&#x2022;</span>
+                    <span>북한 전환기 대비 복제 가능한 축산 기반 시스템</span>
+                  </li>
+                  <li className="flex gap-3 items-start">
+                    <span className="text-forest-600 shrink-0 mt-0.5 font-bold">&#x2022;</span>
+                    <span>재생농업 + 가공 + 관광 + 교육 통합 구조의 검증</span>
+                  </li>
+                </ul>
+              </div>
+              <p className="text-abbey-700 leading-relaxed font-medium">
+                이 프로젝트는 하나의 농장이 아니라,
+                한반도 고지대 농촌 회복을 위한 테스트베드입니다.
               </p>
             </div>
+
+            <div className="border-t border-abbey-200" />
 
             {/* 무무곳간 — 브랜드 섹션 */}
             <div>
@@ -413,17 +442,30 @@ export default function MooMooGrangePage() {
                   <h3 className="font-serif font-bold text-forest-800 mb-1">무무곳간 스토어</h3>
                   <p className="text-sm text-forest-600">삼수령무무목장의 신선한 유제품을 네이버 스마트스토어에서 만나보세요.</p>
                 </div>
-                <a
-                  href="https://smartstore.naver.com/moomooranch"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-forest-700 text-white text-sm font-medium rounded-lg hover:bg-forest-800 transition-colors shrink-0 min-h-[44px]"
-                >
-                  <span>무무곳간 방문하기</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                  </svg>
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                  <a
+                    href="https://smartstore.naver.com/moomooranch"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-forest-700 text-white text-sm font-medium rounded-lg hover:bg-forest-800 transition-colors min-h-[44px]"
+                  >
+                    <span>무무곳간 방문하기</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://pf.kakao.com/_xkSdxbn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#FEE500] text-[#191919] text-sm font-medium rounded-lg hover:bg-[#FDD835] transition-colors min-h-[44px]"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.722 1.804 5.108 4.521 6.46-.177.663-.641 2.407-.734 2.78-.112.45.166.444.348.323.143-.095 2.275-1.547 3.193-2.17.872.13 1.768.198 2.672.198 5.523 0 10-3.463 10-7.691C22 6.463 17.523 3 12 3z"/>
+                    </svg>
+                    <span>카카오 채널</span>
+                  </a>
+                </div>
               </div>
             </div>
 
