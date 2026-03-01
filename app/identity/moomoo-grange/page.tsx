@@ -140,7 +140,7 @@ export default function MooMooGrangePage() {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
                 <div className="bg-white rounded-lg p-6 border border-abbey-200">
-                  <h3 className="font-serif font-bold mb-1">헤세키아 (서수철)</h3>
+                  <h3 className="font-serif font-bold mb-1">히스기야 (서수철)</h3>
                   <p className="text-xs text-forest-600 mb-3">남한</p>
                   <p className="text-sm text-abbey-700 leading-relaxed">
                     현장 운영 및 지역 기반 관리. 예수원 공동체 안에서 목장 책임자로서
@@ -148,8 +148,8 @@ export default function MooMooGrangePage() {
                   </p>
                 </div>
                 <div className="bg-white rounded-lg p-6 border border-abbey-200">
-                  <h3 className="font-serif font-bold mb-1">요셉 박 (Joseph Park)</h3>
-                  <p className="text-xs text-forest-600 mb-3">북한 (함경북도 무산군 출신)</p>
+                  <h3 className="font-serif font-bold mb-1">박요셉 (Joseph Park)</h3>
+                  <p className="text-xs text-forest-600 mb-3">북한 (함경북도 출신)</p>
                   <p className="text-sm text-abbey-700 leading-relaxed">
                     북한 환경 이해 및 현지 적용 모델 설계. 건국대학교 수의학 전공.
                     탈북민을 위한 사회적 기업을 설립한 후,
@@ -224,7 +224,7 @@ export default function MooMooGrangePage() {
               <p className="text-abbey-700 leading-relaxed mb-6">
                 무무목장은 원유 생산에 머물지 않습니다.
                 가치사슬을 내부에 통합하여 외부 의존도를 낮추고 수익 구조를 다각화합니다.
-                이 구조는 단일 상품 리스크를 분산시키고, 고지대에서도 지속 가능한 수익 모델을 구축합니다.
+                이 구조는 단일 상품 리스크를 분산시키���, 고지대에서도 지속 가능한 수익 모델을 구축합니다.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {[
