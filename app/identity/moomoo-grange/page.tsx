@@ -265,7 +265,7 @@ export default function MooMooGrangePage() {
                   <h3 className="font-serif font-bold mb-1">박요셉 (Joseph Park)</h3>
                   <p className="text-xs text-forest-600 mb-3">북한 (함경북도 출신)</p>
                   <p className="text-sm text-abbey-700 leading-relaxed">
-                    북한 환경 분석 및 현지 적용 모델 설계를 담당합니다. 수의사(건국대학교 수의학 전공)로서 탈북민의 자립을 돕는 사회적 기업을 설립·운영했으며, 현재 축산 기반의 농촌 복원 모델을 구축하고 있습니다.
+                    북한 환경 분석 및 현지 적용 모델 설계를 담당합니다. 건국대학교 수의과대학을 졸업하고 탈북민의 자립을 돕는 사회적 기업 (주)요벨을 설립·운영했으며, 현재 삼수령무무목장에서 융복합산업(축산+관광)기반의 농촌 복원 모델을 통해 창조질서 회복의 새로운 길을 개척하고 있습니다.
                   </p>
                 </div>
                 <div className="bg-white rounded-lg p-6 border border-abbey-200">
@@ -492,7 +492,7 @@ export default function MooMooGrangePage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%B5%E1%84%83%E1%85%A9%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20%E1%84%80%E1%85%B5%E1%84%83%E1%85%A9%E1%84%92%E1%85%A1%E1%84%80%E1%85%A9%20%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%86%E1%85%AE%E1%84%86%E1%85%AE%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3%E1%86%AF-97xMXrY9FD5ahbUmY0bReONDeVJMEt.jpg"
-                  alt="예수원 소기도실에서 기도하고 있는 무무목장 아이들"
+                  alt="예수원 소기도실에서 기���하고 있는 무무목장 아이들"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
