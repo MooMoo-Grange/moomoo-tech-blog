@@ -167,8 +167,8 @@ export default function MooMooGrangePage() {
                 { ko: "노동", la: "Labora", c: mm.sage },
               ] as const).map(({ ko, la, c }) => (
                 <div key={la} style={{ textAlign: "center" }}>
-                  <span style={{ display: "block", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1rem", color: c, letterSpacing: "0.1em" }}>{la}</span>
-                  <span style={{ display: "block", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 200, fontSize: "0.62rem", letterSpacing: "0.18em", color: "rgba(245,240,232,0.35)", marginTop: "0.2rem" }}>{ko}</span>
+                  <span style={{ display: "block", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1.1rem", fontWeight: 600, color: c, letterSpacing: "0.1em" }}>{la}</span>
+                  <span style={{ display: "block", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 400, fontSize: "0.72rem", letterSpacing: "0.18em", color: "rgba(245,240,232,0.75)", marginTop: "0.25rem" }}>{ko}</span>
                 </div>
               ))}
             </div>
@@ -215,7 +215,7 @@ export default function MooMooGrangePage() {
             </h2>
             <div style={{ borderLeft: `2px solid ${mm.gold}`, paddingLeft: "1.75rem" }}>
               {["삼수령 무무목장은 단순한 원유 생산 시설을 넘어, 고지대 농촌 자립 모델을 검증하기 위한 핵심 실험 플랫폼 역할을 수행합니다.",
-                "본 프로젝트의 목표는 해발 800~1,200m의 한반도 고지대 환경에서 재생농업 기반의 소규모 낙농 모델이 경제적·생태적으로 자립할 수 있는지 실증하는 것입니다.",
+                "본 프로젝트의 목표는 해발 800~1,200m의 한반��� 고지대 환경에서 재생농업 기반의 소규모 낙농 모델이 경제적·생태적으로 자립할 수 있는지 실증하는 것입니다.",
                 "강원도 태백 해발 1,000m 지역은 북한 고지대와 가장 유사한 남한 내 환경입니다. 이곳에서 검증을 마친 시스템은 향후 최소한의 수정만으로 북한 지역에 신속하게 이전 및 적용할 수 있도록 설계되었습니다.",
               ].map((t, i) => (
                 <p key={i} style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: i < 2 ? "1.25rem" : 0 }}>{t}</p>
