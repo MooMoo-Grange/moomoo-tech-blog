@@ -52,16 +52,16 @@ const jsonLd = {
 }
 
 const mm = {
-  ivory:      "#F5F0E8",
-  milk:       "#FAF7F2",
-  gold:       "#C4A46C",
-  goldLight:  "#D4B882",
-  brown:      "#5C4033",
+  ivory: "#F5F0E8",
+  milk: "#FAF7F2",
+  gold: "#C4A46C",
+  goldLight: "#D4B882",
+  brown: "#5C4033",
   brownLight: "#7A5C4E",
-  sage:       "#7A8B6F",
-  sageLight:  "#9AAB8F",
-  ink:        "#2C1810",
-  mist:       "#E8E2D8",
+  sage: "#7A8B6F",
+  sageLight: "#9AAB8F",
+  ink: "#2C1810",
+  mist: "#E8E2D8",
 } as const
 
 function ChapterLabel({ number, label }: { number: string; label: string }) {
@@ -162,8 +162,8 @@ export default function MooMooGrangePage() {
 
             <div className="mm-hero-tags" style={{ display: "flex", justifyContent: "center", gap: "2.5rem", marginBottom: "4rem", flexWrap: "wrap" as const }}>
               {([
-                { ko: "기도", la: "Ora",    c: mm.gold },
-                { ko: "독서", la: "Lege",   c: mm.brownLight },
+                { ko: "기도", la: "Ora", c: mm.gold },
+                { ko: "독서", la: "Lege", c: mm.brownLight },
                 { ko: "노동", la: "Labora", c: mm.sage },
               ] as const).map(({ ko, la, c }) => (
                 <div key={la} style={{ textAlign: "center" }}>
@@ -215,7 +215,7 @@ export default function MooMooGrangePage() {
             </h2>
             <div style={{ borderLeft: `2px solid ${mm.gold}`, paddingLeft: "1.75rem" }}>
               {["삼수령 무무목장은 단순한 원유 생산 시설을 넘어, 고지대 농촌 자립 모델을 검증하기 위한 핵심 실험 플랫폼 역할을 수행합니다.",
-                "본 프로젝트의 목표는 해발 800~1,200m의 한반��� 고지대 환경에서 재생농업 기반의 소규모 낙농 모델이 경제적·생태적으로 자립할 수 있는지 실증하는 것입니다.",
+                "본 프로젝트의 목표는 해발 800~1,200m의 한반도 고지대 환경에서 재생농업 기반의 소규모 낙농 모델이 경제적·생태적으로 자립할 수 있는지 실증하는 것입니다.",
                 "강원도 태백 해발 1,000m 지역은 북한 고지대와 가장 유사한 남한 내 환경입니다. 이곳에서 검증을 마친 시스템은 향후 최소한의 수정만으로 북한 지역에 신속하게 이전 및 적용할 수 있도록 설계되었습니다.",
               ].map((t, i) => (
                 <p key={i} style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: i < 2 ? "1.25rem" : 0 }}>{t}</p>
@@ -539,7 +539,7 @@ export default function MooMooGrangePage() {
                 <a href="https://pf.kakao.com/_xkSdxbn" target="_blank" rel="noopener noreferrer" className="mm-btn-kakao"
                   style={{ display: "inline-flex", alignItems: "center", gap: "0.55rem", padding: "0.85rem 2rem", background: "#FEE500", color: "#191919", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.84rem", letterSpacing: "0.12em", textDecoration: "none", borderRadius: "1px", border: "1px solid #FEE500" }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.722 1.804 5.108 4.521 6.46-.177.663-.641 2.407-.734 2.78-.112.45.166.444.348.323.143-.095 2.275-1.547 3.193-2.17.872.13 1.768.198 2.672.198 5.523 0 10-3.463 10-7.691C22 6.463 17.523 3 12 3z"/>
+                    <path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.722 1.804 5.108 4.521 6.46-.177.663-.641 2.407-.734 2.78-.112.45.166.444.348.323.143-.095 2.275-1.547 3.193-2.17.872.13 1.768.198 2.672.198 5.523 0 10-3.463 10-7.691C22 6.463 17.523 3 12 3z" />
                   </svg>
                   <span>카카오 채널</span>
                 </a>
