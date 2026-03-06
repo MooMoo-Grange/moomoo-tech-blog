@@ -578,7 +578,7 @@ export default function MooMooGrangePage() {
           {/* Footer location tag */}
           <div style={{ textAlign: "center", padding: "2.25rem", border: `1px solid ${mm.mist}`, borderRadius: "2px", background: mm.milk }}>
             <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1rem", color: mm.brownLight, letterSpacing: "0.08em", marginBottom: "0.3rem" }}>삼수령 무무목장</p>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 200, fontSize: "0.75rem", letterSpacing: "0.22em", color: mm.gold, textTransform: "uppercase" as const }}>강원특별자치도 태백시 · 해발 1,000m</p>
+            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 200, fontSize: "0.75rem", letterSpacing: "0.22em", color: mm.gold, textTransform: "uppercase" as const }}>강원특별자치도 태백시 매봉산길 61 · 해발 1,000m</p>
           </div>
 
         </div>
