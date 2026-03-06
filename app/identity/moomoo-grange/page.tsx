@@ -273,20 +273,20 @@ export default function MooMooGrangePage() {
           {/* 03 리더십 */}
           <section>
             <ChapterLabel number="03" label="리더십 구조" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "1.25rem", lineHeight: 1.45 }}>3개국 협력 구조</h2>
+            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "1.25rem", lineHeight: 1.45 }}>다양한 문화적 배경이 하나 된 리더십</h2>
             <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: "2rem" }}>
-              무무목장은 남한, 북한, 미국 출신 전문가로 구성된 3개국 협력 구조로 운영됩니다. 이는 향후 북한 환경에 모델을 적용하기 위해 필수적인 전략 자산입니다.
+              무무목장은 한국, 북한, 미국 등 다양한 문화적 배경과 현장 경험을 가진 전문가들이 함께 이끄는 리더십 구조를 갖추고 있습니다. 서로 다른 삶의 궤적과 전문성이 교차하며, 목장의 실천적 비전을 더욱 풍부하게 만들어 갑니다.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "1px", background: mm.mist, borderRadius: "2px", overflow: "hidden" }}>
               {([
                 {
                   name: "히스기야 (서수철)", origin: "남한", c: mm.sage,
-                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3.png-AvG53E1ea7IAcBwPlC0H0SAk65cQQ0.jpeg",
+                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.png-ahO39itOmMwjoH6DSeGYaEP9QFz9CS.jpeg",
                   desc: "현장 운영 및 지역 기반 관리를 담당합니다. 예수원 공동체 소속의 목장 책임자로서 해발 1,000m 고지대 목초지와 저지(Jersey) 소 떼의 사계절 관리를 총괄합니다.",
                 },
                 {
                   name: "박요셉 (Joseph Park)", origin: "북한 (함경북도 출신)", c: mm.gold,
-                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.png-ahO39itOmMwjoH6DSeGYaEP9QFz9CS.jpeg",
+                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3.png-AvG53E1ea7IAcBwPlC0H0SAk65cQQ0.jpeg",
                   desc: "북한 환경 분석 및 현지 적용 모델 설계를 담당합니다. 건국대학교 수의과대학을 졸업하고 사회적 기업 (주)요벨을 설립·운영했으며, 삼수령무무목장에서 융복합산업 기반 농촌 복원 모델을 개척하고 있습니다.",
                 },
                 {
@@ -319,7 +319,7 @@ export default function MooMooGrangePage() {
               ))}
             </div>
             <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.85rem", color: mm.sage, lineHeight: 1.8, marginTop: "1.5rem", paddingLeft: "1rem", borderLeft: `1px solid ${mm.sageLight}` }}>
-              이러한 인력 구성은 북한이 인도적 지원을 받아들일 때 즉각적으로 투입할 수 있는 실무 역량을 보장합니다.
+              다양한 배경과 경험을 가진 리더들의 협력은 무무목장의 비전에 깊이와 실천력을 더합니다.
             </p>
           </section>
 
