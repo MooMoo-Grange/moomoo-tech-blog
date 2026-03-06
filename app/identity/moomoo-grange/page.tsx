@@ -281,12 +281,12 @@ export default function MooMooGrangePage() {
               {([
                 {
                   name: "히스기야 (서수철)", origin: "남한", c: mm.sage,
-                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3.png-AvG53E1ea7IAcBwPlC0H0SAk65cQQ0.jpeg",
+                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.png-ahO39itOmMwjoH6DSeGYaEP9QFz9CS.jpeg",
                   desc: "현장 운영 및 지역 기반 관리를 담당합니다. 예수원 공동체 소속의 목장 책임자로서 해발 1,000m 고지대 목초지와 저지(Jersey) 소 떼의 사계절 관리를 총괄합니다.",
                 },
                 {
                   name: "박요셉 (Joseph Park)", origin: "북한 (함경북도 출신)", c: mm.gold,
-                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.png-ahO39itOmMwjoH6DSeGYaEP9QFz9CS.jpeg",
+                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3.png-AvG53E1ea7IAcBwPlC0H0SAk65cQQ0.jpeg",
                   desc: "북한 환경 분석 및 현지 적용 모델 설계를 담당합니다. 건국대학교 수의과대학을 졸업하고 사회적 기업 (주)요벨을 설립·운영했으며, 삼수령무무목장에서 융복합산업 기반 농촌 복원 모델을 개척하고 있습니다.",
                 },
                 {
