@@ -279,14 +279,42 @@ export default function MooMooGrangePage() {
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "1px", background: mm.mist, borderRadius: "2px", overflow: "hidden" }}>
               {([
-                { name: "히스기야 (서수철)", origin: "남한", c: mm.sage, desc: "현장 운영 및 지역 기반 관리를 담당합니다. 예수원 공동체 소속의 목장 책임자로서 해발 1,000m 고지대 목초지와 저지(Jersey) 소 떼의 사계절 관리를 총괄합니다." },
-                { name: "박요셉 (Joseph Park)", origin: "북한 (함경북도 출신)", c: mm.gold, desc: "북한 환경 분석 및 현지 적용 모델 설계를 담당합니다. 건국대학교 수의과대학을 졸업하고 사회적 기업 (주)요벨을 설립·운영했으며, 삼수령무무목장에서 융복합산업 기반 농촌 복원 모델을 개척하고 있습니다." },
-                { name: "바니 스미스 박사", origin: "미국", c: mm.brownLight, desc: "국제 개발 및 특수 환경 대응 전략을 자문합니다. 미국 수의사 자격을 보유하고 있으며, 1997년부터 2019년까지 북한 현지에서 선교사이자 농업 실무자로 활동한 경험을 바탕으로 기술적 통찰을 제공합니다." },
-              ] as const).map(({ name, origin, c, desc }) => (
-                <div key={name} style={{ background: mm.milk, padding: "2rem 1.75rem" }}>
+                {
+                  name: "히스기야 (서수철)", origin: "남한", c: mm.sage,
+                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.png-ahO39itOmMwjoH6DSeGYaEP9QFz9CS.jpeg",
+                  desc: "현장 운영 및 지역 기반 관리를 담당합니다. 예수원 공동체 소속의 목장 책임자로서 해발 1,000m 고지대 목초지와 저지(Jersey) 소 떼의 사계절 관리를 총괄합니다.",
+                },
+                {
+                  name: "박요셉 (Joseph Park)", origin: "북한 (함경북도 출신)", c: mm.gold,
+                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3.png-AvG53E1ea7IAcBwPlC0H0SAk65cQQ0.jpeg",
+                  desc: "북한 환경 분석 및 현지 적용 모델 설계를 담당합니다. 건국대학교 수의과대학을 졸업하고 사회적 기업 (주)요벨을 설립·운영했으며, 삼수령무무목장에서 융복합산업 기반 농촌 복원 모델을 개척하고 있습니다.",
+                },
+                {
+                  name: "바니 스미스 박사", origin: "미국", c: mm.brownLight,
+                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.png-5BJVRE5dFO0v4QVxBdrc5v1xRFgFdg.jpeg",
+                  desc: "국제 개발 및 특수 환경 대응 전략을 자문합니다. 미국 수의사 자격을 보유하고 있으며, 1997년부터 2019년까지 북한 현지에서 선교사이자 농업 실무자로 활동한 경험을 바탕으로 기술적 통찰을 제공합니다.",
+                },
+              ] as const).map(({ name, origin, c, photo, desc }) => (
+                <div key={name} style={{ background: mm.milk, padding: "2rem 1.75rem", display: "flex", flexDirection: "column" as const, alignItems: "center", textAlign: "center" as const }}>
+                  <div style={{
+                    width: "90px", height: "90px",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border: `3px solid ${c}`,
+                    marginBottom: "1.25rem",
+                    flexShrink: 0,
+                    background: mm.mist,
+                  }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={photo}
+                      alt={name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "sepia(0.06) brightness(0.97)" }}
+                    />
+                  </div>
                   <h3 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontWeight: 400, fontSize: "1rem", color: mm.ink, marginBottom: "0.3rem" }}>{name}</h3>
                   <span style={{ display: "inline-block", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "0.75rem", color: c, letterSpacing: "0.08em", marginBottom: "1rem" }}>{origin}</span>
-                  <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.84rem", color: mm.brownLight, lineHeight: 1.85 }}>{desc}</p>
+                  <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.84rem", color: mm.brownLight, lineHeight: 1.85, textAlign: "left" as const }}>{desc}</p>
                 </div>
               ))}
             </div>
