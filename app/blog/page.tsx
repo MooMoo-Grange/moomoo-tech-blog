@@ -10,11 +10,8 @@ export const metadata = {
 }
 
 export default async function BlogPage() {
-  // Published 필터된 포스트 시도, 없으면 전체 조회
-  let posts = await getAllPosts()
-  if (posts.length === 0) {
-    posts = await getAllPostsUnfiltered()
-  }
+  // Published 상태인 포스트만 조회
+  const posts = await getAllPosts()
   const categories = await getCategories()
 
   return (
@@ -37,7 +34,18 @@ export default async function BlogPage() {
       {/* Content */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CategoryFilter posts={posts} categories={categories} />
+          {posts.length > 0 ? (
+            <CategoryFilter posts={posts} categories={categories} />
+          ) : (
+            <div className="text-center py-20">
+              <p className="text-abbey-500 text-lg">
+                아직 게시된 이야기가 없습니다.
+              </p>
+              <p className="text-abbey-400 text-sm mt-2">
+                곧 새로운 이야기가 올라올 예정입니다.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </>

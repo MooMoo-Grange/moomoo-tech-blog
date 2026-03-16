@@ -77,13 +77,13 @@ function extractPageProperties(page: PageObjectResponse): BlogPost {
       ? extractRichText(authorProp.rich_text) || "예수원"
       : "예수원"
 
-  // Status
+  // Status — 명시적으로 Published인 글만 공개, 기본값은 Draft
   const statusProp = props["Status"] || props["상태"]
-  let status = "Published"
+  let status = "Draft"
   if (statusProp?.type === "status") {
-    status = statusProp.status?.name ?? "Published"
+    status = statusProp.status?.name ?? "Draft"
   } else if (statusProp?.type === "select") {
-    status = statusProp.select?.name ?? "Published"
+    status = statusProp.select?.name ?? "Draft"
   }
 
   // Tags
@@ -133,13 +133,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 
     return pages
       .map(extractPageProperties)
-      .filter(
-        (p: BlogPost) =>
-          p.status === "Published" ||
-          p.status === "게시됨" ||
-          p.status === "Done" ||
-          p.status === "완료"
-      )
+      .filter((p: BlogPost) => p.status === "Published")
   } catch (error) {
     console.error("Failed to fetch posts from Notion:", error)
     return []
