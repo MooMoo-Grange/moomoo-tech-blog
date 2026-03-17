@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Breadcrumbs from "@/components/Breadcrumbs"
+import FundingDashboard from "@/components/funding/FundingDashboard"
 
 export const metadata = {
   title: "Passing on the Gift — 삼수령 무무목장",
@@ -50,40 +51,6 @@ const jsonLd = {
       url: "https://smartstore.naver.com/moomooranch",
     },
   ],
-}
-
-/* ──────────────────────────────────────────
-   Funding Progress Bar (client component inlined)
-   ────────────────────────────────────────── */
-function FundingBar({ raised, goal }: { raised: number; goal: number }) {
-  const pct = Math.min(100, Math.round((raised / goal) * 100))
-  const formatKRW = (n: number) => {
-    if (n >= 100000000) return `${(n / 100000000).toFixed(0)}억원`
-    if (n >= 10000) return `${(n / 10000).toLocaleString()}만원`
-    return `${n.toLocaleString()}원`
-  }
-  return (
-    <div className="w-full">
-      <div className="flex justify-between items-end mb-2">
-        <span className="text-3xl sm:text-4xl font-serif font-bold text-forest-700">
-          {formatKRW(raised)}
-        </span>
-        <span className="text-sm text-abbey-400">
-          목표 {formatKRW(goal)}
-        </span>
-      </div>
-      <div className="w-full h-3 bg-abbey-100 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-forest-700 rounded-full transition-all duration-1000"
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-      <div className="flex justify-between mt-2">
-        <span className="text-xs text-abbey-400">{pct}% funded</span>
-        <span className="text-xs text-abbey-400">Jersey Funding</span>
-      </div>
-    </div>
-  )
 }
 
 /* ──────────────────────────────────────────
@@ -462,39 +429,16 @@ export default function MooMooGrangePage() {
             무무목장의 검증된 모델을 확장하기 위한 크라우드펀딩에 함께해 주세요.
           </p>
 
-          {/* Funding Dashboard */}
+          {/* Funding Dashboard — animated client component */}
           <div className="bg-white rounded-xl shadow-sm border border-abbey-100 p-8 sm:p-10 text-left">
-            <FundingBar raised={23000000} goal={200000000} />
-
-            <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-abbey-100">
-              <div className="text-center">
-                <span className="block text-2xl font-serif font-bold text-abbey-900">3</span>
-                <span className="text-xs text-abbey-400">현재 저지 소</span>
-              </div>
-              <div className="text-center">
-                <span className="block text-2xl font-serif font-bold text-abbey-900">5</span>
-                <span className="text-xs text-abbey-400">1차 목표 (두)</span>
-              </div>
-              <div className="text-center">
-                <span className="block text-2xl font-serif font-bold text-abbey-900">20</span>
-                <span className="text-xs text-abbey-400">4년 후 목표</span>
-              </div>
-            </div>
-
-            <div className="mt-8 grid sm:grid-cols-3 gap-3 text-center text-sm">
-              <div className="bg-abbey-50 rounded-lg p-4">
-                <span className="block font-serif font-bold text-forest-700">500만원</span>
-                <span className="text-abbey-500 text-xs">저지 소 1두 후원</span>
-              </div>
-              <div className="bg-abbey-50 rounded-lg p-4">
-                <span className="block font-serif font-bold text-forest-700">50만원</span>
-                <span className="text-abbey-500 text-xs">1개월 사료비 후원</span>
-              </div>
-              <div className="bg-abbey-50 rounded-lg p-4">
-                <span className="block font-serif font-bold text-forest-700">자유 금액</span>
-                <span className="text-abbey-500 text-xs">선물 전달 동참</span>
-              </div>
-            </div>
+            <FundingDashboard
+              raised={33000000}
+              goal={200000000}
+              donors={[
+                { name: "텍사스 교회", amount: 23000000, displayAmount: "$17,000", label: "Passing on the Gift" },
+                { name: "윤희진 회장님", amount: 10000000, label: "후원" },
+              ]}
+            />
           </div>
         </div>
       </section>
