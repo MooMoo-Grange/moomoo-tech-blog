@@ -2,15 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; }
-body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-size: 1.125rem;
+    line-height: 2;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3 {
+    font-family: "Noto Serif KR", "Cormorant Garamond", Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  blockquote {
+    font-family: "Noto Serif KR", Georgia, serif;
+    font-style: italic;
+    position: relative;
+    padding-left: 1.5em;
+  }
+  blockquote::before {
+    content: "\201C";
+    font-size: 3rem;
+    line-height: 1;
+    position: absolute;
+    left: -0.1em;
+    top: -0.2em;
+    color: #c4a35a;
+    font-family: "Cormorant Garamond", Georgia, serif;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e0d5c8;
+    margin: 3rem auto;
+    max-width: 6rem;
+  }
+}
 
 @layer utilities {
+  .prose-abbey {
+    max-width: 38em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .theme-transition {
+    transition: background-color 1.5s ease, color 1s ease;
+  }
+
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e0d5c8;
+  }
+  .nav-transparent {
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+  }
+
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
   .faq-answer.open { max-height: 500px; }
 }
 
-/* Hide default Google Translate UI */
+/* Hide Google Translate UI */
 .goog-te-banner-frame { display: none !important; }
 .goog-te-gadget { display: none !important; }
 body { top: 0 !important; }
