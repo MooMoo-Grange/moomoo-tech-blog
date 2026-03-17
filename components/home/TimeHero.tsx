@@ -1,23 +1,33 @@
 "use client"
 
 import { useTimeTheme } from "@/components/layout/TimeThemeProvider"
+import type { TimeOfDay } from "@/lib/time-theme"
 
-const VIDEO_ID = "29oITQ2z7SQ"
-const POSTER_URL = `https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`
+// 시간대별 배경 이미지 매핑
+const heroImages: Record<TimeOfDay, string> = {
+  dawn: "/images/hero-prayer.jpg",          // 기도처 기도 실루엣
+  morning: "/images/hero-winter-clouds.jpg", // 겨울 구름바다
+  noon: "/images/hero-clouds.jpg",           // 드론 구름바다 파노라마
+  afternoon: "/images/hero-sunset-tree.jpg", // 석양 나무
+  evening: "/images/hero-sunset-tree.jpg",   // 석양 나무
+  vespers: "/images/hero-dusk.jpg",          // 저녁 노을
+  night: "/images/hero-sunset-cross.jpg",    // 석양 십자가 실루엣
+}
 
 export default function TimeHero() {
-  const { theme } = useTimeTheme()
+  const { theme, period } = useTimeTheme()
+  const imageSrc = heroImages[period]
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden theme-transition">
-      {/* 배경 이미지 — YouTube 포스터 */}
+      {/* 배경 이미지 — 시간대별 실제 사진 */}
       <div className="absolute inset-0" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-br from-forest-900 via-forest-800 to-abbey-900" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={POSTER_URL}
+          src={imageSrc}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 transition-opacity duration-1000"
           loading="eager"
         />
       </div>

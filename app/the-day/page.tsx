@@ -9,9 +9,18 @@ export const metadata: Metadata = {
 export default function TheDayPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 bg-abbey-900 text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      {/* Hero — 기도처 사진 */}
+      <section className="relative pt-32 pb-20 text-white overflow-hidden">
+        <div className="absolute inset-0" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/hero-prayer.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-abbey-900/70 via-abbey-900/50 to-abbey-900/80" />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-sacred-gold/70 font-sans text-sm tracking-widest uppercase mb-4">
             The Day
           </p>

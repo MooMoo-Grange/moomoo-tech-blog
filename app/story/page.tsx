@@ -11,6 +11,7 @@ const chapters = [
     num: 1,
     title: "부름",
     period: "1955–1965",
+    image: null,
     narrative: `대천덕, R.A. Torrey III.의 손자.
 편안한 신학교 원장직을 내려놓고
 아무것도 없는 두메산골을 택한 이유.
@@ -20,6 +21,7 @@ const chapters = [
     num: 2,
     title: "광야",
     period: "1965–1970",
+    image: "/images/story-labor.jpg",
     narrative: `강원도 산골에서의 첫 겨울.
 시애틀 교회가 보내준 젖소 두 마리.
 아무것도 없는 곳에서 기도하고, 땅을 일구고, 함께 살았습니다.
@@ -29,6 +31,7 @@ The Watershed Grange의 시작.`,
     num: 3,
     title: "공동체",
     period: "1970–1990",
+    image: "/images/story-family-ranch.jpg",
     narrative: `기도와 노동으로 세워진 공동체.
 돌을 하나씩 날라 짓기 시작한 성당.
 침묵과 나눔의 규칙이 만들어지고,
@@ -38,6 +41,7 @@ The Watershed Grange의 시작.`,
     num: 4,
     title: "유산",
     period: "1990–2013",
+    image: "/images/story-winter.jpg",
     narrative: `대천덕 신부의 마지막 강의들.
 50년간 녹음된 테이프 수천 개.
 현재인 사모의 기도 —
@@ -47,6 +51,7 @@ The Watershed Grange의 시작.`,
     num: 5,
     title: "계속되는 이야기",
     period: "2023–현재",
+    image: "/images/hero-sunset-tree.jpg",
     narrative: `삼수령 무무목장의 새로운 시작.
 A2 저지 젖소와 함께하는 오늘.
 변하지 않는 것이 있고, 새로워지는 것이 있습니다.
@@ -57,9 +62,18 @@ A2 저지 젖소와 함께하는 오늘.
 export default function StoryPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-20 bg-abbey-900 text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      {/* Hero — 입구 사진 */}
+      <section className="relative pt-32 pb-20 bg-abbey-900 text-white overflow-hidden">
+        <div className="absolute inset-0" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/story-entrance.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-abbey-900/60 via-abbey-900/40 to-abbey-900/80" />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-sacred-gold/70 font-sans text-sm tracking-widest uppercase mb-4">
             The Story
           </p>
@@ -74,6 +88,18 @@ export default function StoryPage() {
         </div>
       </section>
 
+      {/* 바위 — "하나님의 것은..." */}
+      <section className="py-16 bg-abbey-50">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/story-stone.jpg"
+            alt="예수원 입구의 바위 — 하나님의 것은 하나도 빠짐없이 마라의 것은"
+            className="w-full rounded-lg shadow-sm"
+          />
+        </div>
+      </section>
+
       {/* Chapters */}
       <section className="bg-white">
         {chapters.map((ch, i) => (
@@ -81,31 +107,46 @@ export default function StoryPage() {
             key={ch.num}
             className={`py-20 sm:py-28 ${i % 2 === 1 ? "bg-abbey-50" : "bg-white"}`}
           >
-            <div className="max-w-3xl mx-auto px-4 sm:px-6">
-              <div className="flex items-start gap-6 sm:gap-10">
-                {/* Chapter Number */}
-                <div className="shrink-0">
-                  <span className="text-6xl sm:text-7xl font-serif font-bold text-abbey-200">
-                    {ch.num}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="space-y-4 pt-2">
-                  <div>
-                    <h2 className="font-serif text-2xl sm:text-3xl font-bold text-abbey-900">
-                      {ch.title}
-                    </h2>
-                    <p className="text-sm font-sans text-abbey-500 mt-1">
-                      {ch.period}
-                    </p>
+            <div className="max-w-4xl mx-auto px-4 sm:px-6">
+              <div className={`flex flex-col ${ch.image ? "lg:flex-row lg:gap-12" : ""} items-start gap-8`}>
+                {/* 이미지 (있을 경우) */}
+                {ch.image && (
+                  <div className="w-full lg:w-2/5 shrink-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={ch.image}
+                      alt={`${ch.title} (${ch.period})`}
+                      className="w-full rounded-lg shadow-sm"
+                    />
                   </div>
-                  <div className="space-y-3 mt-4">
-                    {ch.narrative.split("\n").map((line, j) => (
-                      <p key={j} className="font-serif text-body text-abbey-600 leading-relaxed">
-                        {line}
+                )}
+
+                {/* 텍스트 */}
+                <div className="flex items-start gap-6 sm:gap-10 flex-1">
+                  {/* Chapter Number */}
+                  <div className="shrink-0">
+                    <span className="text-6xl sm:text-7xl font-serif font-bold text-abbey-200">
+                      {ch.num}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-4 pt-2">
+                    <div>
+                      <h2 className="font-serif text-2xl sm:text-3xl font-bold text-abbey-900">
+                        {ch.title}
+                      </h2>
+                      <p className="text-sm font-sans text-abbey-500 mt-1">
+                        {ch.period}
                       </p>
-                    ))}
+                    </div>
+                    <div className="space-y-3 mt-4">
+                      {ch.narrative.split("\n").map((line, j) => (
+                        <p key={j} className="font-serif text-body text-abbey-600 leading-relaxed">
+                          {line}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
