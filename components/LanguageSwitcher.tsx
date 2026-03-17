@@ -194,13 +194,37 @@ export default function LanguageSwitcher() {
     setOpen(false)
 
     if (langCode === "ko") {
-      // Restore Korean: reload without translation cookie
       observerRef.current?.disconnect()
-      const cookiesToClear = ["googtrans"]
-      cookiesToClear.forEach((c) => {
-        document.cookie = `${c}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`
-        document.cookie = `${c}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.${location.hostname}`
-      })
+
+      // 1. Tell Google Translate widget to revert first
+      const selectEl = document.querySelector<HTMLSelectElement>(".goog-te-combo")
+      if (selectEl) {
+        selectEl.value = "ko"
+        selectEl.dispatchEvent(new Event("change"))
+      }
+
+      // 2. Aggressively clear googtrans cookie across ALL possible domain levels
+      //    Google Translate may set it on .vercel.app, .hostname, or bare hostname
+      const EXPIRED = "expires=Thu, 01 Jan 1970 00:00:00 GMT"
+      const hostname = location.hostname // e.g. "abc.vercel.app"
+      const parts = hostname.split(".")
+
+      // Clear without domain (covers localhost / exact hostname)
+      document.cookie = `googtrans=; ${EXPIRED}; path=/`
+
+      // Clear for each parent domain level (e.g. vercel.app, .vercel.app, etc.)
+      for (let i = 0; i < parts.length - 1; i++) {
+        const domain = parts.slice(i).join(".")
+        document.cookie = `googtrans=; ${EXPIRED}; path=/; domain=${domain}`
+        document.cookie = `googtrans=; ${EXPIRED}; path=/; domain=.${domain}`
+      }
+
+      // 3. Strip any #googtrans hash from URL without triggering navigation
+      if (location.hash.includes("googtrans")) {
+        history.replaceState(null, "", location.pathname + location.search)
+      }
+
+      // 4. Reload clean
       window.location.reload()
       return
     }
