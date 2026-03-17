@@ -46,8 +46,7 @@ export default function StoryPreview() {
 
           <div className="fade-in-section" style={{ transitionDelay: "200ms" }}>
             <p className="font-serif text-body text-abbey-600 leading-relaxed">
-              편안한 신학교 원장직을 내려놓고, R.A. Torrey III.의 손자인
-              대천덕 신부는 아무것도 없는 강원도 산골을 택했습니다.
+              대천덕 신부는 성미가엘 신학대학원(지금의 성공회대학교) 원장직을 내려놓고 아무것도 없는 강원도 산골을 택했습니다.
               그곳에서 기도하고, 땅을 일구고, 함께 살았습니다.
             </p>
           </div>

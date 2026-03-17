@@ -243,7 +243,7 @@ function HomePage({ goTo }: { goTo: (p: PageId) => void }) {
       />
       <Divider />
       <P>
-        In 1964, Archer and Jane Torrey left seven years of seminary teaching in Seoul and walked
+        In 1964, R.A. Torrey III (Archer Torrey)&#8212;grandson of R.A. Torrey I, the first Dean of Moody Bible Institute&#8212;and Jane Torrey left seven years at St. Michael&apos;s Seminary (now Sungkonghoe University) in Seoul, where Archer had served as Dean, and walked
         into the mountains of Kangwon Province with a question that would shape the next four
         decades: Could the Christian life be taught not from textbooks, but from the lived reality of
         community, prayer, and shared labor?
@@ -344,7 +344,7 @@ function TimelinePage({ goTo }: { goTo: (p: PageId) => void }) {
       <Hero title="Historical Timeline" subtitle="A chronological record, 1957&#8211;2005" tag="Documentary Archive" />
       <Divider />
       <TimelineEra>Founding Era (1957&#8211;1965)</TimelineEra>
-      <TEntry date="1957" event="Archer and Jane Torrey begin teaching at St. Michael's Seminary, Seoul. Archer develops 'Three Laboratories of the Christian Life' curriculum." sig="Seven-year theological formation period that seeds the Abbey vision." />
+      <TEntry date="1957" event="R.A. Torrey III (Archer Torrey), grandson of R.A. Torrey I (first Dean of Moody Bible Institute), arrives in Korea with Jane. Archer serves as Dean of St. Michael's Seminary (now Sungkonghoe University), Seoul, and develops 'Three Laboratories of the Christian Life' curriculum." sig="Seven-year theological formation period (1957–1964) that seeds the Abbey vision." />
       <TEntry date="c. 1963" event="Both Archer (in Canada) and Jane (in Korea) independently conclude that theology must be taught through lived experience rather than books alone." sig="Simultaneous divine leading confirms the call to a new model of formation." />
       <TEntry date="May 10, 1964" event="Land acquired near Hasami village, Kangwon Province. Six-week tent camp begins with volunteer workers clearing ground and cutting timber." sig="Physical founding. The wilderness site is deliberately chosen for remoteness and cheap mountain land." />
       <TEntry date="Summer 1964" event="Construction of first level begins. Workers discover an immovable rock at the foundation site; building must be constructed directly on it." sig="Providential foundation: the rock anchors the structure during subsequent rainy-season landslip." />
@@ -385,7 +385,7 @@ function FoundingPage({ goTo }: { goTo: (p: PageId) => void }) {
       <Hero title="The Founding Vision" subtitle="From seminary classroom to mountain wilderness &#8212; a theology made flesh" tag="Our Story" />
       <Divider />
       <SectionTitle>From Seminary to Wilderness</SectionTitle>
-      <P>For seven years, Archer and Jane Torrey taught at St. Michael&apos;s Seminary in Seoul, South Korea. Archer had developed a prize-winning curriculum called &ldquo;The Three Laboratories of the Christian Life,&rdquo; which structured the Christian journey into three relational dimensions: the believer&apos;s relationship to God, to fellow Christians, and to the world.</P>
+      <P>For seven years (1957&#8211;1964), R.A. Torrey III&#8212;grandson of R.A. Torrey I, the first Dean of Moody Bible Institute&#8212;served as Dean of St. Michael&apos;s Seminary (now Sungkonghoe University) in Seoul, South Korea. There he developed a prize-winning curriculum called &ldquo;The Three Laboratories of the Christian Life,&rdquo; which structured the Christian journey into three relational dimensions: the believer&apos;s relationship to God, to fellow Christians, and to the world.</P>
       <P>Despite the curriculum&apos;s intellectual rigor, both Archer and Jane came to the same conclusion independently&#8212;Archer at a meeting in Canada, Jane in Korea. As Jane later recorded: &ldquo;We thought, &#8216;There must be a better way to teach theology than just out of books.&#8217;&rdquo; The students&apos; goals, they recognized, diverged from the curriculum&apos;s transformative intent. What was needed was an actual laboratory&#8212;a place where the Christian life could be practiced, not merely studied.</P>
       <Photo desc="Archer Torrey teaching &#8212; St. Michael's Seminary era photograph" caption="Archer Torrey during the seminary years in Seoul" />
       <Divider />

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s | 예수원 Jesus Abbey",
   },
   description:
-    "강원도 태백 덕항산 기슭에서 기도와 노동, 공동체의 삶을 통해 하나님 나라를 살아가는 수도 공동체. 1965년 대천덕 신부가 세운 예수원의 60년 이야기.",
+    "강원도 태백 덕항산 기슭에서 기도와 노동, 공동체의 삶을 통해 하나님 나라를 살아가는 수도 공동체. 1965년 무디 바이블스쿨 초대 원장 R.A. Torrey I 의 손자 R.A. Torrey III(대천덕) 신부가 세운 예수원의 60년 이야기.",
   keywords: [
     "예수원", "Jesus Abbey",
     "수도 공동체", "기도", "노동",
