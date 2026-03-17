@@ -1,17 +1,18 @@
+import Link from "next/link"
 import Breadcrumbs from "@/components/Breadcrumbs"
 
 export const metadata = {
-  title: "삼수령무무목장 · 무무곳간 — MooMoo Ranch & MooMoo Gotgan",
+  title: "Passing on the Gift — 삼수령 무무목장",
   description:
-    "삼수령무무목장(Samsuryeong MooMoo Ranch) — 예수원의 생태순환농업 프로젝트입니다. 퍼머컬처와 생태신학의 가치를 실천하며, 무무곳간(MooMoo Gotgan)을 통해 프리미엄 A2 유제품을 제공합니다.",
+    "삼수령무무목장(Samsuryeong MooMoo Ranch) — 예수원의 생태순환농업 프로젝트. 해발 1,000m 고지대에서 검증된 낙농 모델을 북한에 전달하기 위한 Passing on the Gift 프로젝트.",
   keywords: [
     "삼수령무무목장", "무무곳간", "예수원", "저지소", "Jersey",
-    "A2우유", "생태순환농업", "퍼머컬처", "생태신학", "태백 목장",
+    "A2우유", "생태순환농업", "Passing on the Gift", "북한", "태백 목장",
   ],
   alternates: { canonical: "https://jesusabbey.org/identity/moomoo-grange" },
   openGraph: {
-    title: "삼수령무무목장 · 무무곳간 — MooMoo Ranch & Gotgan",
-    description: "해발 1,000m 고지대에서 저지(Jersey) 소를 사육하며 생태순환농업과 생태신학을 실천하는 예수원의 목장입니다.",
+    title: "Passing on the Gift — 삼수령 무무목장",
+    description: "해발 1,000m 고지대에서 검증된 저지 낙농 모델을 북한 고지대에 전달하기 위한 프로젝트.",
     url: "https://jesusabbey.org/identity/moomoo-grange",
     siteName: "예수원 Jesus Abbey",
     images: [{
@@ -22,8 +23,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "삼수령무무목장 · 무무곳간 — MooMoo Ranch & Gotgan",
-    description: "해발 1,000m 고지대에서 저지(Jersey) 소를 사육하며 생태순환농업과 생태신학을 실천하는 예수원의 목장입니다.",
+    title: "Passing on the Gift — 삼수령 무무목장",
+    description: "해발 1,000m 고지대에서 검증된 저지 낙농 모델을 북한 고지대에 전달하기 위한 프로젝트.",
     images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%89%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%85%E1%85%A7%E1%86%BC%E1%84%86%E1%85%AE%E1%84%86%E1%85%AE%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%201975-AohqSCL4ef6FWCOSXEJl0uZYdTTiX4.jpg"],
   },
 }
@@ -35,7 +36,7 @@ const jsonLd = {
       "@type": "LocalBusiness",
       "@id": "https://jesusabbey.org/identity/moomoo-grange#ranch",
       name: "삼수령무무목장 Samsuryeong MooMoo Ranch",
-      description: "해발 1,000m 고지대에서 저지(Jersey) 소를 사육하며 생태순환농업과 퍼머컬처를 실천하는 예수원의 목장입니다.",
+      description: "해발 1,000m 고지대에서 저지(Jersey) 소를 사육하며 생태순환농업을 실천하는 예수원의 목장입니다.",
       url: "https://jesusabbey.org/identity/moomoo-grange",
       telephone: "+82-33-552-6502",
       address: { "@type": "PostalAddress", addressLocality: "태백시", addressRegion: "강원특별자치도", addressCountry: "KR" },
@@ -51,538 +52,496 @@ const jsonLd = {
   ],
 }
 
-const mm = {
-  ivory: "#F5F0E8",
-  milk: "#FAF7F2",
-  gold: "#C4A46C",
-  goldLight: "#D4B882",
-  brown: "#5C4033",
-  brownLight: "#7A5C4E",
-  sage: "#7A8B6F",
-  sageLight: "#9AAB8F",
-  ink: "#2C1810",
-  mist: "#E8E2D8",
-} as const
-
-function ChapterLabel({ number, label }: { number: string; label: string }) {
+/* ──────────────────────────────────────────
+   Funding Progress Bar (client component inlined)
+   ────────────────────────────────────────── */
+function FundingBar({ raised, goal }: { raised: number; goal: number }) {
+  const pct = Math.min(100, Math.round((raised / goal) * 100))
+  const formatKRW = (n: number) => {
+    if (n >= 100000000) return `${(n / 100000000).toFixed(0)}억원`
+    if (n >= 10000) return `${(n / 10000).toLocaleString()}만원`
+    return `${n.toLocaleString()}원`
+  }
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
-      <span style={{ display: "block", width: "2.5rem", height: "1px", background: mm.gold, flexShrink: 0 }} />
-      <span style={{
-        fontFamily: "'Cormorant Garamond', Georgia, serif",
-        fontStyle: "italic", fontSize: "0.7rem", letterSpacing: "0.3em",
-        color: mm.gold, textTransform: "uppercase" as const,
-      }}>{number} · {label}</span>
+    <div className="w-full">
+      <div className="flex justify-between items-end mb-2">
+        <span className="text-3xl sm:text-4xl font-serif font-bold text-forest-700">
+          {formatKRW(raised)}
+        </span>
+        <span className="text-sm text-abbey-400">
+          목표 {formatKRW(goal)}
+        </span>
+      </div>
+      <div className="w-full h-3 bg-abbey-100 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-forest-700 rounded-full transition-all duration-1000"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+      <div className="flex justify-between mt-2">
+        <span className="text-xs text-abbey-400">{pct}% funded</span>
+        <span className="text-xs text-abbey-400">Jersey Funding</span>
+      </div>
     </div>
   )
 }
 
-function Divider() {
-  return (
-    <div style={{
-      width: "100%", height: "1px",
-      background: `linear-gradient(to right, transparent, ${mm.mist} 20%, ${mm.mist} 80%, transparent)`,
-      margin: "4rem 0",
-    }} />
-  )
-}
-
+/* ──────────────────────────────────────────
+   Page
+   ────────────────────────────────────────── */
 export default function MooMooGrangePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
-        .mm-btn-primary:hover { background: #2C1810 !important; }
-        .mm-btn-kakao:hover   { background: #F0D800 !important; }
-        .mm-img { transition: opacity 0.3s; }
-        .mm-img:hover { opacity: 0.88; }
-        table.mm-table tbody tr:hover td { background: rgba(196,164,108,0.06) !important; }
-        @keyframes mmFadeUp {
-          from { opacity: 0; transform: translateY(14px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .mm-hero-title { animation: mmFadeUp 0.9s ease both; animation-delay: 0.1s; }
-        .mm-hero-sub   { animation: mmFadeUp 0.9s ease both; animation-delay: 0.3s; }
-        .mm-hero-tags  { animation: mmFadeUp 0.9s ease both; animation-delay: 0.5s; }
-      `}</style>
-
       <Breadcrumbs items={[
         { label: "홈", path: "/" },
         { label: "정체성", path: "/identity" },
-        { label: "무무목장 프로젝트" },
+        { label: "Passing on the Gift" },
       ]} />
 
-      <div style={{ background: mm.ivory }}>
+      {/* ═══════════════════════════════════════
+          HERO
+      ════════════════════════════════════════ */}
+      <section className="relative pt-32 pb-20 bg-abbey-900 text-white overflow-hidden">
+        <div className="absolute inset-0" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%89%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%85%E1%85%A7%E1%86%BC%E1%84%86%E1%85%AE%E1%84%86%E1%85%AE%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%201975-AohqSCL4ef6FWCOSXEJl0uZYdTTiX4.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-abbey-900/60 via-abbey-900/40 to-abbey-900/80" />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-sacred-gold/70 font-sans text-sm tracking-widest uppercase mb-4">
+            Passing on the Gift
+          </p>
+          <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-8">
+            삼수령 무무목장
+          </h1>
+          <p className="font-serif text-xl text-abbey-300 leading-relaxed max-w-reading mx-auto">
+            해발 1,000m에서 검증된 낙농 모델을
+            <br />
+            북한 고지대에 전달하기 위한 프로젝트.
+          </p>
+        </div>
+      </section>
 
-        {/* ══════════════════════════════════════════
-            HERO
-        ═════════════════════════════════════════════ */}
-        <div style={{ background: mm.brown, position: "relative", overflow: "hidden", padding: "5.5rem 0 0" }}>
-          <div style={{
-            position: "absolute", inset: 0, pointerEvents: "none",
-            background: `radial-gradient(ellipse 70% 60% at 50% 30%, rgba(196,164,108,0.1) 0%, transparent 70%)`,
-          }} />
+      {/* ═══════════════════════════════════════
+          PHOTO STRIP
+      ════════════════════════════════════════ */}
+      <section className="grid grid-cols-2">
+        {[
+          {
+            src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%89%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%85%E1%85%A7%E1%86%BC%E1%84%86%E1%85%AE%E1%84%86%E1%85%AE%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%201975-AohqSCL4ef6FWCOSXEJl0uZYdTTiX4.jpg",
+            alt: "삼수령무무목장 1975년 전경",
+            cap: "삼수령무무목장, 1975",
+          },
+          {
+            src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%20%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%20%E1%84%80%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AF-wRMF9jSGrO8KoZEYSEKVYl4KCdfgXs.jpg",
+            alt: "예수원 본관 건물",
+            cap: "예수원 본관 건물",
+          },
+        ].map(({ src, alt, cap }) => (
+          <div key={cap} className="relative aspect-[4/3] overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={src} alt={alt}
+              className="w-full h-full object-cover brightness-[0.82] sepia-[0.12]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-abbey-900/60 to-transparent" />
+            <p className="absolute bottom-3 left-4 font-serif italic text-xs text-white/80 tracking-wide">
+              {cap}
+            </p>
+          </div>
+        ))}
+      </section>
 
-          <div style={{ maxWidth: "840px", margin: "0 auto", padding: "0 2rem", textAlign: "center", position: "relative" }}>
-            <div className="mm-hero-title">
-              <span style={{
-                display: "block",
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontStyle: "italic", fontWeight: 300,
-                fontSize: "clamp(3.5rem, 9vw, 6.5rem)",
-                letterSpacing: "0.06em", color: mm.gold,
-                lineHeight: 1, marginBottom: "0.4rem",
-              }}>無無</span>
-              <span style={{
-                display: "block",
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontStyle: "italic", fontWeight: 300,
-                fontSize: "clamp(0.85rem, 1.8vw, 1.05rem)",
-                letterSpacing: "0.35em", color: mm.goldLight,
-                textTransform: "uppercase" as const, marginBottom: "2rem",
-              }}>MooMoo Ranch</span>
+      {/* ═══════════════════════════════════════
+          CH 1 — 비전: "선물을 전달하라"
+      ════════════════════════════════════════ */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="flex items-start gap-6 sm:gap-10">
+            <span className="text-6xl sm:text-7xl font-serif font-bold text-abbey-200 shrink-0">1</span>
+            <div className="space-y-4 pt-2">
+              <div>
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-abbey-900">
+                  선물을 전달하라
+                </h2>
+                <p className="text-sm font-sans text-abbey-500 mt-1">Passing on the Gift</p>
+              </div>
+              <p className="font-serif text-abbey-600 leading-relaxed">
+                헤이퍼 인터내셔널(Heifer International)은 &ldquo;받은 선물을 다음 사람에게 전달하라&rdquo;는 원칙으로 전 세계 빈곤 지역에 가축을 보급해왔습니다.
+              </p>
+              <p className="font-serif text-abbey-600 leading-relaxed">
+                1965년, 시애틀 교회가 예수원에 보낸 젖소 두 마리도 같은 정신이었습니다. 60년이 지난 지금, 무무목장은 그 선물을 북한 고지대에 전달하기 위한 실험을 합니다.
+              </p>
+              <p className="font-serif text-abbey-600 leading-relaxed">
+                해발 1,000m 태백 삼수령 — 남한에서 북한 고지대와 가장 유사한 환경. 이곳에서 검증된 소규모 낙농 모델은, 그 날이 오면 최소한의 수정만으로 북한에 이식할 수 있도록 설계되었습니다.
+              </p>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="mm-hero-sub">
-              <h1 style={{
-                fontFamily: "var(--font-noto-serif-kr), 'Noto Serif KR', Georgia, serif",
-                fontSize: "clamp(1.35rem, 3.2vw, 2rem)",
-                fontWeight: 400, color: mm.ivory,
-                letterSpacing: "0.03em", marginBottom: "0.85rem", lineHeight: 1.4,
-              }}>삼수령 무무목장 프로젝트</h1>
-              <p style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontStyle: "italic",
-                fontSize: "clamp(0.95rem, 2vw, 1.2rem)",
-                color: mm.goldLight, letterSpacing: "0.1em", marginBottom: "2.75rem",
-              }}>비움이 채움이 되는 곳</p>
-            </div>
-
-            <div className="mm-hero-tags" style={{ display: "flex", justifyContent: "center", gap: "2.5rem", marginBottom: "4rem", flexWrap: "wrap" as const }}>
-              {([
-                { ko: "기도", la: "Ora", c: mm.gold },
-                { ko: "독서", la: "Lege", c: mm.brownLight },
-                { ko: "노동", la: "Labora", c: mm.sage },
-              ] as const).map(({ ko, la, c }) => (
-                <div key={la} style={{ textAlign: "center" }}>
-                  <span style={{ display: "block", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1.1rem", fontWeight: 600, color: c, letterSpacing: "0.1em" }}>{la}</span>
-                  <span style={{ display: "block", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 400, fontSize: "0.72rem", letterSpacing: "0.18em", color: "rgba(245,240,232,0.75)", marginTop: "0.25rem" }}>{ko}</span>
+      {/* ═══════════════════════════════════════
+          CH 2 — 역사: 1965년부터
+      ════════════════════════════════════════ */}
+      <section className="py-20 sm:py-28 bg-abbey-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col lg:flex-row lg:gap-12 items-start gap-8">
+            {/* Historical Photo Grid */}
+            <div className="w-full lg:w-2/5 shrink-0 grid grid-cols-2 gap-1 rounded-lg overflow-hidden">
+              {[
+                {
+                  src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Archer%20and%20Paul%20Kingsbury%20-n9WA6HDEyDMBtUdIUQ5BuFESl1ZC7y.jpg",
+                  alt: "대천덕 신부와 Kingsbury 선교사",
+                },
+                {
+                  src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Paul%20Kingsbury-yZtqRcGl7NSTgnaKL7EiFbT6r9APq4.jpg",
+                  alt: "Kingsbury 선교사 건축 현장",
+                },
+                {
+                  src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Jeremiah%20with%20cattle-gdG27aQ9d4kcvARorCJaIbTSmhOZ8d.jpg",
+                  alt: "예레미야와 소 떼",
+                },
+                {
+                  src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Paul%20Kingsbury%20at%20Grange%20with%20sheep-J6SaZkLaEii9h8UQVBZ03i3HX1Rpto.jpg",
+                  alt: "Kingsbury 선교사와 삼수령 목장의 양 떼",
+                },
+              ].map(({ src, alt }) => (
+                <div key={alt} className="relative aspect-square overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt={alt}
+                    className="w-full h-full object-cover brightness-[0.88] sepia-[0.15]" />
                 </div>
               ))}
             </div>
+
+            <div className="flex items-start gap-6 sm:gap-10 flex-1">
+              <span className="text-6xl sm:text-7xl font-serif font-bold text-abbey-200 shrink-0">2</span>
+              <div className="space-y-4 pt-2">
+                <div>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-abbey-900">
+                    60년의 뿌리
+                  </h2>
+                  <p className="text-sm font-sans text-abbey-500 mt-1">The Watershed Grange, 1965&ndash;현재</p>
+                </div>
+                <p className="font-serif text-abbey-600 leading-relaxed">
+                  1965년 덕항산 기슭에서 시작된 예수원의 낙농. 1975년 해발 1,000m 매봉산 자락으로 확장하며 &ldquo;Jesus Abbey The Watershed Grange&rdquo;로 불렸습니다.
+                </p>
+                <p className="font-serif text-abbey-600 leading-relaxed">
+                  헤이퍼 인터내셔널 소속 Paul A. Kingsbury(김승배) 선교사가 대천덕 신부의 목장 설립을 지원했습니다. 삼수령 무무목장은 예수원의 수도회적 유산과 한국 낙농업 역사를 함께 품고 있습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          CH 3 — 리더십
+      ════════════════════════════════════════ */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="flex items-start gap-6 sm:gap-10 mb-12">
+            <span className="text-6xl sm:text-7xl font-serif font-bold text-abbey-200 shrink-0">3</span>
+            <div className="space-y-4 pt-2">
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-abbey-900">
+                함께 이끄는 사람들
+              </h2>
+              <p className="font-serif text-abbey-600 leading-relaxed">
+                한국, 북한, 미국 — 서로 다른 삶의 궤적이 만나 하나의 비전을 이끕니다.
+              </p>
+            </div>
           </div>
 
-          {/* Hero image strip */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-            {[
+          <div className="grid sm:grid-cols-3 gap-8">
+            {([
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%89%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%85%E1%85%A7%E1%86%BC%E1%84%86%E1%85%AE%E1%84%86%E1%85%AE%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%201975-AohqSCL4ef6FWCOSXEJl0uZYdTTiX4.jpg",
-                alt: "삼수령무무목장 1975년 전경", cap: "삼수령무무목장, 1975년",
+                name: "히스기야",
+                origin: "현장 운영",
+                photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3.png-AvG53E1ea7IAcBwPlC0H0SAk65cQQ0.jpeg",
+                desc: "예수원 공동체 소속 목장 책임자. 해발 1,000m 고지대에서 저지 소의 사계절을 총괄합니다.",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%20%E1%84%87%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%20%E1%84%80%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AF-wRMF9jSGrO8KoZEYSEKVYl4KCdfgXs.jpg",
-                alt: "예수원 본관 건물", cap: "예수원 본관 건물",
+                name: "박요셉",
+                origin: "모델 설계",
+                photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.png-ahO39itOmMwjoH6DSeGYaEP9QFz9CS.jpeg",
+                desc: "건국대 수의과대학 졸업. 북한 환경에 적용 가능한 융복합 농촌 복원 모델을 설계합니다.",
               },
-            ].map(({ src, alt, cap }) => (
-              <div key={cap} style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt={alt} className="mm-img"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "brightness(0.82) sepia(0.12)" }} />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(44,24,16,0.65) 0%, transparent 55%)" }} />
-                <p style={{
-                  position: "absolute", bottom: "1.1rem", left: "1.4rem",
-                  fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontStyle: "italic", fontSize: "0.78rem",
-                  color: "rgba(245,240,232,0.85)", letterSpacing: "0.06em",
-                }}>{cap}</p>
+              {
+                name: "바니 스미스 선교사",
+                origin: "국제 자문",
+                photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.png-5BJVRE5dFO0v4QVxBdrc5v1xRFgFdg.jpeg",
+                desc: "미국 수의사. 1997~2019년 북한 현지에서 농업 선교사로 활동한 경험을 바탕으로 자문합니다.",
+              },
+            ] as const).map(({ name, origin, photo, desc }) => (
+              <div key={name} className="text-center">
+                <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-2 border-abbey-200 mb-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={photo} alt={name}
+                    className="w-full h-full object-cover" />
+                </div>
+                <h3 className="font-serif font-bold text-abbey-900">{name}</h3>
+                <p className="text-xs text-forest-700 tracking-wide mb-2">{origin}</p>
+                <p className="text-sm text-abbey-600 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* ══════════════════════════════════════════
-            BODY
-        ═════════════════════════════════════════════ */}
-        <div style={{ maxWidth: "760px", margin: "0 auto", padding: "5rem 2rem" }}>
-
-          {/* 01 프로젝트 정의 */}
-          <section>
-            <ChapterLabel number="01" label="프로젝트 정의" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "2rem", lineHeight: 1.45 }}>
-              고지대 농촌 자립 모델을 검증하는<br />핵심 실험 플랫폼
-            </h2>
-            <div style={{ borderLeft: `2px solid ${mm.gold}`, paddingLeft: "1.75rem" }}>
-              {["삼수령 무무목장은 단순한 원유 생산 시설을 넘어, 고지대 농촌 자립 모델을 검증하기 위한 핵심 실험 플랫폼 역할을 수행합니다.",
-                "본 프로젝트의 목표는 해발 800~1,200m의 한반도 고지대 환경에서 재생농업 기반의 소규모 낙농 모델이 경제적·생태적으로 자립할 수 있는지 실증하는 것입니다.",
-                "강원도 태백 해발 1,000m 지역은 북한 고지대와 가장 유사한 남한 내 환경입니다. 이곳에서 검증을 마친 시스템은 향후 최소한의 수정만으로 북한 지역에 신속하게 이전 및 적용할 수 있도록 설계되었습니다.",
-              ].map((t, i) => (
-                <p key={i} style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: i < 2 ? "1.25rem" : 0 }}>{t}</p>
-              ))}
-            </div>
-          </section>
-
-          <Divider />
-
-          {/* 02 역사적 기반 */}
-          <section>
-            <ChapterLabel number="02" label="역사적 기반" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "2rem", lineHeight: 1.45 }}>
-              1965년에 시작된 예수원의 낙농 전통
-            </h2>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: "2rem" }}>
-              무무목장은 1965년에 시작된 예수원의 낙농 전통을 계승합니다. 초기 예수원은 덕항산 기슭에서 낙농업을 시작했으나 공간 확장의 필요성을 느꼈습니다. 이에 1975년, 약 10km 떨어진 해발 1,000m 매봉산 자락에 부지를 확보하여 고지대 낙농 실험을 본격화했습니다. 당시 목장의 공식 명칭은 &ldquo;Jesus Abbey The Watershed Grange&rdquo;였습니다.
-            </p>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", background: mm.mist, borderRadius: "2px", overflow: "hidden", marginBottom: "2.25rem" }}>
-              {["기도와 노동의 유기적 통합", "공동체 기반의 자립 경제 구축", "고지대 최적화 소규모 낙농 모델"].map((text) => (
-                <div key={text} style={{ background: mm.milk, padding: "1.5rem 1.25rem", textAlign: "center" }}>
-                  <span style={{ display: "block", color: mm.gold, marginBottom: "0.5rem", fontSize: "0.65rem" }}>◇</span>
-                  <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.82rem", color: mm.brown, lineHeight: 1.65, letterSpacing: "0.01em" }}>{text}</p>
-                </div>
-              ))}
-            </div>
-
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: "2.25rem" }}>
-              특히 1975년부터 1982년까지의 형성기가 중요합니다. 당시 &lsquo;헤이퍼 인터내셔널(Heifer International)&rsquo; 소속으로 20여 년간 한국 축산 발전을 이끈 Paul A. Kingsbury(한국명: 김승배) 선교사가 대천덕 신부의 목장 설립을 적극적으로 지원했습니다. 따라서 삼수령 무무목장은 예수원의 수도회적 유산과 더불어 한국 낙농업 발전의 역사적 발자취를 고스란히 보존하고 있습니다.
-            </p>
-
-            {/* Historical Photo Grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridTemplateRows: "auto auto", gap: "4px" }}>
-              {([
-                { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Archer%20and%20Paul%20Kingsbury%20-n9WA6HDEyDMBtUdIUQ5BuFESl1ZC7y.jpg", alt: "대천덕 신부와 Kingsbury 선교사", cap: "대천덕 신부와 Kingsbury 선교사", col: "1", row: "1", aspect: "3/4" },
-                { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Paul%20Kingsbury-yZtqRcGl7NSTgnaKL7EiFbT6r9APq4.jpg", alt: "Kingsbury 선교사 건축 현장", cap: "Kingsbury 선교사, 건축 현장에서", col: "2", row: "1", aspect: "3/4" },
-                { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Jeremiah%20with%20cattle-gdG27aQ9d4kcvARorCJaIbTSmhOZ8d.jpg", alt: "예레미야와 소 떼", cap: "예레미야와 소 떼", col: "3", row: "1", aspect: "3/4" },
-                { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Paul%20Kingsbury%20at%20Grange%20with%20sheep-J6SaZkLaEii9h8UQVBZ03i3HX1Rpto.jpg", alt: "Kingsbury 선교사와 삼수령 목장 양 떼", cap: "Kingsbury 선교사와 삼수령 목장의 양 떼", col: "1 / 3", row: "2", aspect: "16/9" },
-                { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Jesus%20Abbey_%20%2835%29.JPG-7lwGbV3SAQPVkE0GINiaknikkox2lT.jpeg", alt: "겨울 눈 덮인 예수원", cap: "예수원의 겨울 풍경", col: "3", row: "2", aspect: "4/5" },
-              ] as const).map(({ src, alt, cap, col, row, aspect }) => (
-                <div key={cap} style={{ gridColumn: col, gridRow: row, position: "relative", aspectRatio: aspect, overflow: "hidden", borderRadius: "2px" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt={alt} className="mm-img"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "sepia(0.15) brightness(0.88)" }} />
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(44,24,16,0.65) 0%, transparent 55%)" }} />
-                  <p style={{ position: "absolute", bottom: "0.7rem", left: "0.7rem", right: "0.7rem", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "0.7rem", color: "rgba(245,240,232,0.88)", letterSpacing: "0.04em" }}>{cap}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <Divider />
-
-          {/* 03 리더십 */}
-          <section>
-            <ChapterLabel number="03" label="리더십 구조" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "1.25rem", lineHeight: 1.45 }}>다양한 문화적 배경이 하나 된 리더십</h2>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: "2rem" }}>
-              무무목장은 한국, 북한, 미국 등 다양한 문화적 배경과 현장 경험을 가진 전문가들이 함께 이끄는 리더십 구조를 갖추고 있습니다. 서로 다른 삶의 궤적과 전문성이 교차하며, 목장의 실천적 비전을 더욱 풍부하게 만들어 갑니다.
-            </p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "1px", background: mm.mist, borderRadius: "2px", overflow: "hidden" }}>
-              {([
-                {
-                  name: "히스기야", origin: "남한", c: mm.sage,
-                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3.png-AvG53E1ea7IAcBwPlC0H0SAk65cQQ0.jpeg",
-                  desc: "현장 운영 및 지역 기반 관리를 담당합니다. 예수원 공동체 소속의 목장 책임자로서 해발 1,000m 고지대 목초지와 저지(Jersey) 소 떼의 사계절 관리를 총괄합니다.",
-                },
-                {
-                  name: "박요셉", origin: "북한", c: mm.gold,
-                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.png-ahO39itOmMwjoH6DSeGYaEP9QFz9CS.jpeg",
-                  desc: "북한 환경 분석 및 현지 적용 모델 설계를 담당합니다. 건국대학교 수의과대학을 졸업하고 사회적 기업 (주)요벨을 설립·운영했으며, 삼수령무무목장에서 융복합산업 기반 농촌 복원 모델을 개척하고 있습니다.",
-                },
-                {
-                  name: "바니 스미스 선교사", origin: "미국", c: mm.brownLight,
-                  photo: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.png-5BJVRE5dFO0v4QVxBdrc5v1xRFgFdg.jpeg",
-                  desc: "국제 개발 및 특수 환경 대응 전략을 자문합니다. 미국 수의사 자격을 보유하고 있으며, 1997년부터 2019년까지 북한 현지에서 선교사이자 농업 실무자로 활동한 경험을 바탕으로 기술적 통찰을 제공합니다.",
-                },
-              ] as const).map(({ name, origin, c, photo, desc }) => (
-                <div key={name} style={{ background: mm.milk, padding: "2rem 1.75rem", display: "flex", flexDirection: "column" as const, alignItems: "center", textAlign: "center" as const }}>
-                  <div style={{
-                    width: "90px", height: "90px",
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    border: `3px solid ${c}`,
-                    marginBottom: "1.25rem",
-                    flexShrink: 0,
-                    background: mm.mist,
-                  }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={photo}
-                      alt={name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "sepia(0.06) brightness(0.97)" }}
-                    />
-                  </div>
-                  <h3 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontWeight: 400, fontSize: "1rem", color: mm.ink, marginBottom: "0.3rem" }}>{name}</h3>
-                  <span style={{ display: "inline-block", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "0.75rem", color: c, letterSpacing: "0.08em", marginBottom: "1rem" }}>{origin}</span>
-                  <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.84rem", color: mm.brownLight, lineHeight: 1.85, textAlign: "left" as const }}>{desc}</p>
-                </div>
-              ))}
-            </div>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.85rem", color: mm.sage, lineHeight: 1.8, marginTop: "1.5rem", paddingLeft: "1rem", borderLeft: `1px solid ${mm.sageLight}` }}>
-              다양한 배경과 경험을 가진 리더들의 협력은 무무목장의 비전에 깊이와 실천력을 더합니다.
-            </p>
-          </section>
-
-          <Divider />
-
-          {/* 04 설계 원칙 */}
-          <section>
-            <ChapterLabel number="04" label="설계 원칙" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "1.25rem", lineHeight: 1.45 }}>두 선진 모델의 통합</h2>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: "2rem" }}>
-              무무목장은 다음 두 가지 선진 모델의 장점을 통합하여 고지대에 특화된 소규모 프리미엄 낙농 시스템을 구축했습니다.
-            </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: mm.mist, borderRadius: "2px", overflow: "hidden" }}>
-              {([
-                { title: "폴리페이스(Polyface) 농장 모델", items: ["관리형 방목", "다종 순환 시스템", "토양 생물학 중심 설계", "직거래 기반 유통 체계", "산업형 공급망 의존도 최소화"], accent: mm.sage },
-                { title: "스위스 고지대 낙농 모델", items: ["고지대 기후 적응형 생산 방식", "소규모 고부가가치 창출 전략", "현장 가공 중심의 운영 구조", "관광·체험 연계형 통합 모델", "산지 생태계 보전 우선"], accent: mm.gold },
-              ] as const).map(({ title, items, accent }) => (
-                <div key={title} style={{ background: mm.milk, padding: "2rem 1.75rem" }}>
-                  <h3 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontWeight: 400, fontSize: "0.95rem", color: mm.ink, marginBottom: "1.25rem", lineHeight: 1.5 }}>{title}</h3>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                    {items.map(item => (
-                      <li key={item} style={{ display: "flex", gap: "0.7rem", alignItems: "flex-start", marginBottom: "0.55rem" }}>
-                        <span style={{ color: accent, fontSize: "0.55rem", marginTop: "0.5rem", flexShrink: 0 }}>◆</span>
-                        <span style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.84rem", color: mm.brownLight, lineHeight: 1.6 }}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <Divider />
-
-          {/* 05 가치사슬 */}
-          <section>
-            <ChapterLabel number="05" label="통합 가치사슬" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "1.25rem", lineHeight: 1.45 }}>6단계 통합 가치사슬</h2>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: "2.25rem" }}>
-              단순 원유 생산을 넘어 6단계의 가치사슬을 내부에 통합했습니다. 이를 통해 외부 의존도를 낮추고 수익 구조를 다각화하여, 고지대 환경에서도 지속 가능한 자립형 비즈니스 모델을 확보합니다.
-            </p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", background: mm.mist, borderRadius: "2px", overflow: "hidden" }}>
-              {([
-                { n: "01", title: "생산", desc: "저지(Jersey) A2 낙농 및 목초 관리", c: mm.sage },
-                { n: "02", title: "가공", desc: "요거트, 치즈, 버터, 젤라또 제조", c: mm.gold },
-                { n: "03", title: "식음", desc: "자체 카페 및 레스토랑 운영", c: mm.brownLight },
-                { n: "04", title: "관광", desc: "생태 체험 및 치유 프로그램 제공", c: mm.sage },
-                { n: "05", title: "교육", desc: "농업 훈련 및 견습 과정 운영", c: mm.gold },
-                { n: "06", title: "직판", desc: "정기 구독, B2B 납품, 라이브 커머스", c: mm.brownLight },
-              ] as const).map(({ n, title, desc, c }) => (
-                <div key={n} style={{ background: mm.milk, padding: "1.65rem 1.5rem" }}>
-                  <span style={{ display: "block", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1.4rem", color: c, opacity: 0.45, lineHeight: 1, marginBottom: "0.5rem" }}>{n}</span>
-                  <h3 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontWeight: 400, fontSize: "1.05rem", color: mm.ink, marginBottom: "0.45rem" }}>{title}</h3>
-                  <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.81rem", color: mm.brownLight, lineHeight: 1.7 }}>{desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <Divider />
-
-          {/* 06 Jersey */}
-          <section>
-            <ChapterLabel number="06" label="저지 품종 선택" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "1.25rem", lineHeight: 1.45 }}>저지(Jersey) 품종 선택의 전략성</h2>
-            <div style={{ display: "flex", gap: "2rem", marginBottom: "2.25rem", flexWrap: "wrap" as const }}>
-              <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, flex: 1, minWidth: "240px" }}>
-                저지(Jersey) 품종의 도입은 고지대 환경의 적합성과 운영 효율성을 극대화하기 위한 전략적 선택입니다. 사료 수급이 제한적인 고지대의 장기 운영 조건에서 저지 품종은 탁월한 경제성과 안정적인 생산성을 보장합니다.
-              </p>
-              <div style={{ position: "relative", width: "150px", aspectRatio: "3/4", borderRadius: "2px", overflow: "hidden", flexShrink: 0 }}>
+      {/* ═══════════════════════════════════════
+          CH 4 — 왜 저지인가
+      ════════════════════════════════════════ */}
+      <section className="py-20 sm:py-28 bg-abbey-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col lg:flex-row lg:gap-12 items-start gap-8">
+            <div className="w-full lg:w-1/3 shrink-0">
+              <div className="relative aspect-[3/4] rounded-lg overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20%E1%84%89%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF%20%E1%84%8F%E1%85%B5%E1%84%8B%E1%85%AE%E1%86%AF%E1%84%84%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A2%E1%86%BB%E1%84%83%E1%85%A5%E1%86%AB%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A9-vwvXqSw78a4lfrswJY2bM7NY69pwqn.jpg"
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20%E1%84%89%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF%20%E1%84%8F%E1%85%B5%E1%84%8B%E1%85%AE%E1%86%AF%E1%84%84%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A2%E1%86%BB%E1%84%83%E1%85%A5%E1%86%AB%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A9-vwvXqSw78a4lfrswJY2bM7NY69pwqn.jpg"
                   alt="초기 석조 사일로"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", filter: "sepia(0.15) brightness(0.9)" }} />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(44,24,16,0.6) 0%, transparent 50%)" }} />
-                <p style={{ position: "absolute", bottom: "0.6rem", left: "0.6rem", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "0.65rem", color: mm.ivory, opacity: 0.9 }}>초기 석조 사일로</p>
+                  className="w-full h-full object-cover brightness-[0.9] sepia-[0.15]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-abbey-900/50 to-transparent" />
+                <p className="absolute bottom-3 left-4 font-serif italic text-xs text-white/80">
+                  초기 석조 사일로
+                </p>
               </div>
             </div>
-            <div style={{ overflowX: "auto", borderRadius: "2px", border: `1px solid ${mm.mist}` }}>
-              <table className="mm-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.84rem" }}>
-                <thead>
-                  <tr style={{ background: mm.brown }}>
-                    <th style={{ padding: "0.85rem 1.2rem", textAlign: "left", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.72rem", letterSpacing: "0.12em", color: "rgba(245,240,232,0.6)" }}>비교 항목</th>
-                    <th style={{ padding: "0.85rem 1.2rem", textAlign: "left", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "0.92rem", color: mm.gold, letterSpacing: "0.06em" }}>저지 (Jersey)</th>
-                    <th style={{ padding: "0.85rem 1.2rem", textAlign: "left", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "0.92rem", color: "rgba(245,240,232,0.35)", letterSpacing: "0.06em" }}>홀스타인 (Holstein)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ["평균 체중", "400~450kg", "600~700kg"],
-                    ["유지방 함량", "4.8~5.2%", "3.5~3.7%"],
-                    ["사료 효율성", "우수", "보통"],
-                    ["A2 유전형 비율", "거의 100%", "혼합형 (A1/A2)"],
-                    ["내한성 및 환경 적응력", "우수", "보통"],
-                    ["분만 난이도", "낮음", "상대적으로 높음"],
-                    ["경제 수명 (산유 기간)", "12~15년", "5~7년"],
-                  ].map(([param, jersey, holstein], i) => (
-                    <tr key={param} style={{ borderBottom: `1px solid ${mm.mist}`, background: i % 2 === 0 ? mm.milk : mm.ivory }}>
-                      <td style={{ padding: "0.75rem 1.2rem", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.82rem", color: mm.brown }}>{param}</td>
-                      <td style={{ padding: "0.75rem 1.2rem", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 400, fontSize: "0.84rem", color: mm.sage }}>{jersey}</td>
-                      <td style={{ padding: "0.75rem 1.2rem", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.82rem", color: mm.brownLight, opacity: 0.7 }}>{holstein}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
 
-          <Divider />
-
-          {/* 07 북한 */}
-          <section>
-            <ChapterLabel number="07" label="북한 환경 적용 모델" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "1.25rem", lineHeight: 1.45 }}>태백 삼수령에서 북한 고지대로</h2>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: "1.75rem" }}>
-              강원도 태백은 남한 내에서 북한 고지대와 가장 유사한 기후와 지형 조건을 갖추고 있습니다. 따라서 삼수령에서 검증된 낙농 시스템은 향후 북한 고지대 지역에 원활하게 적용될 수 있습니다.
-            </p>
-            <div style={{ overflowX: "auto", borderRadius: "2px", border: `1px solid ${mm.mist}`, marginBottom: "1.75rem" }}>
-              <table className="mm-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.84rem" }}>
-                <thead>
-                  <tr style={{ background: mm.brown }}>
-                    <th style={{ padding: "0.85rem 1.2rem", textAlign: "left", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.72rem", letterSpacing: "0.12em", color: "rgba(245,240,232,0.6)" }}>환경 변수</th>
-                    <th style={{ padding: "0.85rem 1.2rem", textAlign: "left", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "0.92rem", color: mm.gold, letterSpacing: "0.06em" }}>태백 삼수령</th>
-                    <th style={{ padding: "0.85rem 1.2rem", textAlign: "left", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "0.92rem", color: "rgba(245,240,232,0.35)", letterSpacing: "0.06em" }}>북한 고지대 평균</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ["해발 고도", "해발 1,000m", "800~1,200m"],
-                    ["겨울철 결빙 기간", "5~6개월", "5~7개월"],
-                    ["1월 평균 기온", "-8°C ~ -12°C", "-10°C ~ -20°C"],
-                    ["경작 가능 토지 면적", "매우 제한적", "매우 제한적"],
-                    ["사료 공급 방식", "자체 생산 및 일부 외부 조달", "전량 자체 조달 필수"],
-                    ["물류 인프라", "산간 원격지, 접근성 제한", "극도로 제약됨"],
-                  ].map(([param, taebaek, dprk], i) => (
-                    <tr key={param} style={{ borderBottom: `1px solid ${mm.mist}`, background: i % 2 === 0 ? mm.milk : mm.ivory }}>
-                      <td style={{ padding: "0.75rem 1.2rem", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.82rem", color: mm.brown }}>{param}</td>
-                      <td style={{ padding: "0.75rem 1.2rem", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.82rem", color: mm.brownLight }}>{taebaek}</td>
-                      <td style={{ padding: "0.75rem 1.2rem", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.82rem", color: mm.brownLight, opacity: 0.65 }}>{dprk}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: mm.mist, borderRadius: "2px", overflow: "hidden", marginBottom: "1.5rem" }}>
-              <div style={{ background: mm.milk, padding: "1.75rem" }}>
-                <h3 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontWeight: 400, fontSize: "0.95rem", color: mm.ink, marginBottom: "1rem" }}>북한 고지대의 주요 제약</h3>
-                {["5~7개월 이상 지속되는 혹한기", "제한된 경작지 및 식량 자원", "취약한 물류 및 유통망", "외부 농업 투입재 확보의 어려움"].map(item => (
-                  <div key={item} style={{ display: "flex", gap: "0.7rem", marginBottom: "0.5rem" }}>
-                    <span style={{ color: mm.mist, fontSize: "0.55rem", marginTop: "0.5rem" }}>◆</span>
-                    <span style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.83rem", color: mm.brownLight, lineHeight: 1.6 }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-              <div style={{ background: mm.brown, padding: "1.75rem" }}>
-                <h3 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontWeight: 400, fontSize: "0.95rem", color: mm.gold, marginBottom: "1rem" }}>무무목장 모델의 현지 적합성</h3>
-                {["고가 자동화 장비 의존도 배제", "통신 인프라 불필요", "현지 사료 자급자족 시스템 구축", "자연 교배 중심의 안정적 번식 구조", "도제식 현장 교육을 통한 기술 전수 용이"].map(item => (
-                  <div key={item} style={{ display: "flex", gap: "0.7rem", marginBottom: "0.5rem" }}>
-                    <span style={{ color: mm.gold, fontSize: "0.55rem", marginTop: "0.5rem" }}>◆</span>
-                    <span style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.83rem", color: "rgba(245,240,232,0.75)", lineHeight: 1.6 }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style={{ background: mm.milk, border: `1px solid ${mm.mist}`, borderRadius: "2px", padding: "1.5rem 1.75rem" }}>
-              <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.88rem", color: mm.brownLight, lineHeight: 1.9 }}>
-                헤이퍼 인터내셔널(Heifer International)의 &ldquo;선물 전달(Passing on the Gift)&rdquo; 원칙을 차용하여 암송아지 자가 증식 구조를 설계했습니다. 초기 5두에서 시작하여 2년 후 10두, 4년 후 20두로 점진적이고 안정적인 확장이 가능합니다.
-              </p>
-            </div>
-          </section>
-
-          <Divider />
-
-          {/* 08 생태신학 */}
-          <section>
-            <ChapterLabel number="08" label="생태신학" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "2rem", lineHeight: 1.45 }}>창조질서 회복의 운영 원칙</h2>
-            <div style={{ position: "relative", aspectRatio: "16/9", borderRadius: "2px", overflow: "hidden", marginBottom: "2.25rem" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%B5%E1%84%83%E1%85%A9%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20%E1%84%80%E1%85%B5%E1%84%83%E1%85%A9%E1%84%92%E1%85%A1%E1%84%80%E1%85%A9%20%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%86%E1%85%AE%E1%84%86%E1%85%AE%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3%E1%86%AF-97xMXrY9FD5ahbUmY0bReONDeVJMEt.jpg"
-                alt="예수원 소기도실에서 기도하고 있는 무무목장 아이들"
-                style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.84) sepia(0.1)" }} />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(44,24,16,0.65) 0%, transparent 55%)" }} />
-              <p style={{ position: "absolute", bottom: "1.2rem", left: "1.4rem", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "0.82rem", color: mm.ivory, opacity: 0.9, letterSpacing: "0.05em" }}>예수원 소기도실에서 기도하고 있는 무무목장 아이들</p>
-            </div>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: "1.75rem" }}>
-              무무목장은 단순한 생산성 향상 외에도 생태계 보전과 창조질서 회복을 위한 다음의 운영 원칙을 철저히 준수합니다.
-            </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: mm.mist, borderRadius: "2px", overflow: "hidden", marginBottom: "1.5rem" }}>
-              {["토양 생태계 보전 우선", "가축의 본성 및 생명권 존중", "자연과 계절의 순환 리듬 준수", "환경을 훼손하는 과잉 생산 배제"].map(p => (
-                <div key={p} style={{ background: mm.milk, padding: "1.2rem 1.5rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                  <span style={{ color: mm.sage, fontSize: "0.55rem", flexShrink: 0 }}>◆</span>
-                  <span style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.88rem", color: mm.brown, lineHeight: 1.5 }}>{p}</span>
+            <div className="flex items-start gap-6 sm:gap-10 flex-1">
+              <span className="text-6xl sm:text-7xl font-serif font-bold text-abbey-200 shrink-0">4</span>
+              <div className="space-y-4 pt-2">
+                <div>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-abbey-900">
+                    왜 저지(Jersey)인가
+                  </h2>
+                  <p className="text-sm font-sans text-abbey-500 mt-1">고지대를 위한 전략적 선택</p>
                 </div>
-              ))}
-            </div>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.85rem", color: mm.sage, lineHeight: 1.8, paddingLeft: "1rem", borderLeft: `1px solid ${mm.sageLight}` }}>
-              이러한 철학은 단기적 이익을 넘어 장기적인 생태적, 경제적 지속 가능성을 확보하는 핵심 기준입니다.
-            </p>
-          </section>
-
-          <Divider />
-
-          {/* 09 전략적 기대 효과 */}
-          <section>
-            <ChapterLabel number="09" label="전략적 기대 효과" />
-            <h2 style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "clamp(1.35rem, 2.8vw, 1.8rem)", fontWeight: 400, color: mm.ink, letterSpacing: "0.02em", marginBottom: "1.25rem", lineHeight: 1.45 }}>소규모이지만 명확한 전략적 의미</h2>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "1rem", color: mm.brownLight, lineHeight: 1.9, marginBottom: "1.75rem" }}>
-              삼수령 무무목장은 소규모로 운영되지만, 그 전략적 목적과 기대 효과는 명확합니다.
-            </p>
-            <div style={{ background: mm.brown, borderRadius: "2px", padding: "2.25rem 2rem", marginBottom: "2rem" }}>
-              {["고지대 농촌 자립 모델의 실증 및 최적화", "북한이 인도적 지원을 받아들일 때 즉시 복제 가능한 축산 인프라 매뉴얼 확보", "생산(재생농업)·가공·관광·교육이 결합된 통합 비즈니스 모델 검증"].map((item, i) => (
-                <div key={i} style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start", marginBottom: i < 2 ? "1.5rem" : 0 }}>
-                  <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "0.85rem", color: mm.gold, flexShrink: 0, marginTop: "0.15rem" }}>0{i + 1}</span>
-                  <span style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.9rem", color: "rgba(245,240,232,0.82)", lineHeight: 1.8 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-            <p style={{ fontFamily: "var(--font-noto-serif-kr), Georgia, serif", fontSize: "1rem", fontWeight: 400, color: mm.brown, lineHeight: 1.85, letterSpacing: "0.02em" }}>
-              본 프로젝트는 단순한 농장 운영을 넘어, 한반도 고지대 농촌 생태계 회복과 경제적 자립을 위한 핵심 테스트베드(Testbed) 역할을 수행할 것입니다.
-            </p>
-          </section>
-
-          <Divider />
-
-          {/* 무무곳간 */}
-          <section>
-            <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-              <span style={{ display: "block", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 300, fontSize: "clamp(2.5rem, 6vw, 4rem)", color: mm.brown, letterSpacing: "0.05em", lineHeight: 1, marginBottom: "0.4rem" }}>無無곳간</span>
-              <span style={{ display: "block", fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "0.82rem", color: mm.gold, letterSpacing: "0.28em", textTransform: "uppercase" as const, marginBottom: "2.25rem" }}>MooMoo Gotgan</span>
-              <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.95rem", color: mm.brownLight, lineHeight: 1.9, maxWidth: "540px", margin: "0 auto 1.25rem" }}>
-                무무곳간은 삼수령무무목장에서 생산한 프리미엄 A2 유제품을 소비자에게 직접 제공하는 브랜드입니다. 단순한 유통 채널을 넘어, 창조질서 회복의 가치와 생태순환농업의 결실을 전달하는 플랫폼 역할을 수행합니다.
-              </p>
-              <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.95rem", color: mm.brownLight, lineHeight: 1.9, maxWidth: "540px", margin: "0 auto 2.75rem" }}>
-                퍼머컬처 원리로 사육한 저지(Jersey) 소의 원유를 활용하여 최고 품질의 요거트, 치즈, 버터 등을 생산합니다. &ldquo;소를 소답게 키운다&rdquo;는 예수원 공동체의 목축 철학을 실현하며, 소비자는 건강한 유제품을 소비함으로써 북한 고지대 농촌 복원 모델 구축이라는 사회적 가치 실현에 동참할 수 있습니다.
-              </p>
-              <div style={{ display: "flex", justifyContent: "center", gap: "0.85rem", flexWrap: "wrap" as const }}>
-                <a href="https://smartstore.naver.com/moomooranch" target="_blank" rel="noopener noreferrer" className="mm-btn-primary"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.55rem", padding: "0.85rem 2rem", background: mm.brown, color: mm.ivory, fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.84rem", letterSpacing: "0.12em", textDecoration: "none", borderRadius: "1px", border: `1px solid ${mm.brown}` }}>
-                  <span>무무곳간 방문하기</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                  </svg>
-                </a>
-                <a href="https://pf.kakao.com/_xkSdxbn" target="_blank" rel="noopener noreferrer" className="mm-btn-kakao"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.55rem", padding: "0.85rem 2rem", background: "#FEE500", color: "#191919", fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 300, fontSize: "0.84rem", letterSpacing: "0.12em", textDecoration: "none", borderRadius: "1px", border: "1px solid #FEE500" }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.722 1.804 5.108 4.521 6.46-.177.663-.641 2.407-.734 2.78-.112.45.166.444.348.323.143-.095 2.275-1.547 3.193-2.17.872.13 1.768.198 2.672.198 5.523 0 10-3.463 10-7.691C22 6.463 17.523 3 12 3z" />
-                  </svg>
-                  <span>카카오 채널</span>
-                </a>
+                <p className="font-serif text-abbey-600 leading-relaxed">
+                  작은 체구(400~450kg), 높은 유지방(5%), 거의 100% A2 유전형, 12~15년의 긴 경제 수명. 사료가 부족한 고지대에서 저지는 홀스타인보다 훨씬 효율적입니다.
+                </p>
+                <p className="font-serif text-abbey-600 leading-relaxed">
+                  낮은 분만 난이도와 뛰어난 내한성. 북한 고지대의 5~7개월 혹한기를 견딜 수 있는 품종입니다.
+                </p>
               </div>
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
-          {/* Footer location tag */}
-          <div style={{ textAlign: "center", padding: "2.25rem", border: `1px solid ${mm.mist}`, borderRadius: "2px", background: mm.milk }}>
-            <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1rem", color: mm.brownLight, letterSpacing: "0.08em", marginBottom: "0.3rem" }}>삼수령 무무목장</p>
-            <p style={{ fontFamily: "var(--font-noto-sans-kr), sans-serif", fontWeight: 200, fontSize: "0.75rem", letterSpacing: "0.22em", color: mm.gold, textTransform: "uppercase" as const }}>강원특별자치도 태백시 매봉산길 61 · 해발 1,000m</p>
+      {/* ═══════════════════════════════════════
+          CH 5 — 생태신학
+      ════════════════════════════════════════ */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col lg:flex-row lg:gap-12 items-start gap-8">
+            <div className="flex items-start gap-6 sm:gap-10 flex-1">
+              <span className="text-6xl sm:text-7xl font-serif font-bold text-abbey-200 shrink-0">5</span>
+              <div className="space-y-4 pt-2">
+                <div>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-abbey-900">
+                    창조질서의 회복
+                  </h2>
+                  <p className="text-sm font-sans text-abbey-500 mt-1">생태신학의 실천</p>
+                </div>
+                <p className="font-serif text-abbey-600 leading-relaxed">
+                  &ldquo;소를 소답게 키운다.&rdquo; 무무목장의 철학입니다. 토양 생태계를 보전하고, 가축의 본성을 존중하며, 자연의 계절 리듬을 따릅니다.
+                </p>
+                <p className="font-serif text-abbey-600 leading-relaxed">
+                  과잉 생산을 배제하고, 기도와 노동이 하나 되는 예수원의 전통을 잇습니다. 단기적 이익이 아닌 창조질서 안에서의 지속 가능성을 추구합니다.
+                </p>
+              </div>
+            </div>
+
+            <div className="w-full lg:w-2/5 shrink-0">
+              <div className="relative aspect-[16/10] rounded-lg overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E1%84%8B%E1%85%A8%E1%84%89%E1%85%AE%E1%84%8B%E1%85%AF%E1%86%AB%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%B5%E1%84%83%E1%85%A9%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A6%E1%84%89%E1%85%A5%20%E1%84%80%E1%85%B5%E1%84%83%E1%85%A9%E1%84%92%E1%85%A1%E1%84%80%E1%85%A9%20%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%86%E1%85%AE%E1%84%86%E1%85%AE%E1%84%86%E1%85%A9%E1%86%A8%E1%84%8C%E1%85%A1%E1%86%BC%20%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3%E1%86%AF-97xMXrY9FD5ahbUmY0bReONDeVJMEt.jpg"
+                  alt="예수원 소기도실에서 기도하는 무무목장 아이들"
+                  className="w-full h-full object-cover brightness-[0.84]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-abbey-900/50 to-transparent" />
+                <p className="absolute bottom-3 left-4 font-serif italic text-xs text-white/80">
+                  예수원 소기도실에서 기도하는 아이들
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          CH 6 — 북한을 향해
+      ════════════════════════════════════════ */}
+      <section className="py-20 sm:py-28 bg-abbey-900 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="flex items-start gap-6 sm:gap-10 mb-12">
+            <span className="text-6xl sm:text-7xl font-serif font-bold text-abbey-700 shrink-0">6</span>
+            <div className="space-y-4 pt-2">
+              <div>
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+                  태백에서 북한으로
+                </h2>
+                <p className="text-sm font-sans text-abbey-400 mt-1">Passing on the Gift to North Korea</p>
+              </div>
+              <p className="font-serif text-abbey-300 leading-relaxed">
+                강원도 태백은 남한에서 북한 고지대와 가장 유사한 기후와 지형을 갖추고 있습니다. 해발 1,000m, 겨울 5~6개월 결빙, 제한적 경작지 — 삼수령에서 검증된 모든 것은 북한을 위한 것입니다.
+              </p>
+            </div>
           </div>
 
+          <div className="grid sm:grid-cols-2 gap-8">
+            <div className="bg-abbey-800/50 rounded-lg p-6">
+              <h3 className="font-serif font-bold text-white mb-4">북한 고지대의 현실</h3>
+              <div className="space-y-3">
+                {["5~7개월 이상의 혹한기", "극도로 제한된 경작지", "취약한 물류 및 유통망", "외부 농업 투입재 확보 불가"].map(item => (
+                  <p key={item} className="text-sm text-abbey-300 leading-relaxed">
+                    &mdash; {item}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <div className="bg-forest-900/30 rounded-lg p-6">
+              <h3 className="font-serif font-bold text-white mb-4">무무목장 모델의 해법</h3>
+              <div className="space-y-3">
+                {["고가 자동화 장비 불필요", "통신 인프라 의존도 제로", "현지 사료 자급 시스템", "자연 교배 중심 번식", "도제식 기술 전수"].map(item => (
+                  <p key={item} className="text-sm text-abbey-300 leading-relaxed">
+                    &mdash; {item}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 bg-abbey-800/30 rounded-lg p-6 border border-abbey-700">
+            <p className="font-serif text-abbey-300 leading-relaxed text-center">
+              암송아지 자가 증식: 초기 <span className="text-white font-bold">5두</span> &rarr;
+              2년 후 <span className="text-white font-bold">10두</span> &rarr;
+              4년 후 <span className="text-white font-bold">20두</span>.
+              <br />
+              <span className="text-sacred-gold/80 text-sm mt-2 block">
+                &ldquo;Passing on the Gift&rdquo; — 헤이퍼 인터내셔널의 원칙입니다.
+              </span>
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          WINTER PHOTO
+      ════════════════════════════════════════ */}
+      <section className="relative aspect-[21/9] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Jesus%20Abbey_%20%2835%29.JPG-7lwGbV3SAQPVkE0GINiaknikkox2lT.jpeg"
+          alt="겨울 눈 덮인 예수원"
+          className="w-full h-full object-cover brightness-[0.8]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-abbey-900/40 to-transparent" />
+      </section>
+
+      {/* ═══════════════════════════════════════
+          JERSEY FUNDING — 크라우드펀딩 대시보드
+      ════════════════════════════════════════ */}
+      <section className="py-20 sm:py-28 bg-abbey-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-forest-700 font-sans text-sm tracking-widest uppercase mb-4">
+            Jersey Funding
+          </p>
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-abbey-900 mb-4">
+            함께 만드는 선물
+          </h3>
+          <p className="text-abbey-600 leading-relaxed mb-10 max-w-reading mx-auto">
+            저지 소 한 마리가 북한 고지대 한 마을의 삶을 바꿀 수 있습니다.
+            무무목장의 검증된 모델을 확장하기 위한 크라우드펀딩에 함께해 주세요.
+          </p>
+
+          {/* Funding Dashboard */}
+          <div className="bg-white rounded-xl shadow-sm border border-abbey-100 p-8 sm:p-10 text-left">
+            <FundingBar raised={23000000} goal={200000000} />
+
+            <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-abbey-100">
+              <div className="text-center">
+                <span className="block text-2xl font-serif font-bold text-abbey-900">3</span>
+                <span className="text-xs text-abbey-400">현재 저지 소</span>
+              </div>
+              <div className="text-center">
+                <span className="block text-2xl font-serif font-bold text-abbey-900">5</span>
+                <span className="text-xs text-abbey-400">1차 목표 (두)</span>
+              </div>
+              <div className="text-center">
+                <span className="block text-2xl font-serif font-bold text-abbey-900">20</span>
+                <span className="text-xs text-abbey-400">4년 후 목표</span>
+              </div>
+            </div>
+
+            <div className="mt-8 grid sm:grid-cols-3 gap-3 text-center text-sm">
+              <div className="bg-abbey-50 rounded-lg p-4">
+                <span className="block font-serif font-bold text-forest-700">500만원</span>
+                <span className="text-abbey-500 text-xs">저지 소 1두 후원</span>
+              </div>
+              <div className="bg-abbey-50 rounded-lg p-4">
+                <span className="block font-serif font-bold text-forest-700">50만원</span>
+                <span className="text-abbey-500 text-xs">1개월 사료비 후원</span>
+              </div>
+              <div className="bg-abbey-50 rounded-lg p-4">
+                <span className="block font-serif font-bold text-forest-700">자유 금액</span>
+                <span className="text-abbey-500 text-xs">선물 전달 동참</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          무무곳간 — CTA
+      ════════════════════════════════════════ */}
+      <section className="py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <h3 className="font-serif text-2xl font-bold text-abbey-900 mb-4">
+            무무곳간
+          </h3>
+          <p className="text-abbey-600 leading-relaxed mb-8 max-w-reading mx-auto">
+            삼수령무무목장에서 생산한 프리미엄 A2 유제품. 건강한 소비가 북한 고지대 농촌 복원 모델 구축에 동참하는 길입니다.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://smartstore.naver.com/moomooranch"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-forest-700 text-white px-8 py-3 rounded-full font-sans text-sm font-medium hover:bg-forest-800 transition-colors"
+            >
+              무무곳간 방문하기 &rarr;
+            </a>
+            <a
+              href="https://pf.kakao.com/_xkSdxbn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#FEE500] text-[#191919] px-8 py-3 rounded-full font-sans text-sm font-medium hover:bg-[#F0D800] transition-colors"
+            >
+              카카오 채널 &rarr;
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          Footer Location
+      ════════════════════════════════════════ */}
+      <section className="py-12 bg-abbey-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="font-serif italic text-abbey-600 tracking-wide mb-1">삼수령 무무목장</p>
+          <p className="text-xs text-abbey-400 tracking-widest uppercase">
+            강원특별자치도 태백시 매봉산길 61 &middot; 해발 1,000m
+          </p>
+        </div>
+      </section>
     </>
   )
 }
