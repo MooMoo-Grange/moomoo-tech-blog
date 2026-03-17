@@ -16,12 +16,17 @@ const LANGUAGES = [
 
 /* ──────────────────────────────────────────
    Term fixes per language
-   Google Translate often renders "예수원" as
-   "Yesuwon", "Jesuwon", "Jesus-won", etc.
-   We correct these after translation in real-time.
+   Google Translate often renders proper nouns
+   incorrectly. We correct these after translation
+   in real-time using MutationObserver.
+
+   고유명사 교정 목록:
+   - "예수원"  → "Jesus Abbey"
+   - "무무목장" → "MooMoo Grange"
    ────────────────────────────────────────── */
 const TERM_FIXES: Record<string, Array<[RegExp, string]>> = {
   en: [
+    // 예수원 corrections
     [/\bYesuwon\b/gi, "Jesus Abbey"],
     [/\bJesuwon\b/gi, "Jesus Abbey"],
     [/\bJesus-?won\b/gi, "Jesus Abbey"],
@@ -29,30 +34,55 @@ const TERM_FIXES: Record<string, Array<[RegExp, string]>> = {
     [/\bJe ?su ?won\b/gi, "Jesus Abbey"],
     [/\bYe ?suwon\b/gi, "Jesus Abbey"],
     [/\bJesus Garden\b/gi, "Jesus Abbey"],
+    // 무무목장 corrections (Google may render as "MooMoo Ranch", "MooMoo Farm", "Mumu Ranch", etc.)
+    [/\bMu ?[Mm]u Ranch\b/gi, "MooMoo Grange"],
+    [/\bMu ?[Mm]u Farm\b/gi, "MooMoo Grange"],
+    [/\bMoo ?[Mm]oo Ranch\b/gi, "MooMoo Grange"],
+    [/\bMoo ?[Mm]oo Farm\b/gi, "MooMoo Grange"],
+    [/\bMooMoo Pasture\b/gi, "MooMoo Grange"],
+    [/\bMumu (Ranch|Farm|Pasture|Grange)\b/gi, "MooMoo Grange"],
+    // 대천덕 corrections
     [/\bDaecheon ?dok\b/gi, "Archer Torrey (Daecheondŏk)"],
     [/\bDae ?cheon ?deok\b/gi, "Archer Torrey (Daecheondŏk)"],
   ],
   ja: [
+    // 예수원 corrections
     [/イェスウォン/g, "ジーザス・アビー"],
     [/イエスウォン/g, "ジーザス・アビー"],
     [/イエス・ウォン/g, "ジーザス・アビー"],
     [/イエス園/g, "ジーザス・アビー"],
     [/ジーザスガーデン/g, "ジーザス・アビー"],
     [/イエス修道院/g, "ジーザス・アビー"],
+    // 무무목장 corrections (Google may render as "ムームー牧場" or "ムムー牧場")
+    [/ム[ーー]?ム[ーー]?牧場/g, "ムームー・グランジ"],
+    [/モーモー牧場/g, "ムームー・グランジ"],
   ],
   "zh-CN": [
+    // 예수원 corrections
     [/耶斯恩/g, "耶稣修道院"],
     [/叶苏旺/g, "耶稣修道院"],
     [/耶苏园/g, "耶稣修道院"],
     [/耶稣园/g, "耶稣修道院"],
     [/耶?苏旺/g, "耶稣修道院"],
     [/耶稣?旺/g, "耶稣修道院"],
+    // 무무목장 corrections (Google may render as "哞哞牧场" or "牟牟牧场")
+    [/哞哞牧场/g, "MooMoo农庄"],
+    [/牟牟牧场/g, "MooMoo农庄"],
+    [/母母牧场/g, "MooMoo农庄"],
+    [/慕慕牧场/g, "MooMoo农庄"],
   ],
   es: [
+    // 예수원 corrections
     [/\bYesuwon\b/gi, "Jesus Abbey"],
     [/\bJesuwon\b/gi, "Jesus Abbey"],
     [/\bJardín de Jesús\b/gi, "Jesus Abbey"],
     [/\bJesus-?won\b/gi, "Jesus Abbey"],
+    // 무무목장 corrections
+    [/\bRancho? Mumu\b/gi, "MooMoo Grange"],
+    [/\bRancho? MooMoo\b/gi, "MooMoo Grange"],
+    [/\bGranja Mumu\b/gi, "MooMoo Grange"],
+    [/\bGranja MooMoo\b/gi, "MooMoo Grange"],
+    [/\bMumu (Rancho?|Granja)\b/gi, "MooMoo Grange"],
   ],
 }
 
