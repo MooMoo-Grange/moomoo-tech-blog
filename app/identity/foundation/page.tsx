@@ -15,7 +15,7 @@ export default function FoundationPage() {
           <h1 className="text-3xl font-serif font-bold mb-8">설립 이야기</h1>
           <div className="space-y-6">
             <p className="text-lg text-abbey-600 leading-relaxed">
-              1965년, 무디 바이블스쿨 초대 원장 R.A. Torrey I 의 손자인 R.A. Torrey III(대천덕) 신부는 강원도 덕항산 기슭에
+              1965년, 미국 출신의 성공회 사제 대천덕(Reuben Archer Torrey III) 신부는 강원도 덕항산 기슭에
               기도와 노동, 공동체 생활을 중심으로 하는 수도 공동체를 설립하였습니다.
             </p>
             {founder && (
@@ -34,7 +34,7 @@ export default function FoundationPage() {
             )}
             <h2 className="text-xl font-serif font-bold mt-8">설립 배경</h2>
             <p className="text-abbey-700 leading-relaxed">
-              대천덕 신부는 중국에서 선교사의 자녀로 태어났습니다. 1957년 한국에 와서 성미가엘 신학대학원(지금의 성공회대학교) 원장으로 재직하다 1964년 원장직을 사임하고, 초대교회와 같은 공동체를 꿈꾸며 덕항산 기슭에 예수원 공동체의 터전을 마련하였습니다.
+              대천덕 신부는 중국에서 선교사의 자녀로 태어나 한국에서 사역하였습니다. 1964년 지금의 성공회대학교 원장직을 사임하고 초대교회와 같은 공동체를 꿈꾸며 덕항산 기슭에 예수원 공동체의 터전을 마련하였습니다.
             </p>
             <h2 className="text-xl font-serif font-bold mt-8">이름의 의미</h2>
             <p className="text-abbey-700 leading-relaxed">

@@ -19,7 +19,7 @@ export default function AboutPage() {
               <h2 className="text-xl font-serif font-bold mb-4">수도 공동체입니다</h2>
               <p className="mb-4">
                 예수원은 관광지나 수련원이 아닌, 기도와 노동과 공동체 생활을 중심으로 하는 수도 공동체입니다.
-                1965년 무디 바이블스쿨 초대 원장 R.A. Torrey I 의 손자 R.A. Torrey III(대천덕) 신부에 의해 강원도 태백산 삼수령에 설립되었습니다.
+                1965년 대천덕 신부(R.A. Torrey III)에 의해 강원도 태백산 삼수령에 설립되었습니다.
               </p>
               <p>
                 성공회 전통의 수도원적 삶을 살아가면서도, 교파를 초월하여 모든 그리스도인에게

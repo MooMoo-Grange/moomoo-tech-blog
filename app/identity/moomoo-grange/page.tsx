@@ -435,7 +435,7 @@ export default function MooMooGrangePage() {
               raised={33000000}
               goal={200000000}
               donors={[
-                { name: "텍사스 교회", amount: 23000000, label: "Passing on the Gift" },
+                { name: "텍사스 교회", amount: 23000000, displayAmount: "$17,000", label: "Passing on the Gift" },
                 { name: "윤희진 회장님", amount: 10000000, label: "후원" },
               ]}
             />

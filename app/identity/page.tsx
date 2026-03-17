@@ -11,7 +11,7 @@ export default function IdentityPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-serif font-bold mb-6">정체성</h1>
           <p className="text-lg text-abbey-600 leading-relaxed max-w-3xl mb-12">
-            예수원은 1965년 무디 바이블스쿨 초대 원장 R.A. Torrey I 의 손자인 R.A. Torrey III(대천덕) 신부에 의해 설립된 성공회 수도 공동체입니다.
+            예수원은 1965년 대천덕(Reuben Archer Torrey III) 신부에 의해 설립된 성공회 수도 공동체입니다.
             기도, 노동, 공동체 생활이라는 세 가지 실험을 중심으로 하나님 나라를 살아가고 있습니다.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

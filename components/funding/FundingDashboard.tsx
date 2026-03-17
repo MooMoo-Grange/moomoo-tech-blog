@@ -5,7 +5,8 @@ import Link from "next/link"
 
 interface Donor {
   name: string
-  amount: number
+  amount: number        // KRW 환산값 (프로그레스 바 계산용)
+  displayAmount?: string // 화면 표시용 (예: "$17,000")
   label: string
 }
 
@@ -110,7 +111,9 @@ export default function FundingDashboard({ raised, goal, donors }: Props) {
           >
             <span className="w-2 h-2 rounded-full bg-forest-600 flex-shrink-0" />
             <span className="text-xs text-abbey-600 font-medium">{d.name}</span>
-            <span className="text-xs text-forest-700 font-bold">{formatKRW(d.amount)}</span>
+            <span className="text-xs text-forest-700 font-bold">
+              {d.displayAmount ?? formatKRW(d.amount)}
+            </span>
             <span className="text-xs text-abbey-400">{d.label}</span>
           </div>
         ))}
