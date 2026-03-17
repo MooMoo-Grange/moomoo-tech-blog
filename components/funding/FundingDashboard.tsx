@@ -6,7 +6,7 @@ import Link from "next/link"
 interface Donor {
   name: string
   amount: number        // KRW 환산값 (프로그레스 바 계산용)
-  displayAmount?: string // 화면 표시용 (예: "$17,000")
+  displayAmount?: string // 화면 표시용 override (예: "$17,000")
   label: string
 }
 
@@ -16,11 +16,41 @@ interface Props {
   donors: Donor[]
 }
 
+const USD_RATE = 1350 // KRW per USD (approximate)
+
 function formatKRW(n: number) {
   if (n >= 100000000) return `${(n / 100000000).toFixed(0)}억원`
   if (n >= 10000000) return `${(n / 10000000).toFixed(0)}천만원`
   if (n >= 10000) return `${Math.round(n / 10000).toLocaleString()}만원`
   return `${n.toLocaleString()}원`
+}
+
+function formatUSD(krw: number): string {
+  const usd = Math.round(krw / USD_RATE)
+  if (usd >= 100000) return `$${(usd / 1000).toFixed(0)}K`
+  if (usd >= 1000) return `$${usd.toLocaleString()}`
+  return `$${usd}`
+}
+
+/** Detects active translation language via <html lang> attribute */
+function useSiteLang(): string {
+  const [lang, setLang] = useState("ko")
+  useEffect(() => {
+    const check = () => {
+      const htmlLang = document.documentElement.lang ?? ""
+      // Google Translate sets lang="en" / "ja" / "zh-CN" etc.
+      const active = htmlLang.toLowerCase()
+      setLang(active.startsWith("en") ? "en" : active || "ko")
+    }
+    check()
+    const obs = new MutationObserver(check)
+    obs.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang", "class"],
+    })
+    return () => obs.disconnect()
+  }, [])
+  return lang
 }
 
 function useCountUp(target: number, duration = 1800, start = false) {
@@ -41,10 +71,19 @@ function useCountUp(target: number, duration = 1800, start = false) {
   return value
 }
 
+/* Tier card data (KRW base + per-language display) */
+const TIERS = [
+  { amountKO: "600만원",    amountEN: "$4,400",   label: "저지 소 1두 후원",           labelEN: "Sponsor 1 Jersey Cow" },
+  { amountKO: "60만원/월",  amountEN: "$440/mo",  label: "1개월 사료비 후원",           labelEN: "Monthly Feed Cost" },
+  { amountKO: "100만원/년", amountEN: "$740/yr",  label: "A2 목초 요거트 정기구독",     labelEN: "A2 Grass-fed Yogurt Subscription" },
+]
+
 export default function FundingDashboard({ raised, goal, donors }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
   const [barWidth, setBarWidth] = useState(0)
+  const lang = useSiteLang()
+  const isEn = lang === "en"
   const pct = Math.min(100, Math.round((raised / goal) * 100))
   const animatedRaised = useCountUp(raised, 1800, visible)
 
@@ -64,19 +103,26 @@ export default function FundingDashboard({ raised, goal, donors }: Props) {
     return () => observer.disconnect()
   }, [pct])
 
+  const raisedDisplay = isEn ? formatUSD(animatedRaised) : formatKRW(animatedRaised)
+  const goalDisplay   = isEn ? formatUSD(goal)           : formatKRW(goal)
+
   return (
     <div ref={ref} className="w-full">
       {/* Amount */}
       <div className="flex justify-between items-end mb-3">
         <div>
           <span className="text-4xl sm:text-5xl font-serif font-bold text-forest-700 tabular-nums">
-            {formatKRW(animatedRaised)}
+            {raisedDisplay}
           </span>
-          <span className="block text-xs text-abbey-400 mt-1">현재 모금액</span>
+          <span className="block text-xs text-abbey-400 mt-1">
+            {isEn ? "Raised so far" : "현재 모금액"}
+          </span>
         </div>
         <div className="text-right">
-          <span className="text-lg font-serif font-bold text-abbey-400">목표 {formatKRW(goal)}</span>
-          <span className="block text-xs text-abbey-400 mt-1">{pct}% 달성</span>
+          <span className="text-lg font-serif font-bold text-abbey-400">
+            {isEn ? "Goal " : "목표 "}{goalDisplay}
+          </span>
+          <span className="block text-xs text-abbey-400 mt-1">{pct}% {isEn ? "funded" : "달성"}</span>
         </div>
       </div>
 
@@ -112,7 +158,8 @@ export default function FundingDashboard({ raised, goal, donors }: Props) {
             <span className="w-2 h-2 rounded-full bg-forest-600 flex-shrink-0" />
             <span className="text-xs text-abbey-600 font-medium">{d.name}</span>
             <span className="text-xs text-forest-700 font-bold">
-              {d.displayAmount ?? formatKRW(d.amount)}
+              {/* displayAmount이 있으면 우선 사용, 없으면 언어에 따라 환산 */}
+              {d.displayAmount ?? (isEn ? formatUSD(d.amount) : formatKRW(d.amount))}
             </span>
             <span className="text-xs text-abbey-400">{d.label}</span>
           </div>
@@ -123,34 +170,32 @@ export default function FundingDashboard({ raised, goal, donors }: Props) {
       <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-abbey-100">
         <div className="text-center">
           <span className="block text-2xl font-serif font-bold text-abbey-900">3</span>
-          <span className="text-xs text-abbey-400">현재 저지 소</span>
+          <span className="text-xs text-abbey-400">{isEn ? "Current cows" : "현재 저지 소"}</span>
         </div>
         <div className="text-center">
           <span className="block text-2xl font-serif font-bold text-abbey-900">5</span>
-          <span className="text-xs text-abbey-400">1차 목표 (두)</span>
+          <span className="text-xs text-abbey-400">{isEn ? "Phase 1 goal" : "1차 목표 (두)"}</span>
         </div>
         <div className="text-center">
           <span className="block text-2xl font-serif font-bold text-abbey-900">20</span>
-          <span className="text-xs text-abbey-400">4년 후 목표</span>
+          <span className="text-xs text-abbey-400">{isEn ? "4-year goal" : "4년 후 목표"}</span>
         </div>
       </div>
 
       {/* Tier cards */}
       <div className="mt-8 grid sm:grid-cols-3 gap-3 text-center text-sm">
-        {[
-          { amount: "600만원", label: "저지 소 1두 후원" },
-          { amount: "60만원/월", label: "1개월 사료비 후원" },
-          { amount: "100만원/년", label: "A2 목초 요거트 정기구독" },
-        ].map((t) => (
+        {TIERS.map((t) => (
           <Link
             key={t.label}
             href="/funding/jersey"
             className="bg-abbey-50 rounded-lg p-4 hover:bg-abbey-100 hover:shadow-sm transition-all block group"
           >
             <span className="block font-serif font-bold text-forest-700 group-hover:text-forest-800">
-              {t.amount}
+              {isEn ? t.amountEN : t.amountKO}
             </span>
-            <span className="text-abbey-500 text-xs">{t.label}</span>
+            <span className="text-abbey-500 text-xs">
+              {isEn ? t.labelEN : t.label}
+            </span>
           </Link>
         ))}
       </div>
@@ -160,7 +205,7 @@ export default function FundingDashboard({ raised, goal, donors }: Props) {
           href="/funding/jersey"
           className="inline-block bg-forest-700 text-white px-8 py-3 rounded-full font-sans text-sm font-medium hover:bg-forest-800 transition-colors"
         >
-          후원 참여하기 →
+          {isEn ? "Support the Project →" : "후원 참여하기 →"}
         </Link>
       </div>
 

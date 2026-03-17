@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTimeTheme } from "./TimeThemeProvider"
-import LanguageSwitcher from "@/components/LanguageSwitcher"
 
 const navLinks = [
   { key: "the-day", label: "예수원의 하루", path: "/the-day" },
@@ -81,7 +80,6 @@ export default function Navigation() {
                 {item.label}
               </Link>
             ))}
-            <LanguageSwitcher />
             <Link
               href="/join"
               className={`text-sm font-sans font-medium px-5 py-2 rounded-full transition-all ${
@@ -94,25 +92,22 @@ export default function Navigation() {
             </Link>
           </nav>
 
-          {/* Mobile: Language + Toggle */}
-          <div className="lg:hidden flex items-center gap-1">
-            <LanguageSwitcher />
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className={`p-2 ${textColor} transition-colors`}
-              aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}
-            >
-              {mobileOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 8h16M4 16h16" />
-                </svg>
-              )}
-            </button>
-          </div>
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className={`lg:hidden p-2 ${textColor} transition-colors`}
+            aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}
+          >
+            {mobileOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 8h16M4 16h16" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
 
