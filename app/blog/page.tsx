@@ -2,7 +2,7 @@ import { getAllPosts, getAllPostsUnfiltered, getCategories } from "@/lib/notion"
 import Breadcrumbs from "@/components/Breadcrumbs"
 import CategoryFilter from "@/components/blog/CategoryFilter"
 
-export const revalidate = 3600 // 1시간 ISR
+export const revalidate = 10 // 10초 ISR — 노션 수정 후 최대 10초 내 반영
 
 export const metadata = {
   title: "예수원 이야기",

@@ -8,15 +8,6 @@ import type {
 // ── Notion Client ───────────────────────────────────────
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
 const databaseId = process.env.NOTION_DATABASE_ID!
-const dataSourceId = process.env.NOTION_DATA_SOURCE_ID || databaseId
-
-// 강의 아카이브 (Audio Library)
-const lectureDbId = process.env.NOTION_LECTURE_DB_ID!
-const lectureDataSourceId = process.env.NOTION_LECTURE_DATA_SOURCE_ID || lectureDbId
-
-// 오늘의 묵상 (Daily Word)
-const dailyWordDbId = process.env.NOTION_DAILY_WORD_DB_ID!
-const dailyWordDataSourceId = process.env.NOTION_DAILY_WORD_DATA_SOURCE_ID || dailyWordDbId
 
 // ── Types ───────────────────────────────────────────────
 export interface BlogPost {
@@ -130,37 +121,58 @@ function extractPageProperties(page: PageObjectResponse): BlogPost {
 /** 모든 게시글 조회 (Published 상태) */
 export async function getAllPosts(): Promise<BlogPost[]> {
   try {
-    const response = await (notion as any).dataSources.query({
-      data_source_id: dataSourceId,
-      sorts: [{ property: "Date", direction: "descending" }],
-    })
+    const allPages: PageObjectResponse[] = []
+    let cursor: string | undefined
 
-    const pages = response.results.filter(
-      (r: any): r is PageObjectResponse => "properties" in r
-    )
+    // 페이지네이션: 100개씩 전부 가져오기
+    do {
+      const response = await notion.dataSources.query({
+        data_source_id: databaseId,
+        start_cursor: cursor,
+        page_size: 100,
+        sorts: [{ property: "Date", direction: "descending" }],
+      })
 
-    return pages
+      const pages = response.results.filter(
+        (r: unknown): r is PageObjectResponse =>
+          typeof r === "object" && r !== null && "properties" in r
+      )
+      allPages.push(...pages)
+      cursor = response.has_more ? (response.next_cursor ?? undefined) : undefined
+    } while (cursor)
+
+    return allPages
       .map(extractPageProperties)
-      .filter((p: BlogPost) => p.status === "Published")
+      .filter((p) => p.status === "Published")
   } catch (error) {
     console.error("Failed to fetch posts from Notion:", error)
     return []
   }
 }
 
-/** 모든 게시글 조회 (상태 무관 — fallback) */
+/** 모든 게시글 조회 (상태 무관 — slug 매칭 fallback) */
 export async function getAllPostsUnfiltered(): Promise<BlogPost[]> {
   try {
-    const response = await (notion as any).dataSources.query({
-      data_source_id: dataSourceId,
-      sorts: [{ property: "Date", direction: "descending" }],
-    })
+    const allPages: PageObjectResponse[] = []
+    let cursor: string | undefined
 
-    const pages = response.results.filter(
-      (r: any): r is PageObjectResponse => "properties" in r
-    )
+    do {
+      const response = await notion.dataSources.query({
+        data_source_id: databaseId,
+        start_cursor: cursor,
+        page_size: 100,
+        sorts: [{ property: "Date", direction: "descending" }],
+      })
 
-    return pages.map(extractPageProperties)
+      const pages = response.results.filter(
+        (r: unknown): r is PageObjectResponse =>
+          typeof r === "object" && r !== null && "properties" in r
+      )
+      allPages.push(...pages)
+      cursor = response.has_more ? (response.next_cursor ?? undefined) : undefined
+    } while (cursor)
+
+    return allPages.map(extractPageProperties)
   } catch (error) {
     console.error("Failed to fetch posts from Notion:", error)
     return []
@@ -223,254 +235,4 @@ export async function getCategories(): Promise<string[]> {
   const posts = await getAllPosts()
   const cats = new Set(posts.map((p) => p.category))
   return Array.from(cats).sort()
-}
-
-// ═══════════════════════════════════════════════════════════
-// 강의 아카이브 (Audio Library)
-// ═══════════════════════════════════════════════════════════
-
-export interface NotionLecture {
-  id: string
-  title: string
-  topic: string       // 주제 (select)
-  era: string         // 시대 (select)
-  speaker: string     // 강사
-  date: string        // 날짜
-  language: string    // 언어 (select)
-  audioUrl: string    // 오디오URL (YouTube 등)
-  summary: string     // 요약
-  status: string      // Status (select)
-}
-
-function extractLectureProperties(page: PageObjectResponse): NotionLecture {
-  const props = page.properties
-
-  const titleProp = props["제목"]
-  const title =
-    titleProp?.type === "title" ? extractRichText(titleProp.title) : "제목 없음"
-
-  const topicProp = props["주제"]
-  const topic =
-    topicProp?.type === "select" ? topicProp.select?.name ?? "" : ""
-
-  const eraProp = props["시대"]
-  const era =
-    eraProp?.type === "select" ? eraProp.select?.name ?? "" : ""
-
-  const speakerProp = props["강사"]
-  const speaker =
-    speakerProp?.type === "rich_text"
-      ? extractRichText(speakerProp.rich_text) || "대천덕 신부"
-      : "대천덕 신부"
-
-  const dateProp = props["날짜"]
-  const date =
-    dateProp?.type === "date"
-      ? dateProp.date?.start ?? ""
-      : ""
-
-  const langProp = props["언어"]
-  const language =
-    langProp?.type === "select" ? langProp.select?.name ?? "한영" : "한영"
-
-  const audioProp = props["오디오URL"]
-  const audioUrl =
-    audioProp?.type === "url" ? audioProp.url ?? "" : ""
-
-  const summaryProp = props["요약"]
-  const summary =
-    summaryProp?.type === "rich_text"
-      ? extractRichText(summaryProp.rich_text)
-      : ""
-
-  const statusProp = props["Status"]
-  let status = "Draft"
-  if (statusProp?.type === "status") {
-    status = statusProp.status?.name ?? "Draft"
-  } else if (statusProp?.type === "select") {
-    status = statusProp.select?.name ?? "Draft"
-  }
-
-  return { id: page.id, title, topic, era, speaker, date, language, audioUrl, summary, status }
-}
-
-/** 모든 강의 조회 (Published 상태) */
-export async function getAllLecturesFromNotion(): Promise<NotionLecture[]> {
-  try {
-    const response = await (notion as any).dataSources.query({
-      data_source_id: lectureDataSourceId,
-      sorts: [{ property: "날짜", direction: "ascending" }],
-    })
-
-    const pages = response.results.filter(
-      (r: any): r is PageObjectResponse => "properties" in r
-    )
-
-    return pages
-      .map(extractLectureProperties)
-      .filter((l: NotionLecture) => l.status === "Published")
-  } catch (error) {
-    console.error("Failed to fetch lectures from Notion:", error)
-    return []
-  }
-}
-
-/** 모든 강의 조회 (상태 무관 — fallback) */
-export async function getAllLecturesUnfiltered(): Promise<NotionLecture[]> {
-  try {
-    const response = await (notion as any).dataSources.query({
-      data_source_id: lectureDataSourceId,
-      sorts: [{ property: "날짜", direction: "ascending" }],
-    })
-
-    const pages = response.results.filter(
-      (r: any): r is PageObjectResponse => "properties" in r
-    )
-
-    return pages.map(extractLectureProperties)
-  } catch (error) {
-    console.error("Failed to fetch lectures from Notion:", error)
-    return []
-  }
-}
-
-/** ID로 단일 강의 + 블록 조회 */
-export async function getLectureByIdFromNotion(
-  lectureId: string
-): Promise<(NotionLecture & { blocks: BlockObjectResponse[] }) | null> {
-  try {
-    const page = await notion.pages.retrieve({ page_id: lectureId }) as PageObjectResponse
-    const lecture = extractLectureProperties(page)
-    const blocks = await getBlocks(lectureId)
-    return { ...lecture, blocks }
-  } catch (error) {
-    console.error("Failed to fetch lecture by id:", error)
-    return null
-  }
-}
-
-/** 강의 주제 목록 추출 */
-export async function getLectureTopics(): Promise<string[]> {
-  const lectures = await getAllLecturesFromNotion()
-  const topics = new Set(lectures.map((l) => l.topic).filter(Boolean))
-  return Array.from(topics).sort()
-}
-
-/** YouTube ID 추출 헬퍼 */
-export function extractYoutubeId(url: string): string | null {
-  if (!url) return null
-  // https://www.youtube.com/watch?v=XXX or https://youtu.be/XXX or just the ID
-  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|^)([a-zA-Z0-9_-]{11})/)
-  return match ? match[1] : null
-}
-
-// ═══════════════════════════════════════════════════════════
-// 오늘의 묵상 (Daily Word)
-// ═══════════════════════════════════════════════════════════
-
-export interface DailyWord {
-  id: string
-  title: string
-  date: string            // 날짜
-  bibleVerse: string      // 성경구절
-  body: string            // 묵상본문
-  prayer: string          // 기도문
-  author: string          // 작성자
-  season: string          // 시즌 (교회력)
-  status: string          // Status
-}
-
-function extractDailyWordProperties(page: PageObjectResponse): DailyWord {
-  const props = page.properties
-
-  const titleProp = props["제목"]
-  const title =
-    titleProp?.type === "title" ? extractRichText(titleProp.title) : "제목 없음"
-
-  const dateProp = props["날짜"]
-  const date =
-    dateProp?.type === "date"
-      ? dateProp.date?.start ?? ""
-      : ""
-
-  const verseProp = props["성경구절"]
-  const bibleVerse =
-    verseProp?.type === "rich_text"
-      ? extractRichText(verseProp.rich_text)
-      : ""
-
-  const bodyProp = props["묵상본문"]
-  const body =
-    bodyProp?.type === "rich_text"
-      ? extractRichText(bodyProp.rich_text)
-      : ""
-
-  const prayerProp = props["기도문"]
-  const prayer =
-    prayerProp?.type === "rich_text"
-      ? extractRichText(prayerProp.rich_text)
-      : ""
-
-  const authorProp = props["작성자"]
-  const author =
-    authorProp?.type === "rich_text"
-      ? extractRichText(authorProp.rich_text) || "예수원"
-      : "예수원"
-
-  const seasonProp = props["시즌"]
-  const season =
-    seasonProp?.type === "select" ? seasonProp.select?.name ?? "" : ""
-
-  const statusProp = props["Status"]
-  let status = "Draft"
-  if (statusProp?.type === "status") {
-    status = statusProp.status?.name ?? "Draft"
-  } else if (statusProp?.type === "select") {
-    status = statusProp.select?.name ?? "Draft"
-  }
-
-  return { id: page.id, title, date, bibleVerse, body, prayer, author, season, status }
-}
-
-/** 오늘의 묵상 전체 조회 (Published 상태, 최신순) */
-export async function getAllDailyWords(): Promise<DailyWord[]> {
-  try {
-    const response = await (notion as any).dataSources.query({
-      data_source_id: dailyWordDataSourceId,
-      sorts: [{ property: "날짜", direction: "descending" }],
-    })
-
-    const pages = response.results.filter(
-      (r: any): r is PageObjectResponse => "properties" in r
-    )
-
-    return pages
-      .map(extractDailyWordProperties)
-      .filter((d: DailyWord) => d.status === "Published")
-  } catch (error) {
-    console.error("Failed to fetch daily words from Notion:", error)
-    return []
-  }
-}
-
-/** 오늘의 묵상 — 오늘 날짜 기준 조회 */
-export async function getTodayWord(): Promise<DailyWord | null> {
-  const allWords = await getAllDailyWords()
-  const today = new Date().toISOString().split("T")[0]
-  return allWords.find((d) => d.date === today) ?? allWords[0] ?? null
-}
-
-/** ID로 단일 묵상 + 블록 조회 */
-export async function getDailyWordById(
-  wordId: string
-): Promise<(DailyWord & { blocks: BlockObjectResponse[] }) | null> {
-  try {
-    const page = await notion.pages.retrieve({ page_id: wordId }) as PageObjectResponse
-    const word = extractDailyWordProperties(page)
-    const blocks = await getBlocks(wordId)
-    return { ...word, blocks }
-  } catch (error) {
-    console.error("Failed to fetch daily word by id:", error)
-    return null
-  }
 }

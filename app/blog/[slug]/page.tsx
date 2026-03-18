@@ -4,7 +4,7 @@ import { getPostBySlug, getAllPosts, getAllPostsUnfiltered } from "@/lib/notion"
 import Breadcrumbs from "@/components/Breadcrumbs"
 import NotionRenderer from "@/components/blog/NotionRenderer"
 
-export const revalidate = 3600
+export const revalidate = 10 // 10초 ISR — 노션 수정 후 최대 10초 내 반영
 
 interface Props {
   params: Promise<{ slug: string }>
