@@ -161,6 +161,7 @@ export const navItems: NavigationItem[] = [
     { key: "media", labelKo: "영상/음성 자료", labelEn: "Media", path: "/publications/media" },
     { key: "gifts", labelKo: "기념품·안내자료", labelEn: "Gifts", path: "/publications/gifts" },
   ]},
+  { key: "daily-word", labelKo: "오늘의 묵상", labelEn: "Daily Word", path: "/daily-word" },
   { key: "blog", labelKo: "예수원 이야기", labelEn: "Stories", path: "/blog" },
   { key: "news", labelKo: "소식과 공동체", labelEn: "News", path: "/news", children: [
     { key: "announcements", labelKo: "공지사항", labelEn: "Announcements", path: "/news/announcements" },
