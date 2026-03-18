@@ -1,36 +1,23 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import Breadcrumbs from "@/components/Breadcrumbs"
-import {
-  getAllLecturesFromNotion,
-  getLectureByIdFromNotion,
-  extractYoutubeId,
-} from "@/lib/notion"
-import NotionRenderer from "@/components/blog/NotionRenderer"
+import { getAllLectures, getLectureById, getPersonById, getBooksForLecture } from "@/lib/data"
 
-export const revalidate = 3600
-
-interface Props {
-  params: Promise<{ id: string }>
+export function generateStaticParams() {
+  return getAllLectures().map(l => ({ id: l.objectId }))
 }
 
-export async function generateStaticParams() {
-  const lectures = await getAllLecturesFromNotion()
-  return lectures.map((l) => ({ id: l.id }))
+export function generateMetadata({ params }: { params: { id: string } }) {
+  const lecture = getLectureById(params.id)
+  return { title: lecture?.titleKo ?? "강의" }
 }
 
-export async function generateMetadata({ params }: Props) {
-  const { id } = await params
-  const lecture = await getLectureByIdFromNotion(id)
-  return { title: lecture?.title ?? "강의" }
-}
-
-export default async function LectureDetailPage({ params }: Props) {
-  const { id } = await params
-  const lecture = await getLectureByIdFromNotion(id)
+export default function LectureDetailPage({ params }: { params: { id: string } }) {
+  const lecture = getLectureById(params.id)
   if (!lecture) notFound()
 
-  const youtubeId = extractYoutubeId(lecture.audioUrl)
+  const speaker = getPersonById(lecture.speakerId)
+  const relatedBooks = getBooksForLecture(lecture.objectId)
 
   return (
     <>
@@ -38,70 +25,85 @@ export default async function LectureDetailPage({ params }: Props) {
         { label: "홈", path: "/" },
         { label: "설립자와 유산", path: "/founders" },
         { label: "강의 아카이브", path: "/founders/archive/lectures" },
-        { label: lecture.title },
+        { label: lecture.titleKo },
       ]} />
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-serif font-bold mb-2">{lecture.title}</h1>
+          <h1 className="text-3xl font-serif font-bold mb-2">{lecture.titleKo}</h1>
+          {lecture.titleEn && <p className="text-lg text-abbey-500 mb-6">{lecture.titleEn}</p>}
 
           <div className="bg-abbey-50 rounded-lg p-6 border border-abbey-200 mb-8">
             <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <div>
-                <dt className="font-medium text-abbey-600">강사</dt>
-                <dd className="text-abbey-800">{lecture.speaker}</dd>
-              </div>
-              {lecture.date && (
+              {speaker && (
+                <div>
+                  <dt className="font-medium text-abbey-600">강사</dt>
+                  <dd className="text-abbey-800">
+                    <Link href={`/founders/${lecture.speakerId === "RAT" ? "torrey" : "jane"}`} className="text-forest-700 hover:text-forest-900">
+                      {speaker.nameKo}
+                    </Link>
+                  </dd>
+                </div>
+              )}
+              {lecture.recordingDate && (
                 <div>
                   <dt className="font-medium text-abbey-600">날짜</dt>
-                  <dd className="text-abbey-800">{lecture.date}</dd>
+                  <dd className="text-abbey-800">{lecture.recordingDate}</dd>
                 </div>
               )}
-              {lecture.era && (
+              {lecture.durationMinutes && (
                 <div>
-                  <dt className="font-medium text-abbey-600">시대</dt>
-                  <dd className="text-abbey-800">{lecture.era}</dd>
+                  <dt className="font-medium text-abbey-600">시간</dt>
+                  <dd className="text-abbey-800">{lecture.durationMinutes}분</dd>
                 </div>
               )}
-              {lecture.language && (
-                <div>
-                  <dt className="font-medium text-abbey-600">언어</dt>
-                  <dd className="text-abbey-800">{lecture.language}</dd>
-                </div>
-              )}
-              {lecture.topic && (
-                <div>
-                  <dt className="font-medium text-abbey-600">주제</dt>
-                  <dd className="text-abbey-800">{lecture.topic}</dd>
-                </div>
-              )}
+              <div>
+                <dt className="font-medium text-abbey-600">시대</dt>
+                <dd className="text-abbey-800">{lecture.era}</dd>
+              </div>
+              <div>
+                <dt className="font-medium text-abbey-600">언어</dt>
+                <dd className="text-abbey-800">{lecture.language === "ko+en" ? "한국어 + 영어" : lecture.language}</dd>
+              </div>
+              <div>
+                <dt className="font-medium text-abbey-600">원고</dt>
+                <dd className="text-abbey-800">{lecture.transcriptStatus === "full" ? "전문 공개" : lecture.transcriptStatus === "partial" ? "부분 공개" : "미공개"}</dd>
+              </div>
             </dl>
           </div>
 
-          {/* Video */}
-          {youtubeId && (
-            <div className="aspect-video rounded-lg overflow-hidden border border-abbey-200 shadow-sm mb-8">
-              <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${youtubeId}`}
-                title={lecture.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-            </div>
-          )}
-
-          {lecture.summary && (
+          {lecture.summaryKo && (
             <div className="mb-8">
               <h2 className="text-xl font-serif font-bold mb-3">강의 요약</h2>
-              <p className="text-abbey-700 leading-relaxed">{lecture.summary}</p>
+              <p className="text-abbey-700 leading-relaxed">{lecture.summaryKo}</p>
             </div>
           )}
 
-          {/* Notion 블록 콘텐츠 */}
-          {lecture.blocks.length > 0 && (
-            <div className="text-base leading-[1.85] text-abbey-700 mb-8">
-              <NotionRenderer blocks={lecture.blocks} />
+          {lecture.theologicalTopics.length > 0 && (
+            <div className="mb-8">
+              <h2 className="text-xl font-serif font-bold mb-3">주제</h2>
+              <div className="flex flex-wrap gap-2">
+                {lecture.theologicalTopics.map(t => (
+                  <Link key={t} href={`/founders/archive/lectures?topic=${t}`}
+                    className="text-sm bg-forest-50 text-forest-700 px-3 py-1 rounded hover:bg-forest-100">
+                    {t}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {relatedBooks.length > 0 && (
+            <div className="mb-8">
+              <h2 className="text-xl font-serif font-bold mb-3">관련 서적</h2>
+              <div className="space-y-3">
+                {relatedBooks.map(book => (
+                  <Link key={book.objectId} href={`/founders/archive/books/${book.objectId}`}
+                    className="block bg-white rounded-lg p-4 border border-abbey-200 hover:border-forest-300 transition-colors">
+                    <p className="font-medium">{book.titleKo}</p>
+                    {book.titleEn && <p className="text-sm text-abbey-500">{book.titleEn}</p>}
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
 

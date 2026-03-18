@@ -8,6 +8,7 @@ import type {
 // ── Notion Client ───────────────────────────────────────
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
 const databaseId = process.env.NOTION_DATABASE_ID!
+const dataSourceId = process.env.NOTION_DATA_SOURCE_ID || databaseId
 
 // ── Types ───────────────────────────────────────────────
 export interface BlogPost {
@@ -77,25 +78,12 @@ function extractPageProperties(page: PageObjectResponse): BlogPost {
       : "예수원"
 
   // Status — 명시적으로 Published인 글만 공개, 기본값은 Draft
-  // 노션 DB 속성명: "Status", "상태", "발행상태", "공개" 모두 인식
-  const statusProp =
-    props["Status"] ?? props["상태"] ?? props["발행상태"] ?? props["공개"]
+  const statusProp = props["Status"] || props["상태"]
   let status = "Draft"
   if (statusProp?.type === "status") {
-    // 노션 기본 Status 타입 (In progress / Done 등)
-    const name = statusProp.status?.name ?? ""
-    // "Published", "공개", "발행", "Done", "완료" → Published로 통일
-    status = ["Published", "공개", "발행", "Done", "완료"].includes(name)
-      ? "Published"
-      : "Draft"
+    status = statusProp.status?.name ?? "Draft"
   } else if (statusProp?.type === "select") {
-    const name = statusProp.select?.name ?? ""
-    status = ["Published", "공개", "발행", "Done", "완료"].includes(name)
-      ? "Published"
-      : "Draft"
-  } else if (statusProp?.type === "checkbox") {
-    // 체크박스로 공개 여부를 관리하는 경우
-    status = statusProp.checkbox ? "Published" : "Draft"
+    status = statusProp.select?.name ?? "Draft"
   }
 
   // Tags
@@ -134,58 +122,37 @@ function extractPageProperties(page: PageObjectResponse): BlogPost {
 /** 모든 게시글 조회 (Published 상태) */
 export async function getAllPosts(): Promise<BlogPost[]> {
   try {
-    const allPages: PageObjectResponse[] = []
-    let cursor: string | undefined
+    const response = await (notion as any).dataSources.query({
+      data_source_id: dataSourceId,
+      sorts: [{ property: "Date", direction: "descending" }],
+    })
 
-    // 페이지네이션: 100개씩 전부 가져오기
-    do {
-      const response = await notion.dataSources.query({
-        data_source_id: databaseId,
-        start_cursor: cursor,
-        page_size: 100,
-        sorts: [{ property: "Date", direction: "descending" }],
-      })
+    const pages = response.results.filter(
+      (r: any): r is PageObjectResponse => "properties" in r
+    )
 
-      const pages = response.results.filter(
-        (r: unknown): r is PageObjectResponse =>
-          typeof r === "object" && r !== null && "properties" in r
-      )
-      allPages.push(...pages)
-      cursor = response.has_more ? (response.next_cursor ?? undefined) : undefined
-    } while (cursor)
-
-    return allPages
+    return pages
       .map(extractPageProperties)
-      .filter((p) => p.status === "Published")
+      .filter((p: BlogPost) => p.status === "Published")
   } catch (error) {
     console.error("Failed to fetch posts from Notion:", error)
     return []
   }
 }
 
-/** 모든 게시글 조회 (상태 무관 — slug 매칭 fallback) */
+/** 모든 게시글 조회 (상태 무관 — fallback) */
 export async function getAllPostsUnfiltered(): Promise<BlogPost[]> {
   try {
-    const allPages: PageObjectResponse[] = []
-    let cursor: string | undefined
+    const response = await (notion as any).dataSources.query({
+      data_source_id: dataSourceId,
+      sorts: [{ property: "Date", direction: "descending" }],
+    })
 
-    do {
-      const response = await notion.dataSources.query({
-        data_source_id: databaseId,
-        start_cursor: cursor,
-        page_size: 100,
-        sorts: [{ property: "Date", direction: "descending" }],
-      })
+    const pages = response.results.filter(
+      (r: any): r is PageObjectResponse => "properties" in r
+    )
 
-      const pages = response.results.filter(
-        (r: unknown): r is PageObjectResponse =>
-          typeof r === "object" && r !== null && "properties" in r
-      )
-      allPages.push(...pages)
-      cursor = response.has_more ? (response.next_cursor ?? undefined) : undefined
-    } while (cursor)
-
-    return allPages.map(extractPageProperties)
+    return pages.map(extractPageProperties)
   } catch (error) {
     console.error("Failed to fetch posts from Notion:", error)
     return []

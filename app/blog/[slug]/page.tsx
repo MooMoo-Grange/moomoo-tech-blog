@@ -4,7 +4,7 @@ import { getPostBySlug, getAllPosts, getAllPostsUnfiltered } from "@/lib/notion"
 import Breadcrumbs from "@/components/Breadcrumbs"
 import NotionRenderer from "@/components/blog/NotionRenderer"
 
-export const revalidate = 10 // 10초 ISR — 노션 수정 후 최대 10초 내 반영
+export const revalidate = 3600
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -36,8 +36,7 @@ export async function generateStaticParams() {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  // Draft 또는 존재하지 않는 글은 404 처리
-  if (!post || post.status !== "Published") notFound()
+  if (!post) notFound()
 
   const formattedDate = new Date(post.publishedDate).toLocaleDateString("ko-KR", {
     year: "numeric",

@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Breadcrumbs from "@/components/Breadcrumbs"
-import FundingDashboard from "@/components/funding/FundingDashboard"
 
 export const metadata = {
   title: "Jersey Funding — 선물을 전달하라",
@@ -20,7 +19,7 @@ const TIERS = [
     amount: "600만원",
     amountKRW: 6000000,
     title: "저지 소 1두 후원",
-    desc: "임신한 저지젖소(Heifer) 한 마리가 입식됩니다. 이 젖소들이 삼수령 무무목장 ET(Embryo Transfer 수정) 센터의 종축이 되어, 삼수령 무무목장은 북한으로 갈 젖소 종축기지가 됩니다.",
+    desc: "저지 젖소 한 마리가 입식됩니다. 2년 후 새끼 소를 낳으면, 그 새끼가 북한으로 가는 선물이 됩니다.",
     icon: "🐄",
   },
   {
@@ -71,34 +70,8 @@ export default function JerseyFundingPage() {
         </div>
       </section>
 
-      {/* ── 모금 현황 대시보드 ── */}
-      <section className="py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="font-serif text-xl font-bold text-abbey-700 mb-8 text-center tracking-wide uppercase text-sm">
-            현재 모금 현황
-          </h2>
-          <FundingDashboard
-            raised={33000000}
-            goal={200000000}
-            donors={[
-              {
-                name: "텍사스 교회",
-                amount: 23000000,
-                displayAmount: "$17,000",
-                label: "Passing on the Gift",
-              },
-              {
-                name: "윤희진 회장님",
-                amount: 10000000,
-                label: "후원",
-              },
-            ]}
-          />
-        </div>
-      </section>
-
       {/* ── 프로젝트 소개 ── */}
-      <section className="py-20 bg-abbey-50">
+      <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <p className="font-serif text-abbey-600 leading-relaxed text-lg mb-6">
             헤이퍼 인터내셔널(Heifer International)의 &ldquo;Passing on the Gift&rdquo; 원칙 — 받은 선물을 다음 사람에게 전달하라.
@@ -112,7 +85,7 @@ export default function JerseyFundingPage() {
       </section>
 
       {/* ── 참여 방법 ── */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-abbey-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-abbey-900 mb-12 text-center">
             참여 방법을 선택해 주세요

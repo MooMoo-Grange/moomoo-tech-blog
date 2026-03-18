@@ -17,7 +17,7 @@ export default function SiteFooter() {
         <hr className="border-abbey-700 mb-12 max-w-full" />
 
         {/* 중간 — 정보 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
           <div>
             <h3 className="text-white font-serif text-base mb-3">예수원 Jesus Abbey</h3>
             <p className="leading-relaxed text-abbey-400">
@@ -43,18 +43,6 @@ export default function SiteFooter() {
               <br />
               <a href="mailto:jabbey65@hanmail.net" className="hover:text-sacred-candle transition-colors">
                 jabbey65@hanmail.net
-              </a>
-            </p>
-          </div>
-          <div>
-            <h4 className="text-white font-sans text-sm font-medium mb-3">무무목장 MooMoo Grange</h4>
-            <p className="leading-relaxed text-abbey-400">
-              TEL: 033-553-3395
-              <br />
-              FAX: 033-553-1405
-              <br />
-              <a href="mailto:jp@moomooranch.net" className="hover:text-sacred-candle transition-colors">
-                jp@moomooranch.net
               </a>
             </p>
           </div>
