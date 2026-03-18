@@ -4,7 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs"
 import { getAllLectures, getLectureById, getPersonById, getBooksForLecture } from "@/lib/data"
 
 export function generateStaticParams() {
-  return getAllLectures().map(l => ({ slug: l.objectId })
+  return getAllLectures().map(l => ({ slug: l.objectId }))
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
