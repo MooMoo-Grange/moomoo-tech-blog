@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Breadcrumbs from "@/components/Breadcrumbs"
-import { getDailyWordById, getAllDailyWords } from "@/lib/notion"
+import { getDailyWordById, getAllDailyWords } from "@/lib/notion-daily-word"
 import NotionRenderer from "@/components/blog/NotionRenderer"
 import type { Metadata } from "next"
 
@@ -17,7 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!word) return { title: "묵상을 찾을 수 없습니다" }
   return {
     title: `${word.title} — 오늘의 묵상`,
-    description: word.bibleVerse ? `${word.bibleVerse} — ${word.title}` : word.title,
+    description: word.scripture
+      ? `${word.scripture} — ${word.title}`
+      : word.title,
   }
 }
 
@@ -49,7 +51,6 @@ export default async function DailyWordDetailPage({ params }: Props) {
           { label: word.title },
         ]}
       />
-
       <article className="py-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
@@ -64,26 +65,24 @@ export default async function DailyWordDetailPage({ params }: Props) {
                 <span className="text-sm text-abbey-400">{formattedDate}</span>
               )}
             </div>
-
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-abbey-900 leading-tight mb-4">
               {word.title}
             </h1>
-
-            {word.bibleVerse && (
+            {word.scripture && (
               <p className="text-lg text-forest-700 font-medium bg-forest-50 px-4 py-3 rounded-lg">
-                {word.bibleVerse}
+                {word.scripture}
               </p>
             )}
           </header>
 
           {/* Body */}
-          {word.body && (
+          {word.meditation && (
             <div className="text-base leading-[1.85] text-abbey-700 whitespace-pre-line mb-8">
-              {word.body}
+              {word.meditation}
             </div>
           )}
 
-          {/* Notion 블록 콘텐츠 (추가 내용이 있을 경우) */}
+          {/* Notion 블록 콘텐츠 */}
           {word.blocks.length > 0 && (
             <div className="text-base leading-[1.85] text-abbey-700 mb-8">
               <NotionRenderer blocks={word.blocks} />
@@ -105,7 +104,6 @@ export default async function DailyWordDetailPage({ params }: Props) {
             <p className="text-sm text-abbey-400 text-right mb-8">— {word.author}</p>
           )}
 
-          {/* Separator */}
           <hr className="my-12 border-abbey-200" />
 
           {/* Back Link */}
