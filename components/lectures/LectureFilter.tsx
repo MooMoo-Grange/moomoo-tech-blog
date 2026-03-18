@@ -2,10 +2,10 @@
 
 import { useState, useMemo } from "react"
 import Link from "next/link"
-import type { NotionLecture } from "@/lib/notion"
+import type { Lecture } from "@/lib/notion-lectures"
 
 interface Props {
-  lectures: NotionLecture[]
+  lectures: Lecture[]
   topics: string[]
   eras: string[]
 }
