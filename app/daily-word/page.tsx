@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Breadcrumbs from "@/components/Breadcrumbs"
-import { getAllDailyWords, getTodayWord } from "@/lib/notion"
+import { getAllDailyWords, getLatestDailyWord } from "@/lib/notion-daily-word"
 
 export const revalidate = 3600
 
@@ -10,7 +10,7 @@ export const metadata = {
 }
 
 export default async function DailyWordPage() {
-  const todayWord = await getTodayWord()
+  const todayWord = await getLatestDailyWord()
   const allWords = await getAllDailyWords()
 
   return (
@@ -27,14 +27,13 @@ export default async function DailyWordPage() {
             오늘의 묵상
           </h1>
           <p className="text-lg text-abbey-600 leading-relaxed">
-            읽는다. 반복한다. 묵상한다. 기도한다.
-            <br />
+            읽는다. 반복한다. 묵상한다. 기도한다. <br />
             네 단계가 하나의 호흡이 될 때까지.
           </p>
         </div>
       </section>
 
-      {/* Today's Word — Featured */}
+      {/* Today's Word */}
       {todayWord && (
         <section className="py-12">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,19 +61,16 @@ export default async function DailyWordPage() {
                 <h2 className="text-2xl font-serif font-bold text-abbey-900 mb-4">
                   {todayWord.title}
                 </h2>
-
-                {todayWord.bibleVerse && (
+                {todayWord.scripture && (
                   <p className="text-forest-700 font-medium text-sm mb-6 bg-forest-50 px-4 py-2 rounded">
-                    {todayWord.bibleVerse}
+                    {todayWord.scripture}
                   </p>
                 )}
-
-                {todayWord.body && (
+                {todayWord.meditation && (
                   <div className="text-abbey-700 leading-relaxed whitespace-pre-line mb-6">
-                    {todayWord.body}
+                    {todayWord.meditation}
                   </div>
                 )}
-
                 {todayWord.prayer && (
                   <div className="border-t border-abbey-200 pt-6 mt-6">
                     <p className="text-sm font-medium text-abbey-500 mb-2">기도</p>
@@ -83,7 +79,6 @@ export default async function DailyWordPage() {
                     </p>
                   </div>
                 )}
-
                 {todayWord.author && (
                   <p className="text-sm text-abbey-400 mt-6 text-right">— {todayWord.author}</p>
                 )}
@@ -97,7 +92,6 @@ export default async function DailyWordPage() {
       <section className="py-12 bg-abbey-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-serif font-bold text-abbey-900 mb-6">묵상 아카이브</h2>
-
           {allWords.length === 0 ? (
             <p className="text-abbey-500 text-center py-12">
               아직 게시된 묵상이 없습니다. 곧 올라올 예정입니다.
@@ -115,8 +109,8 @@ export default async function DailyWordPage() {
                       <h3 className="font-serif font-bold text-abbey-800 mb-1 truncate">
                         {word.title}
                       </h3>
-                      {word.bibleVerse && (
-                        <p className="text-sm text-forest-600">{word.bibleVerse}</p>
+                      {word.scripture && (
+                        <p className="text-sm text-forest-600">{word.scripture}</p>
                       )}
                     </div>
                     <div className="text-right flex-shrink-0">
