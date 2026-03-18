@@ -122,7 +122,7 @@ export default function FundingDashboard({ raised, goal, donors }: Props) {
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-abbey-100">
         <div className="text-center">
-          <span className="block text-2xl font-serif font-bold text-abbey-900">3</span>
+          <span className="block text-2xl font-serif font-bold text-abbey-900">5</span>
           <span className="text-xs text-abbey-400">현재 저지 소</span>
         </div>
         <div className="text-center">
