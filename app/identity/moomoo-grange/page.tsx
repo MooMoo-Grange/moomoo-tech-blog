@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Breadcrumbs from "@/components/Breadcrumbs"
 import FundingDashboard from "@/components/funding/FundingDashboard"
+import { getFundingStats } from "@/lib/notion-funding"
 
 export const metadata = {
   title: "Passing on the Gift — 삼수령 무무목장",
@@ -56,7 +57,10 @@ const jsonLd = {
 /* ──────────────────────────────────────────
    Page
    ────────────────────────────────────────── */
-export default function MooMooGrangePage() {
+export const revalidate = 60
+
+export default async function MooMooGrangePage() {
+  const funding = await getFundingStats()
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -432,12 +436,9 @@ export default function MooMooGrangePage() {
           {/* Funding Dashboard — animated client component */}
           <div className="bg-white rounded-xl shadow-sm border border-abbey-100 p-8 sm:p-10 text-left">
             <FundingDashboard
-              raised={33000000}
-              goal={200000000}
-              donors={[
-                { name: "텍사스 교회", amount: 23000000, displayAmount: "$17,000", label: "Passing on the Gift" },
-                { name: "윤희진 회장님", amount: 10000000, label: "후원" },
-              ]}
+              raised={funding.raised}
+              goal={funding.goal}
+              donors={funding.donors}
             />
           </div>
         </div>
