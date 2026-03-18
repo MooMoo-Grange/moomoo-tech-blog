@@ -9,6 +9,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher"
 const navLinks = [
   { key: "the-day", label: "예수원의 하루", path: "/the-day" },
   { key: "story", label: "이야기", path: "/story" },
+  { key: "daily-word", label: "오늘의 묵상", path: "/daily-word" },
   { key: "voice", label: "소리", path: "/founders/archive/lectures" },
   { key: "grange", label: "무무목장", path: "/identity/moomoo-grange" },
 ]
