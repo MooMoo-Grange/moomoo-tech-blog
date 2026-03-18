@@ -4,16 +4,16 @@ import Breadcrumbs from "@/components/Breadcrumbs"
 import { getAllLectures, getLectureById, getPersonById, getBooksForLecture } from "@/lib/data"
 
 export function generateStaticParams() {
-  return getAllLectures().map(l => ({ id: l.objectId }))
+  return getAllLectures().map(l => ({ slug: l.objectId })
 }
 
-export function generateMetadata({ params }: { params: { id: string } }) {
-  const lecture = getLectureById(params.id)
+export function generateMetadata({ params }: { params: { slug: string } }) {
+  const lecture = getLectureById(params.slug)
   return { title: lecture?.titleKo ?? "강의" }
 }
 
-export default function LectureDetailPage({ params }: { params: { id: string } }) {
-  const lecture = getLectureById(params.id)
+export default function LectureDetailPage({ params }: { params: { slug: string } }) {
+  const lecture = getLectureById(params.slug)
   if (!lecture) notFound()
 
   const speaker = getPersonById(lecture.speakerId)
