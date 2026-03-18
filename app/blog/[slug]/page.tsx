@@ -36,7 +36,8 @@ export async function generateStaticParams() {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  if (!post) notFound()
+  // Draft 또는 존재하지 않는 글은 404 처리
+  if (!post || post.status !== "Published") notFound()
 
   const formattedDate = new Date(post.publishedDate).toLocaleDateString("ko-KR", {
     year: "numeric",

@@ -77,12 +77,25 @@ function extractPageProperties(page: PageObjectResponse): BlogPost {
       : "예수원"
 
   // Status — 명시적으로 Published인 글만 공개, 기본값은 Draft
-  const statusProp = props["Status"] || props["상태"]
+  // 노션 DB 속성명: "Status", "상태", "발행상태", "공개" 모두 인식
+  const statusProp =
+    props["Status"] ?? props["상태"] ?? props["발행상태"] ?? props["공개"]
   let status = "Draft"
   if (statusProp?.type === "status") {
-    status = statusProp.status?.name ?? "Draft"
+    // 노션 기본 Status 타입 (In progress / Done 등)
+    const name = statusProp.status?.name ?? ""
+    // "Published", "공개", "발행", "Done", "완료" → Published로 통일
+    status = ["Published", "공개", "발행", "Done", "완료"].includes(name)
+      ? "Published"
+      : "Draft"
   } else if (statusProp?.type === "select") {
-    status = statusProp.select?.name ?? "Draft"
+    const name = statusProp.select?.name ?? ""
+    status = ["Published", "공개", "발행", "Done", "완료"].includes(name)
+      ? "Published"
+      : "Draft"
+  } else if (statusProp?.type === "checkbox") {
+    // 체크박스로 공개 여부를 관리하는 경우
+    status = statusProp.checkbox ? "Published" : "Draft"
   }
 
   // Tags
