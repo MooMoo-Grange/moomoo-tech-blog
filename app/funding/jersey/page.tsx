@@ -78,7 +78,7 @@ export default function JerseyFundingPage() {
             삼수령 무무목장은 해발 1,000m 태백에서 이 원칙을 검증하고, 그 날이 오면 북한 고지대에 전달합니다.
           </p>
           <p className="font-serif text-abbey-600 leading-relaxed text-lg">
-            초기 5두에서 시작하여 2년 후 10두, 4년 후 20두. 암송아지 자가 증식으로 복제됩니다.
+            현재 5두에서 2025년 안에 10두, 4년 후 20두 달성이 목표입니다. 암송아지 자가 증식으로 복제됩니다.
             여러분의 후원이 그 첫 번째 고리입니다.
           </p>
         </div>
