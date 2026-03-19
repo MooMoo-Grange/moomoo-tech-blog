@@ -11,7 +11,7 @@ interface Donor {
 }
 
 interface Props {
-  raised: numbe
+  raised: number
   goal: number
   donors: Donor[]
 }
