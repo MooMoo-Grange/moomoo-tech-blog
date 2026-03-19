@@ -392,8 +392,8 @@ export default async function MooMooGrangePage() {
 
           <div className="mt-10 bg-abbey-800/30 rounded-lg p-6 border border-abbey-700">
             <p className="font-serif text-abbey-300 leading-relaxed text-center">
-              암송아지 자가 증식: 초기 <span className="text-white font-bold">5두</span> &rarr;
-              2년 후 <span className="text-white font-bold">10두</span> &rarr;
+              암송아지 자가 증식: 현재 <span className="text-white font-bold">5두</span> &rarr;
+              2025년 목표 <span className="text-white font-bold">10두</span> &rarr;
               4년 후 <span className="text-white font-bold">20두</span>.
               <br />
               <span className="text-sacred-gold/80 text-sm mt-2 block">
