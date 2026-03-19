@@ -11,7 +11,7 @@ interface Donor {
 }
 
 interface Props {
-  raised: number
+  raised: numbe
   goal: number
   donors: Donor[]
 }
@@ -126,7 +126,7 @@ export default function FundingDashboard({ raised, goal, donors }: Props) {
           <span className="text-xs text-abbey-400">현재 저지 소</span>
         </div>
         <div className="text-center">
-          <span className="block text-2xl font-serif font-bold text-abbey-900">5</span>
+          <span className="block text-2xl font-serif font-bold text-abbey-900">10</span>
           <span className="text-xs text-abbey-400">1차 목표 (두)</span>
         </div>
         <div className="text-center">
