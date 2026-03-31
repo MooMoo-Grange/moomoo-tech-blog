@@ -1,6 +1,31 @@
 import type { BlockObjectResponse, RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
 import React from "react"
 
+
+function getNotionColorClass(color: string): string | null {
+  const colorMap: Record<string, string> = {
+    gray: 'notion-color-gray',
+    brown: 'notion-color-brown',
+    orange: 'notion-color-orange',
+    yellow: 'notion-color-yellow',
+    green: 'notion-color-green',
+    blue: 'notion-color-blue',
+    purple: 'notion-color-purple',
+    pink: 'notion-color-pink',
+    red: 'notion-color-red',
+    gray_background: 'notion-bg-gray',
+    brown_background: 'notion-bg-brown',
+    orange_background: 'notion-bg-orange',
+    yellow_background: 'notion-bg-yellow',
+    green_background: 'notion-bg-green',
+    blue_background: 'notion-bg-blue',
+    purple_background: 'notion-bg-purple',
+    pink_background: 'notion-bg-pink',
+    red_background: 'notion-bg-red',
+  }
+  return colorMap[color] || null
+}
+
 function renderRichText(richTexts: RichTextItemResponse[]) {
   return richTexts.map((text, i) => {
     const { annotations, plain_text, href } = text
@@ -10,6 +35,12 @@ function renderRichText(richTexts: RichTextItemResponse[]) {
     if (annotations.italic) element = <em key={i}>{element}</em>
     if (annotations.strikethrough) element = <s key={i}>{element}</s>
     if (annotations.underline) element = <u key={i}>{element}</u>
+    if (annotations.color && annotations.color !== 'default') {
+      const colorClass = getNotionColorClass(annotations.color)
+      if (colorClass) {
+        element = <span key={"c-" + i} className={colorClass}>{element}</span>
+      }
+    }
     if (annotations.code)
       element = (
         <code key={i} className="bg-abbey-100 px-1.5 py-0.5 rounded text-sm font-mono">

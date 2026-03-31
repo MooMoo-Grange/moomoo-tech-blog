@@ -90,3 +90,25 @@ body { top: 0 !important; }
 @media print {
   nav, footer, .no-print { display: none !important; }
 }
+
+/* Notion color support — text colors */
+.notion-color-gray { color: #787774; }
+.notion-color-brown { color: #9F6B53; }
+.notion-color-orange { color: #D9730D; }
+.notion-color-yellow { color: #CB912F; }
+.notion-color-green { color: #448361; }
+.notion-color-blue { color: #337EA9; }
+.notion-color-purple { color: #9065B0; }
+.notion-color-pink { color: #C14C8A; }
+.notion-color-red { color: #D44C47; }
+
+/* Notion color support — background colors */
+.notion-bg-gray { background-color: #F1F1EF; padding: 0 0.25em; border-radius: 0.2em; }
+.notion-bg-brown { background-color: #F4EEEE; padding: 0 0.25em; border-radius: 0.2em; }
+.notion-bg-orange { background-color: #FBECDD; padding: 0 0.25em; border-radius: 0.2em; }
+.notion-bg-yellow { background-color: #FBF3DB; padding: 0 0.25em; border-radius: 0.2em; }
+.notion-bg-green { background-color: #EDF3EC; padding: 0 0.25em; border-radius: 0.2em; }
+.notion-bg-blue { background-color: #E7F3F8; padding: 0 0.25em; border-radius: 0.2em; }
+.notion-bg-purple { background-color: #F4F0F7; padding: 0 0.25em; border-radius: 0.2em; }
+.notion-bg-pink { background-color: #F9F0F5; padding: 0 0.25em; border-radius: 0.2em; }
+.notion-bg-red { background-color: #FDEBEC; padding: 0 0.25em; border-radius: 0.2em; }
